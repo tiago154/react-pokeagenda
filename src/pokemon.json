@@ -1,0 +1,74 @@
+[
+    {
+        "name": "Bulbasaur",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+    },
+    {
+        "name": "Charmander",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png"
+    },
+    {
+        "name": "Squirtle",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
+    },
+    {
+        "name": "Chikorita",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/152.png"
+    },
+    {
+        "name": "Cyndaquil",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/155.png"
+    },
+    {
+        "name": "Totodile",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/158.png"
+    },
+    {
+        "name": "Treecko",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/252.png"
+    },
+    {
+        "name": "Torchic",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/255.png"
+    },
+    {
+        "name": "Mudkip",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/258.png"
+    },
+    {
+        "name": "Turtwig",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/387.png"
+    },
+    {
+        "name": "Chimchar",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/390.png"
+    },
+    {
+        "name": "Piplup",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/393.png"
+    },
+    {
+        "name": "Snivy",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/495.png"
+    },
+    {
+        "name": "Tepig",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/498.png"
+    },
+    {
+        "name": "Oshawott",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/501.png"
+    },
+    {
+        "name": "Chespin",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/650.png"
+    },
+    {
+        "name": "Fennekin",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/653.png"
+    },
+    {
+        "name": "Froakie",
+        "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/656.png"
+    }
+]
