@@ -7,7 +7,7 @@ class ButtonLink extends Component {
   render() {
     const { text, link } = this.props;
     return (
-      <button>
+      <button className="Button-link">
         <a className="App-link" href={link} target="_blank" rel="noopener noreferrer">{text}</a>
       </button>
     );

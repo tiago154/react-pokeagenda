@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  animation: App-logo-spin infinite 2s linear;
   height: 25vmin;
   pointer-events: none;
 }
@@ -46,11 +46,11 @@
   display: inline-block;
 }
 
-button {
+.Button-link {
   margin-top: 20px;
   border-radius: 20px;
-  background-color: #4b494a;
-  border-color: #4b494a;
+  background-color: #052c3b;
+  border: double 4px transparent;
   font-size: calc(10px + 1vmin);
 }
 
