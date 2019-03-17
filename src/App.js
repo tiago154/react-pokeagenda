@@ -24,19 +24,6 @@ class Title extends Component {
 }
 
 class Pokemon extends Component {
-  render() {
-    const { name, image } = this.props;
-    return (
-      <div>
-        <h1>{name}</h1>
-        <img src={image} alt={name} title={name} />
-      </div>
-    );
-  }
-}
-
-
-class App extends Component {
   constructor(props) {
     super(props);
 
@@ -45,22 +32,50 @@ class App extends Component {
     };
   }
 
-  tick() {
+  setRandomPokemon() {
     this.setState({
       pokemon: pokemons[Math.floor(Math.random() * pokemons.length)]
     });
   }
+
   componentDidMount() {
-    setInterval(() => this.tick(), 4000);
+    setInterval(() => this.setRandomPokemon(), 4000);
   }
 
+  render() {
+    const { name, image } = this.state.pokemon;
+    return (
+      <div className="Pokemon-container">
+        <h1>{name}</h1>
+        <img className="Pokemon-container-img" src={image} alt={name} title={name} />
+      </div>
+    );
+  }
+}
+
+class LogoReact extends Component {
+  render() {
+    const direction = this.props.direction;
+    return (
+      <div className={`${direction}`}>
+        <img src={logo} className={`App-logo ${direction}`} alt="logo" />
+      </div>
+    );
+  };
+}
+
+
+class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          <div>
+            <LogoReact direction="Right" />
+            <Pokemon />
+            <LogoReact direction="Left" />
+          </div>
           <Title />
-          <Pokemon name={this.state.pokemon.name} image={this.state.pokemon.image} />
           <a
             className="App-link"
             href="https://reactjs.org"
