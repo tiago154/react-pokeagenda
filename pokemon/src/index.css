@@ -35,4 +35,8 @@ code {
     monospace;
 }
 
+div {
+  border-style: solid;
+}
+
 

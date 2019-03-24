@@ -1,41 +1,34 @@
-import React, { Component } from 'react'
-import Title from './components/header/title'
-import PokemonList from './components/left-menu/pokemon-list'
-import './App.css'
+import React, { Component } from 'react';
+import Title from './components/header/title';
+import PokemonList from './components/left-container/pokemon-list';
+import PokemonImage from './components/right-container/pokemon-image';
+import './App.css';
 
 class App extends Component {
   state = {
-    pokemons: []
+    image: 'http://img.ibxk.com.br/ns/quizpop/2015/03/10/10175754730000.png',
+    name: 'Unknown'
   };
 
-  async getPokemons() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=15');
-    const json = await response.json();
-    console.log(json);
-    this.setState({
-      pokemons: json.results.map(item => {
-        return {
-          name: item.name,
-          url: item.url
-        }
-      })
-    });
-  }
 
-  componentDidMount() {
-    this.getPokemons();
+  loadImage(image, name) {
+    this.setState({
+      image,
+      name
+    });
   }
 
   render() {
     return (
-      <div>
-        <Title className='Title' />
-        <PokemonList
-          pokemons={this.state.pokemons}
-        />
+      <div className='App-container-block'>
+        <Title />
+        <section className='App-container-flex'>
+            <PokemonList handlerInformation={this.loadImage.bind(this)} />
+            <PokemonImage image={this.state.image} name={this.state.name} />
+        </section>
       </div>
     )
   }
 }
 
-export default App
+export default App;
