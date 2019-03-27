@@ -1,9 +1,13 @@
 .App-container-block {
-    display: block
+    display: block;
+    height: auto;
+    width: 70%;
+    margin: auto;
+    background-color: rgb(202, 243, 243);
 }
 
 .App-container-flex {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }

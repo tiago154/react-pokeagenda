@@ -6,7 +6,7 @@ class Title extends Component {
     return (
       <header className='Text-center'>
         <div>
-          <h1>Pokédex</h1>
+          <h1>Pokédex com React JS</h1>
         </div>
       </header>
     )

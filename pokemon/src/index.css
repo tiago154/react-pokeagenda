@@ -11,23 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body::after {
-  content: "";
-  background: url(images/background.jpg);
-  opacity: 0.4;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: #464646;   
+  background-color: rgb(233, 190, 190);
 }
 
 code {
@@ -35,7 +19,7 @@ code {
     monospace;
 }
 
-div {
+div, aside {
   border-style: solid;
 }
 

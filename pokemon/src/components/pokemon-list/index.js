@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './pokemon-list.css';
 
-const urlPokeApi = 'https://pokeapi.co/api/v2/pokemon';
-const urlPokeImage = 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/';
+const urlPokeApi = process.env.REACT_APP_POKEMON_API;
+const urlPokeImage = process.env.REACT_APP_POKEMON_IMAGE;
 
 class PokemonList extends Component {
   state = {
@@ -12,7 +12,7 @@ class PokemonList extends Component {
   };
 
   async getPokemons(url) {
-    const urlRequest = url || `${urlPokeApi}?limit=${15}&offset=${0}`;
+    const urlRequest = url || `${urlPokeApi}?limit=${20}&offset=${0}`;
     const response = await fetch(urlRequest);
     const json = await response.json();
     this.setState({
@@ -49,7 +49,7 @@ class PokemonList extends Component {
     )
 
     return (
-      <div className='Left-menu'>
+      <aside className='Left-menu'>
         <table className='Table-name-pokemon'>
           <thead>
             <tr>
@@ -63,7 +63,7 @@ class PokemonList extends Component {
           <button onClick={() => this.getPokemons(this.state.previous)}>Anterior</button>
           <button onClick={() => this.getPokemons(this.state.next)}>Próximo</button>
         </div>
-      </div >
+      </aside >
     )
   }
 }

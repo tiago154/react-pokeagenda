@@ -3,6 +3,11 @@ import './pokemon-image.css';
 
 class PokemonList extends Component {
     render() {
+        const errorImageDefault = e => {
+            e.target.onerror = null;
+            e.target.src = process.env.DEFAULT_IMAGE;
+        }
+
         return (
             <div className=''>
                 <img
@@ -10,7 +15,7 @@ class PokemonList extends Component {
                     src={this.props.image}
                     alt={this.props.name}
                     title={this.props.name}
-                    onError={(e) => { e.target.onerror = null; e.target.src = "http://img.ibxk.com.br/ns/quizpop/2015/03/10/10175754730000.png" }} />
+                    onError={errorImageDefault} />
             </div>
         )
     }
