@@ -6,12 +6,18 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(233, 190, 190);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url(images/background.jpg);
+  opacity: .4;
 }
 
 code {
@@ -19,8 +25,8 @@ code {
     monospace;
 }
 
-div, aside {
+/* div, aside {
   border-style: solid;
-}
+} */
 
 

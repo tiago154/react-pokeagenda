@@ -12,7 +12,7 @@ class PokemonList extends Component {
   };
 
   async getPokemons(url) {
-    const urlRequest = url || `${urlPokeApi}?limit=${20}&offset=${0}`;
+    const urlRequest = url || `${urlPokeApi}?limit=${16}&offset=${0}`;
     const response = await fetch(urlRequest);
     const json = await response.json();
     this.setState({
@@ -41,7 +41,7 @@ class PokemonList extends Component {
       <tr key={pokemon.number}>
         <td>{pokemon.number}</td>
         <td>
-          <button onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name)}>
+          <button onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
             {pokemon.name}
           </button>
         </td>

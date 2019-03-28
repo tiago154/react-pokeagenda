@@ -9,14 +9,12 @@ class PokemonList extends Component {
         }
 
         return (
-            <div className=''>
-                <img
-                    className='Image-pokemon'
-                    src={this.props.image}
-                    alt={this.props.name}
-                    title={this.props.name}
-                    onError={errorImageDefault} />
-            </div>
+            <img
+                className='Image'
+                src={this.props.image}
+                alt={this.props.name}
+                title={this.props.name}
+                onError={errorImageDefault} />
         )
     }
 }

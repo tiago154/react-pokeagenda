@@ -4,7 +4,7 @@ import './title.css'
 class Title extends Component {
   render () {
     return (
-      <header className='Text-center'>
+      <header className='Header'>
         <div>
           <h1>Pokédex com React JS</h1>
         </div>

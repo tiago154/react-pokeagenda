@@ -1,8 +1,7 @@
 .Left-menu {
-    display: flex;
     flex-direction: column;
 }
 
 .Table-name-pokemon {
-    justify-content: center;
+    
 }

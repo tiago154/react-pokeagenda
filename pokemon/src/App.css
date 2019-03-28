@@ -1,13 +1,20 @@
-.App-container-block {
-    display: block;
-    height: auto;
-    width: 70%;
-    margin: auto;
-    background-color: rgb(202, 243, 243);
+.Flex {
+    display: flex;
+    max-height: 100%;
 }
 
-.App-container-flex {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.Flex-column {
+	flex-direction: column;
+}
+
+.Flex-space-around {
+    justify-content: space-around;
+}
+
+.Flex-Center {
+    justify-content: center;
+}
+
+.Width-100 {
+    width: 100%;
 }
