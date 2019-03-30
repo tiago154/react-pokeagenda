@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './pokemon-list.css';
 
 const urlPokeApi = process.env.REACT_APP_POKEMON_API;
-const urlPokeImage = process.env.REACT_APP_POKEMON_IMAGE;
 
 class PokemonList extends Component {
   state = {
@@ -24,7 +23,6 @@ class PokemonList extends Component {
         return {
           number: number,
           name: item.name,
-          image: `${urlPokeImage}${number.padStart(3, '0')}.png`,
           url: item.url
         }
       })
@@ -43,14 +41,14 @@ class PokemonList extends Component {
         <td>
           <button
             className='Button-style'
-            onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
+            onClick={() => this.props.handlerInformation(pokemon.name, pokemon.url)}>
             {pokemon.number}
           </button>
         </td>
         <td>
           <button
             className='Button-style Button-name'
-            onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
+            onClick={() => this.props.handlerInformation(pokemon.name, pokemon.url)}>
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </button>
         </td>

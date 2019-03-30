@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './pokemon-image.css';
 
+const urlPokeImage = process.env.REACT_APP_POKEMON_IMAGE;
+
 class PokemonList extends Component {
     render() {
         const errorMainImageDefault = e => {
@@ -15,12 +17,14 @@ class PokemonList extends Component {
                 );
             }
         }
+        
+        const mainPicture = `${urlPokeImage}${this.props.id.toString().padStart(3, '0')}.png`
 
         return (
             <div className='Container-pictures Border Flex Flex-column'>
                 <img
                     className='Main-picture'
-                    src={this.props.image}
+                    src={mainPicture}
                     alt={this.props.name}
                     title={this.props.name}
                     onError={errorMainImageDefault} />
@@ -29,19 +33,19 @@ class PokemonList extends Component {
                     <img
                         src={this.props.sprites.front}
                         alt={this.props.sprites.front}
-                        title={this.props.sprites.front ? this.props.name : null} />
+                        title={this.props.sprites.front ? 'Front' : null} />
                     <img
                         src={this.props.sprites.frontShiny}
                         alt={this.props.sprites.frontShiny}
-                        title={this.props.sprites.frontShiny ? this.props.name : null} />
+                        title={this.props.sprites.frontShiny ? 'Front Shiny' : null} />
                     <img
                         src={this.props.sprites.back}
                         alt={this.props.sprites.back}
-                        title={this.props.sprites.back ? this.props.name : null} />
+                        title={this.props.sprites.back ? 'Back' : null} />
                     <img
                         src={this.props.sprites.backShiny}
                         alt={this.props.sprites.backShiny}
-                        title={this.props.sprites.backShiny ? this.props.name : null} />
+                        title={this.props.sprites.backShiny ? 'Back Shiny' : null} />
                 </div>
             </div>
         )

@@ -1,10 +1,56 @@
 import React, { Component } from 'react';
+import './pokemon-information.css';
 
 class PokemonInformation extends Component {
     render() {
+        const fillTypes = type => {
+            if (type) {
+                return (
+                    <span className={type.className} key={type.name}>{type.name}</span>
+                )
+            }
+        };
+
+        const weight = weight => {
+            if (weight) {
+                return (
+                    <>
+                        <h3>Peso</h3>
+                        <p>{weight} kg</p>
+                    </>
+                );
+            }
+        }
+
+        const height = height => {
+            if (height) {
+                return (
+                    <>
+                        <h3>Altura</h3>
+                        <p>{height} m</p>
+                    </>
+                );
+            }
+        }
+
+        const typeTitle = informations => {
+            if (informations.types.length) {
+                return (
+                    <h3>Tipo</h3>
+                );
+            }
+        }
+
+        const informations = this.props.informations;
+
         return (
-            <div>
-                <p>{this.props.weight}</p>
+            <div className='Type-style Pokemon-information'>
+                <div className='Margin-data'>
+                    {weight(informations.weight)}
+                    {height(informations.height)}
+                    {typeTitle(informations)}
+                    {informations.types.map(fillTypes)}
+                </div>
             </div>
         );
     }
