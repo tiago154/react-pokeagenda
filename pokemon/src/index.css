@@ -17,16 +17,11 @@ body::before {
   left: 0;
   right: 0;
   background: url(images/background.jpg);
-  opacity: .4;
+  opacity: .3;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-/* div, aside {
-  border-style: solid;
-} */
-
 

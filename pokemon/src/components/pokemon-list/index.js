@@ -8,11 +8,12 @@ class PokemonList extends Component {
   state = {
     pokemons: [],
     previous: '',
-    next: ''
+    next: '',
+    limit: 15
   };
 
   async getPokemons(url) {
-    const urlRequest = url || `${urlPokeApi}?limit=${16}&offset=${0}`;
+    const urlRequest = url || `${urlPokeApi}?limit=${this.state.limit}&offset=${0}`;
     const response = await fetch(urlRequest);
     const json = await response.json();
     this.setState({
@@ -39,29 +40,37 @@ class PokemonList extends Component {
 
     const fillPokemon = pokemon => (
       <tr key={pokemon.number}>
-        <td>{pokemon.number}</td>
         <td>
-          <button onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
-            {pokemon.name}
+          <button
+            className='Button-style'
+            onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
+            {pokemon.number}
+          </button>
+        </td>
+        <td>
+          <button
+            className='Button-style Button-name'
+            onClick={() => this.props.handlerInformation(pokemon.image, pokemon.name, pokemon.url)}>
+            {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </button>
         </td>
       </tr>
     )
 
     return (
-      <aside className='Left-menu'>
+      <aside className='Flex Flex-column'>
         <table className='Table-name-pokemon'>
           <thead>
             <tr>
-              <th>#</th>
-              <th>Name</th>
+              <th className='Table-head-number'>#</th>
+              <th className='Table-head-name'>Name</th>
             </tr>
           </thead>
           <tbody>{pokemons.map(fillPokemon)}</tbody>
         </table>
-        <div>
-          <button onClick={() => this.getPokemons(this.state.previous)}>Anterior</button>
-          <button onClick={() => this.getPokemons(this.state.next)}>Próximo</button>
+        <div className='Flex Flex-row Flex-space-around'>
+          <button className='Button-controls' onClick={() => this.getPokemons(this.state.previous)}>{'<'}</button>
+          <button className='Button-controls' onClick={() => this.getPokemons(this.state.next)}>{'>'}</button>
         </div>
       </aside >
     )

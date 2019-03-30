@@ -27,7 +27,7 @@ class App extends Component {
     console.log(json);
     this.setState({
       image,
-      name,
+      name: name.charAt(0).toUpperCase() + name.slice(1),
       weight: json.weight,
       sprites: {
         front: json.sprites.front_default,
@@ -42,13 +42,12 @@ class App extends Component {
     return (
       <div className='Flex Flex-column'>
         <Header />
-        <div className='Flex Width-100 Flex-space-around'>
+        <div className='Flex Width-full Flex-center'>
           <PokemonList handlerInformation={this.loadInformation.bind(this)} />
-          <PokemonImage image={this.state.image} name={this.state.name} />
-          <PokemonInformation weight={this.state.weight} sprites={this.state.sprites} />
+          <PokemonImage image={this.state.image} name={this.state.name} sprites={this.state.sprites} />
+          <PokemonInformation weight={this.state.weight} />
         </div>
-        <footer className='Flex Width-100 Flex-Center'>
-          <span>Parte de baixo</span>
+        <footer className='Flex Width-full Flex-center'>
         </footer>
       </div >
     )

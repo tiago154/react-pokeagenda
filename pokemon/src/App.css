@@ -1,20 +1,27 @@
 .Flex {
     display: flex;
-    max-height: 100%;
 }
 
 .Flex-column {
 	flex-direction: column;
 }
 
+.Flex-row {
+    flex-direction: row;
+}
+
 .Flex-space-around {
     justify-content: space-around;
 }
 
-.Flex-Center {
+.Flex-space-between {
+    justify-content: space-between;
+}
+
+.Flex-center {
     justify-content: center;
 }
 
-.Width-100 {
+.Width-full {
     width: 100%;
 }

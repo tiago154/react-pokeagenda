@@ -1,4 +1,18 @@
-.Image {
-    height: 100%;
-    width: 500px;
+.Main-picture {
+    margin-top: 10px;
+    width: 300px;
+    height: 300px;
+    object-fit: fill;
+    align-self: center;
+}
+
+.Container-pictures {
+    width: 400px;
+    max-width: 400px;
+}
+
+.Text-center {
+    text-align: center;
+    font-style: italic oblique;
+    font-weight: bold;
 }

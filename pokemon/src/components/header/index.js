@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import './title.css'
+import './header.css'
 
-class Title extends Component {
+class Header extends Component {
   render () {
     return (
       <header className='Header'>
@@ -13,4 +13,4 @@ class Title extends Component {
   }
 }
 
-export default Title
+export default Header

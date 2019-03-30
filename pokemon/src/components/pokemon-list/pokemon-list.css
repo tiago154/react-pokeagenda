@@ -1,7 +1,41 @@
-.Left-menu {
-    flex-direction: column;
+.Table-name-pokemon {
+    border: 0px solid black;
+    border-radius: 10px;
+    text-align: center;
+    background-image: url('/pokemon-trainer.png');
+    background-attachment: fixed;
 }
 
-.Table-name-pokemon {
-    
+.Table-head-name {
+    width: 250px;
+}
+
+.Table-head-number {
+    width: 50px;
+}
+
+.Button-style {
+    border: none;
+    border-radius: 20px;
+    background: none;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.Button-name {
+    width:auto; 
+    height:auto;
+    text-align: initial;
+}
+
+.Button-style:hover{
+    background-color: #ffcc03;
+    color: rgb(53, 55, 179);
+    font-weight: bolder;
+}
+
+.Button-controls {
+    height: 50px;
+    margin-top: 20px;
+    width: -webkit-fill-available;
 }
