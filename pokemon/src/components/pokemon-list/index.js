@@ -56,12 +56,12 @@ class PokemonList extends Component {
     )
 
     return (
-      <aside className='Flex Flex-column'>
+      <aside className='Flex Flex-column Table-list'>
         <table className='Table-name-pokemon'>
           <thead>
             <tr>
-              <th className='Table-head-number'>#</th>
-              <th className='Table-head-name'>Name</th>
+              <th className='Table-head'>#</th>
+              <th className='Table-head'>Name</th>
             </tr>
           </thead>
           <tbody>{pokemons.map(fillPokemon)}</tbody>

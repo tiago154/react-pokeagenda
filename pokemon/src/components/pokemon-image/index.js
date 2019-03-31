@@ -17,13 +17,13 @@ class PokemonList extends Component {
                 );
             }
         }
-        
+
         const mainPicture = `${urlPokeImage}${this.props.id.toString().padStart(3, '0')}.png`
 
         return (
             <div className='Container-pictures Border Flex Flex-column'>
                 <img
-                    className='Main-picture'
+                    className={this.props.name === 'Unknown' ? 'Main-picture-error' : 'Main-picture'}
                     src={mainPicture}
                     alt={this.props.name}
                     title={this.props.name}

@@ -36,16 +36,7 @@ class App extends Component {
       informations: {
         weight: (json.weight / 10).toLocaleString('pt-br'),
         height: (json.height / 10).toLocaleString('pt-br'),
-        types: json.types.map(type => {
-          const pokemonType = pokemonTypes[type.type.name];
-          const nameType = pokemonType ? pokemonType.name : '';
-          const classNameType = pokemonType ? pokemonType.className : 'Unknown-background';
-          return {
-            slot: type.slot,
-            name: nameType,
-            className: classNameType
-          };
-        })
+        types: json.types.map(this.typesMap)
       },
       sprites: {
         front: json.sprites.front_default,
@@ -54,6 +45,17 @@ class App extends Component {
         backShiny: json.sprites.back_shiny
       }
     });
+  }
+
+  typesMap = type => {
+    const pokemonType = pokemonTypes[type.type.name];
+    const nameType = pokemonType ? pokemonType.name : '';
+    const classNameType = pokemonType ? pokemonType.className : 'Unknown-background';
+    return {
+      slot: type.slot,
+      name: nameType,
+      className: classNameType
+    };
   }
 
   render() {

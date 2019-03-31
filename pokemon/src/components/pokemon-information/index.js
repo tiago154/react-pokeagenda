@@ -41,6 +41,14 @@ class PokemonInformation extends Component {
             }
         }
 
+        const orderBySlot = (a, b) => {
+            if (a.slot > b.slot)
+                return 1;
+            if (a.slot < b.slot)
+                return -1;
+            return 0;
+        }
+
         const informations = this.props.informations;
 
         return (
@@ -49,7 +57,7 @@ class PokemonInformation extends Component {
                     {weight(informations.weight)}
                     {height(informations.height)}
                     {typeTitle(informations)}
-                    {informations.types.map(fillTypes)}
+                    {informations.types.sort(orderBySlot).map(fillTypes)}
                 </div>
             </div>
         );
