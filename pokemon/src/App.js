@@ -27,7 +27,7 @@ class App extends Component {
     }
   };
 
-  async loadInformation(name, url) {
+  loadInformation = async (name, url) => {
     const response = await fetch(url);
     const json = await response.json();
     this.setState({
@@ -63,7 +63,7 @@ class App extends Component {
       <div className='Flex Flex-column'>
         <Header />
         <div className='Flex Width-full Flex-space-between'>
-          <PokemonList handlerInformation={this.loadInformation.bind(this)} />
+          <PokemonList handlerInformation={this.loadInformation} />
           <div className='Flex Flex-row Container-pokemon-information'>
             <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
             <PokemonInformation informations={this.state.informations} />

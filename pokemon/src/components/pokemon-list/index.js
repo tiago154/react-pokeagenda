@@ -2,39 +2,45 @@ import React, { Component } from 'react';
 import './pokemon-list.css';
 
 const urlPokeApi = process.env.REACT_APP_POKEMON_API;
+const LIMIT = 15;
+
+const calculateOffSet = (offset, limit, forward) => {
+  if (offset === 0 && !forward) return offset;
+  return forward ? offset + limit : offset - limit;
+}
 
 class PokemonList extends Component {
   state = {
     pokemons: [],
-    previous: '',
-    next: '',
-    limit: 15
+    offSet: 0,
   };
 
-  async getPokemons(url) {
-    const urlRequest = url || `${urlPokeApi}?limit=${this.state.limit}&offset=${0}`;
+  async getPokemons(url, limit, offset, forward = false) {
+    const urlRequest = `${url}?limit=${limit}&offset=${calculateOffSet(offset, limit, forward)}`;
     const response = await fetch(urlRequest);
     const json = await response.json();
-    this.setState({
-      previous: json.previous,
-      next: json.next,
-      pokemons: json.results.map(item => {
-        const number = item.url.split('pokemon/')[1].replace('/', '');
-        return {
-          number: number,
-          name: item.name,
-          url: item.url
-        }
-      })
-    });
+
+    if (json.results.length) {
+      this.setState({
+        offSet: calculateOffSet(offset, limit, forward),
+        pokemons: json.results.map(item => {
+          const number = item.url.split('pokemon/')[1].replace('/', '');
+          return {
+            number: number,
+            name: item.name,
+            url: item.url
+          }
+        })
+      });
+    }
   }
 
   componentDidMount() {
-    this.getPokemons();
+    this.getPokemons(urlPokeApi, LIMIT, this.state.offSet);
   }
 
   render() {
-    const pokemons = this.state.pokemons || [];
+    const pokemons = this.state.pokemons;
 
     const fillPokemon = pokemon => (
       <tr key={pokemon.number}>
@@ -67,8 +73,8 @@ class PokemonList extends Component {
           <tbody>{pokemons.map(fillPokemon)}</tbody>
         </table>
         <div className='Flex Flex-row Flex-space-around'>
-          <button className='Button-controls' onClick={() => this.getPokemons(this.state.previous)}>{'<'}</button>
-          <button className='Button-controls' onClick={() => this.getPokemons(this.state.next)}>{'>'}</button>
+          <button className='Button-controls' onClick={() => this.getPokemons(urlPokeApi, LIMIT, this.state.offSet)}>{'<'}</button>
+          <button className='Button-controls' onClick={() => this.getPokemons(urlPokeApi, LIMIT, this.state.offSet, true)}>{'>'}</button>
         </div>
       </aside >
     )
