@@ -10,8 +10,4 @@ const spritesText = (textValidation, textName) => {
     return ('');
 }
 
-export default (props) => {
-    return (
-        spritesText(props.textValidation, props.textName)
-    )
-}
+export default props => (spritesText(props.textValidation, props.textName))

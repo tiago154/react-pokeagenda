@@ -20,7 +20,8 @@ class PokemonImage extends Component {
                     src={mainPicture}
                     alt={this.props.name}
                     title={this.props.name}
-                    onError={errorMainImageDefault} />
+                    onError={errorMainImageDefault}
+                    />
                 <TextCenter textValidation={this.props.sprites.front} textName={this.props.name} />
                 <div className='Border Flex Flex-row Flex-center'>
                     <SpritePokemon url={this.props.sprites.front} title='Front' />

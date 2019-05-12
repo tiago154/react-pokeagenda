@@ -12,10 +12,11 @@ const calculateOffSet = (offset, limit, forward) => {
 class PokemonList extends Component {
   state = {
     pokemons: [],
-    offSet: 0,
+    offSet: 0
   };
 
   async getPokemons(url, limit, offset, forward = false) {
+    this.setState({ loading: true }); // Carregando informações
     const urlRequest = `${url}?limit=${limit}&offset=${calculateOffSet(offset, limit, forward)}`;
     const response = await fetch(urlRequest);
     const json = await response.json();
@@ -33,6 +34,8 @@ class PokemonList extends Component {
         })
       });
     }
+
+    this.setState({ loading: false }); // Finalizou
   }
 
   componentDidMount() {
@@ -47,14 +50,14 @@ class PokemonList extends Component {
         <td>
           <button
             className='Button-style'
-            onClick={() => this.props.handlerInformation(pokemon.name, pokemon.url)}>
+            onClick={() => this.props.handlerInformation(pokemon.url)}>
             {pokemon.number}
           </button>
         </td>
         <td>
           <button
             className='Button-style Button-name'
-            onClick={() => this.props.handlerInformation(pokemon.name, pokemon.url)}>
+            onClick={() => this.props.handlerInformation(pokemon.url)}>
             {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
           </button>
         </td>

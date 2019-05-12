@@ -9,6 +9,8 @@ import pokemonTypes from './components/pokemon-information/types-pokemon';
 
 dotenv.config();
 
+const urlPokeApi = process.env.REACT_APP_POKEMON_API
+
 class App extends Component {
   state = {
     image: process.env.REACT_APP_DEFAULT_IMAGE,
@@ -24,14 +26,36 @@ class App extends Component {
       frontShiny: '',
       back: '',
       backShiny: ''
-    }
+    },
+    searchByName: ''
   };
 
-  loadInformation = async (name, url) => {
+  loadInformation = async url => {
     const response = await fetch(url);
     const json = await response.json();
+    this.updatePokemonData(json);
+  }
+
+  typesMap = type => {
+    const pokemonType = pokemonTypes[type.type.name];
+    const nameType = pokemonType ? pokemonType.name : '';
+    const classNameType = pokemonType ? pokemonType.className : 'Unknown-background';
+    return {
+      slot: type.slot,
+      name: nameType,
+      className: classNameType
+    };
+  }
+
+  updateSearchByName = event => {
     this.setState({
-      name: name.charAt(0).toUpperCase() + name.slice(1),
+      searchByName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
+    });
+  }
+
+  updatePokemonData = json => {
+    this.setState({
+      name: json.name.charAt(0).toUpperCase() + json.name.slice(1),
       id: json.id,
       informations: {
         weight: (json.weight / 10).toLocaleString('pt-br'),
@@ -47,15 +71,13 @@ class App extends Component {
     });
   }
 
-  typesMap = type => {
-    const pokemonType = pokemonTypes[type.type.name];
-    const nameType = pokemonType ? pokemonType.name : '';
-    const classNameType = pokemonType ? pokemonType.className : 'Unknown-background';
-    return {
-      slot: type.slot,
-      name: nameType,
-      className: classNameType
-    };
+  async specificSearchByName(url, name) {
+    const urlRequest = `${url}/${name.toLowerCase()}`;
+    const response = await fetch(urlRequest);
+    if (response.status === 200) {
+      const json = await response.json();
+      this.updatePokemonData(json);
+    }
   }
 
   render() {
@@ -63,6 +85,20 @@ class App extends Component {
       <div className='Flex Flex-column'>
         <Header />
         <div className='Flex Width-full Flex-space-between'>
+          <div>
+            <label>Busca por nome ou por número</label>
+            <br />
+            <input
+              type='text' id='search' value={this.state.searchByName} onChange={this.updateSearchByName}
+              onKeyPress={
+                (e) => e.key === 'Enter' ?
+                  this.specificSearchByName(urlPokeApi, this.state.searchByName) :
+                  null
+              }
+            >
+            </input>
+            <button onClick={() => this.specificSearchByName(urlPokeApi, this.state.searchByName)}>Buscar</button>
+          </div>
           <PokemonList handlerInformation={this.loadInformation} />
           <div className='Flex Flex-row Container-pokemon-information'>
             <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
