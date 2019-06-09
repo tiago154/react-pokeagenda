@@ -7,11 +7,14 @@
 }
 
 .Pokemon-information {
-    margin-left: 120px;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ccc;
 }
 
 .Margin-data {
-    margin-top: 60px
+
 }
 
 .Normal-background {

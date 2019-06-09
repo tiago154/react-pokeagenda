@@ -6,7 +6,9 @@
     "dotenv": "^7.0.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-scripts": "2.1.8"
+    "react-flexbox-grid": "^2.1.2",
+    "react-scripts": "2.1.8",
+    "reset-css": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

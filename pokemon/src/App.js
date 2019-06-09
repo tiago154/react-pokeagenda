@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import PokemonList from './components/pokemon-list';
 import PokemonImage from './components/pokemon-image';
-import './App.css';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 import * as dotenv from 'dotenv';
 import PokemonInformation from './components/pokemon-information';
 import pokemonTypes from './components/pokemon-information/types-pokemon';
@@ -81,33 +81,44 @@ class App extends Component {
   }
 
   render() {
+    const { searchByName } = this.state;
     return (
-      <div className='Flex Flex-column'>
-        <Header />
-        <div className='Flex Width-full Flex-space-between'>
+      <Grid>
+        <Row>
+          <Header />
+        </Row>
+        <Row center='xs'>
+          {/* TODO Transformar em componente */}
           <div>
             <label>Busca por nome ou por número</label>
             <br />
             <input
-              type='text' id='search' value={this.state.searchByName} onChange={this.updateSearchByName}
+              type='text' id='search' value={searchByName} onChange={this.updateSearchByName}
               onKeyPress={
                 (e) => e.key === 'Enter' ?
-                  this.specificSearchByName(urlPokeApi, this.state.searchByName) :
+                  this.specificSearchByName(urlPokeApi, searchByName) :
                   null
               }
             >
             </input>
-            <button onClick={() => this.specificSearchByName(urlPokeApi, this.state.searchByName)}>Buscar</button>
+            <button onClick={() => this.specificSearchByName(urlPokeApi, searchByName)}>Buscar</button>
           </div>
-          <PokemonList handlerInformation={this.loadInformation} />
-          <div className='Flex Flex-row Container-pokemon-information'>
+        </Row>
+        <Row center="xs" middle="xs">
+          <Col xs={12} md={2}>
+            {
+              searchByName.length < 1 &&
+              <PokemonList handlerInformation={this.loadInformation} />
+            }
+          </Col>
+          <Col xs={12} md={6}>
             <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
+          </Col>
+          <Col xs={12} md={3}>
             <PokemonInformation informations={this.state.informations} />
-          </div>
-        </div>
-        <footer className='Flex Width-full Flex-center'>
-        </footer>
-      </div >
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }
