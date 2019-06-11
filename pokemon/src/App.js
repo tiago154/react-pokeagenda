@@ -6,6 +6,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import * as dotenv from 'dotenv';
 import PokemonInformation from './components/pokemon-information';
 import pokemonTypes from './components/pokemon-information/types-pokemon';
+import SearchInput from './components/search';
 
 dotenv.config();
 
@@ -88,21 +89,13 @@ class App extends Component {
           <Header />
         </Row>
         <Row center='xs'>
-          {/* TODO Transformar em componente */}
-          <div>
-            <label>Busca por nome ou por número</label>
-            <br />
-            <input
-              type='text' id='search' value={searchByName} onChange={this.updateSearchByName}
-              onKeyPress={
-                (e) => e.key === 'Enter' ?
-                  this.specificSearchByName(urlPokeApi, searchByName) :
-                  null
-              }
-            >
-            </input>
-            <button onClick={() => this.specificSearchByName(urlPokeApi, searchByName)}>Buscar</button>
-          </div>
+          <SearchInput value={searchByName} onChange={this.updateSearchByName}
+            onKeyPress={
+              (e) => e.key === 'Enter' ?
+                this.specificSearchByName(urlPokeApi, searchByName) :
+                null
+            } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
+          />
         </Row>
         <Row center="xs" middle="xs">
           <Col xs={12} md={2}>
@@ -111,12 +104,18 @@ class App extends Component {
               <PokemonList handlerInformation={this.loadInformation} />
             }
           </Col>
-          <Col xs={12} md={6}>
-            <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
-          </Col>
-          <Col xs={12} md={3}>
-            <PokemonInformation informations={this.state.informations} />
-          </Col>
+          {
+            !!this.state.id && (
+              <>
+                <Col xs={12} md={6}>
+                  <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
+                </Col>
+                <Col xs={12} md={3}>
+                  <PokemonInformation informations={this.state.informations} />
+                </Col>
+              </>
+            )
+          }
         </Row>
       </Grid>
     )
