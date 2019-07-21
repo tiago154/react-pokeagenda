@@ -6,6 +6,7 @@ function SearchInput({ value, onChange, onKeyPress, onSubmit }) {
         <div className='search'>
             <label>Busca por nome ou por número</label>
             <br />
+            <br />
             <div className='input-group'>
                 <input
                     type='text' id='search' value={value} onChange={onChange}

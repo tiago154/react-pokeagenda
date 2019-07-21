@@ -20,7 +20,8 @@ class App extends Component {
     informations: {
       weight: 0,
       height: 0,
-      types: []
+      types: [],
+      stats: []
     },
     sprites: {
       front: '',
@@ -31,7 +32,7 @@ class App extends Component {
     searchByName: ''
   };
 
-  loadInformation = async url => {
+  loadList = async url => {
     const response = await fetch(url);
     const json = await response.json();
     this.updatePokemonData(json);
@@ -48,6 +49,13 @@ class App extends Component {
     };
   }
 
+  statsMap = stat => {
+    return {
+      name: stat.stat.name,
+      value: stat.base_stat
+    }
+  }
+
   updateSearchByName = event => {
     this.setState({
       searchByName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
@@ -61,6 +69,7 @@ class App extends Component {
       informations: {
         weight: (json.weight / 10).toLocaleString('pt-br'),
         height: (json.height / 10).toLocaleString('pt-br'),
+        stats: json.stats.map(this.statsMap),
         types: json.types.map(this.typesMap)
       },
       sprites: {
@@ -97,11 +106,11 @@ class App extends Component {
             } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
           />
         </Row>
-        <Row center="xs" middle="xs">
-          <Col xs={12} md={2}>
+        <Row center='xs' middle='xs'>
+          <Col xs={12} md={3}>
             {
               searchByName.length < 1 &&
-              <PokemonList handlerInformation={this.loadInformation} />
+              <PokemonList handlerInformation={this.loadList} />
             }
           </Col>
           {

@@ -65,7 +65,7 @@ class PokemonList extends Component {
     )
 
     return (
-      <aside className='Flex Flex-column Table-list'>
+      <aside className=''>
         <table className='Table-name-pokemon'>
           <thead>
             <tr>
@@ -75,7 +75,7 @@ class PokemonList extends Component {
           </thead>
           <tbody>{pokemons.map(fillPokemon)}</tbody>
         </table>
-        <div className='Flex Flex-row Flex-space-around'>
+        <div className=''>
           <button className='Button-controls' onClick={() => this.getPokemons(urlPokeApi, LIMIT, this.state.offSet)}>{'<'}</button>
           <button className='Button-controls' onClick={() => this.getPokemons(urlPokeApi, LIMIT, this.state.offSet, true)}>{'>'}</button>
         </div>

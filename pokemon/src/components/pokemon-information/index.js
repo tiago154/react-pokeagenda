@@ -41,6 +41,13 @@ class PokemonInformation extends Component {
             }
         }
 
+        const fillStats = stat => {
+            return (
+                <li key={stat.name}>{stat.name} - {stat.value}</li>
+            );
+
+        }
+
         const orderBySlot = (a, b) => {
             if (a.slot > b.slot)
                 return 1;
@@ -57,6 +64,9 @@ class PokemonInformation extends Component {
                     {weight(informations.weight)}
                     {height(informations.height)}
                     {typeTitle(informations)}
+                    <ul>
+                        {informations.stats.map(fillStats)}
+                    </ul>
                     {informations.types.sort(orderBySlot).map(fillTypes)}
                 </div>
             </div>

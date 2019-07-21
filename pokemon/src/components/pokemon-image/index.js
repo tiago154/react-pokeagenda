@@ -14,7 +14,7 @@ class PokemonImage extends Component {
     render() {
         const mainPicture = `${urlPokeImage}${this.props.id.toString().padStart(3, '0')}.png`
         return (
-            <div className='Container-pictures Border Flex Flex-column'>
+            <div className=''>
                 <img
                     className={this.props.name === 'Unknown' ? 'Main-picture-error' : 'Main-picture'}
                     src={mainPicture}
@@ -23,7 +23,7 @@ class PokemonImage extends Component {
                     onError={errorMainImageDefault}
                     />
                 <TextCenter textValidation={this.props.sprites.front} textName={this.props.name} />
-                <div className='Border Flex Flex-row Flex-center'>
+                <div className=''>
                     <SpritePokemon url={this.props.sprites.front} title='Front' />
                     <SpritePokemon url={this.props.sprites.frontShiny} title='Front Shiny' />
                     <SpritePokemon url={this.props.sprites.back} title='Back' />
