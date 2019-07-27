@@ -1,24 +1,18 @@
 import React from 'react'
-import './search.css'
+import { Label } from '../../styles';
+import { Search } from './styles';
 
-function SearchInput({ value, onChange, onKeyPress, onSubmit }) {
+export default ({ value, onChange, onKeyPress, onSubmit }) => {
     return (
-        <div className='search'>
-            <label>Busca por nome ou por número</label>
-            <br />
-            <br />
-            <div className='input-group'>
+        <Search>
+            <Label>Digite o nome ou número</Label>
+            <div>
                 <input
-                    type='text' id='search' value={value} onChange={onChange}
-                    onKeyPress={onKeyPress}
-                >
+                    type='text' id='search' value={value}
+                    onChange={onChange} onKeyPress={onKeyPress}>
                 </input>
                 <button onClick={onSubmit}>Buscar</button>
             </div>
-        </div>
+        </Search>
     )
 }
-
-
-export default SearchInput
-

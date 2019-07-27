@@ -7,6 +7,7 @@ import * as dotenv from 'dotenv';
 import PokemonInformation from './components/pokemon-information';
 import pokemonTypes from './components/pokemon-information/types-pokemon';
 import SearchInput from './components/search';
+import { GlobalStyled } from './styles';
 
 dotenv.config();
 
@@ -93,40 +94,43 @@ class App extends Component {
   render() {
     const { searchByName } = this.state;
     return (
-      <Grid>
-        <Row>
-          <Header />
-        </Row>
-        <Row center='xs'>
-          <SearchInput value={searchByName} onChange={this.updateSearchByName}
-            onKeyPress={
-              (e) => e.key === 'Enter' ?
-                this.specificSearchByName(urlPokeApi, searchByName) :
-                null
-            } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
-          />
-        </Row>
-        <Row center='xs' middle='xs'>
-          <Col xs={12} md={3}>
+      <>
+        <GlobalStyled />
+        <Grid>
+          <Row>
+            <Header />
+          </Row>
+          <Row center='xs'>
+            <SearchInput value={searchByName} onChange={this.updateSearchByName}
+              onKeyPress={
+                (e) => e.key === 'Enter' ?
+                  this.specificSearchByName(urlPokeApi, searchByName) :
+                  null
+              } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
+            />
+          </Row>
+          <Row center='xs' middle='xs'>
+            <Col xs={12} md={3}>
+              {
+                searchByName.length < 1 &&
+                <PokemonList handlerInformation={this.loadList} />
+              }
+            </Col>
             {
-              searchByName.length < 1 &&
-              <PokemonList handlerInformation={this.loadList} />
+              !!this.state.id && (
+                <>
+                  <Col xs={12} md={6}>
+                    <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
+                  </Col>
+                  <Col xs={12} md={3}>
+                    <PokemonInformation informations={this.state.informations} />
+                  </Col>
+                </>
+              )
             }
-          </Col>
-          {
-            !!this.state.id && (
-              <>
-                <Col xs={12} md={6}>
-                  <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
-                </Col>
-                <Col xs={12} md={3}>
-                  <PokemonInformation informations={this.state.informations} />
-                </Col>
-              </>
-            )
-          }
-        </Row>
-      </Grid>
+          </Row>
+        </Grid>
+      </>
     )
   }
 }

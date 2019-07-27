@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import './header.css'
+import { Title } from './styles';
 
 class Header extends Component {
-  render () {
+  render() {
     return (
-      <header className='Header'>
-        <div>
-          <h1>Pokédex com React JS</h1>
-        </div>
-      </header>
+      <Title>
+        <h1>Pokédex com React JS</h1>
+      </Title>
     )
   }
 }

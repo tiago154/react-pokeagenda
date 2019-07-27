@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TextCenter from '../text-center';
 import SpritePokemon from '../pokemon-sprite';
-import './pokemon-image.css';
 
 const urlPokeImage = process.env.REACT_APP_POKEMON_IMAGE;
 

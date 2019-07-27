@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './pokemon-list.css';
 
 const urlPokeApi = process.env.REACT_APP_POKEMON_API;
 const LIMIT = 15;

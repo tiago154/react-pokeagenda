@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './pokemon-information.css';
 
 class PokemonInformation extends Component {
     render() {
