@@ -30,9 +30,19 @@ export const GlobalStyled = createGlobalStyle`
 `;
 
 export const Button = styled.button`
+    background: #ffcc03;
+    color: #3537b3;
+    border-radius: 5px;
+    border: 2px solid #3537b3;
+    padding: .2rem .1rem;
+    font-weight: bold;
 
+    :focus {
+        outline: none;
+    }
 `;
 
 export const Label = styled.label`
-    color: ${props => `${props.color}`}
+    color: ${props => `${props.color}`};
+    font-weight: bold;
 `;

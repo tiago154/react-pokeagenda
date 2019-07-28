@@ -83,6 +83,7 @@ class App extends Component {
   }
 
   async specificSearchByName(url, name) {
+    if (!name) return '';
     const urlRequest = `${url}/${name.toLowerCase()}`;
     const response = await fetch(urlRequest);
     if (response.status === 200) {
@@ -92,7 +93,7 @@ class App extends Component {
   }
 
   render() {
-    const { searchByName } = this.state;
+    const { searchByName, id, name, sprites, informations } = this.state;
     return (
       <>
         <GlobalStyled />
@@ -103,9 +104,7 @@ class App extends Component {
           <Row center='xs'>
             <SearchInput value={searchByName} onChange={this.updateSearchByName}
               onKeyPress={
-                (e) => e.key === 'Enter' ?
-                  this.specificSearchByName(urlPokeApi, searchByName) :
-                  null
+                (e) => e.key === 'Enter' && this.specificSearchByName(urlPokeApi, searchByName)
               } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
             />
           </Row>
@@ -117,13 +116,13 @@ class App extends Component {
               }
             </Col>
             {
-              !!this.state.id && (
+              !!id && (
                 <>
                   <Col xs={12} md={6}>
-                    <PokemonImage name={this.state.name} sprites={this.state.sprites} id={this.state.id} />
+                    <PokemonImage name={name} sprites={sprites} id={id} />
                   </Col>
                   <Col xs={12} md={3}>
-                    <PokemonInformation informations={this.state.informations} />
+                    <PokemonInformation informations={informations} />
                   </Col>
                 </>
               )
