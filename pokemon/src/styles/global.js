@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import pokemonFont from './fonts/PokemonSolid.ttf';
-import backgroundPokemon from './images/background.jpg';
+import pokemonFont from '../assets/fonts/PokemonSolid.ttf';
+import backgroundPokemon from '../assets/images/background.jpg';
 
 
 
@@ -8,6 +8,17 @@ export const GlobalStyled = createGlobalStyle`
     @font-face {
         font-family: 'Pokemon';
         src: url(${pokemonFont});
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        box-sizing: 0;
+    }
+
+    html, body, #root {
+        height: 100%;
     }
     
     body::before {
@@ -25,7 +36,7 @@ export const GlobalStyled = createGlobalStyle`
     body {
         margin: 0;
         padding: 0;
-        font-family: 'Roboto', sans-serif;
+        font: 14px 'Roboto', sans-serif;
     }   
 `;
 

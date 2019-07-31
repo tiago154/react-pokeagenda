@@ -1,5 +1,5 @@
 import React from 'react'
-import { Label, Button } from '../../styles';
+import { Button } from '../../styles/global';
 import { Search } from './styles';
 import { Grid, Row } from 'react-flexbox-grid';
 
@@ -8,14 +8,11 @@ export default ({ value, onChange, onKeyPress, onSubmit }) => {
         <Grid>
             <Search>
                 <Row center='xs'>
-                    <Label color='#3537b3'>Digite o nome ou número</Label>
-                </Row>
-                <Row center='xs'>
                     <input
-                        type='text' id='search' value={value}
+                        type='text' id='search' value={value} placeholder='Digite o nome ou número'
                         onChange={onChange} onKeyPress={onKeyPress}>
                     </input>
-                    <Button onClick={onSubmit}>Buscar</Button>
+                    <Button onClick={onSubmit}/>
                 </Row>
             </Search>
         </Grid>

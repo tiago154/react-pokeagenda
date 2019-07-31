@@ -7,7 +7,8 @@ import * as dotenv from 'dotenv';
 import PokemonInformation from './components/pokemon-information';
 import pokemonTypes from './components/pokemon-information/types-pokemon';
 import SearchInput from './components/search';
-import { GlobalStyled } from './styles';
+import { GlobalStyled } from './styles/global';
+import { paginatePokemon } from './services/pokemon-api';
 
 dotenv.config();
 
@@ -37,6 +38,8 @@ class App extends Component {
     const response = await fetch(url);
     const json = await response.json();
     this.updatePokemonData(json);
+    const teste = await paginatePokemon(5, 0);
+    console.log(teste);
   }
 
   typesMap = type => {
