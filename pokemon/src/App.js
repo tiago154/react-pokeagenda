@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './components/header';
-import PokemonList from './components/pokemon-list';
 import PokemonImage from './components/pokemon-image';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import * as dotenv from 'dotenv';
@@ -8,11 +7,9 @@ import PokemonInformation from './components/pokemon-information';
 import pokemonTypes from './components/pokemon-information/types-pokemon';
 import SearchInput from './components/search';
 import { GlobalStyled } from './styles/global';
-import { paginatePokemon } from './services/pokemon-api';
+import { paginatePokemon, getPokemon } from './services/pokemon-api';
 
 dotenv.config();
-
-const urlPokeApi = process.env.REACT_APP_POKEMON_API
 
 class App extends Component {
   state = {
@@ -60,11 +57,16 @@ class App extends Component {
     }
   }
 
-  updateSearchByName = event => {
+  capitalizeFirstLetter = event => {
     this.setState({
       searchByName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
     });
   }
+
+  keyPressEnter = pokemonName => event => {
+    event.key === 'Enter' && this.specificSearchByName(pokemonName);
+  }
+
 
   updatePokemonData = json => {
     this.setState({
@@ -85,39 +87,31 @@ class App extends Component {
     });
   }
 
-  async specificSearchByName(url, name) {
+  specificSearchByName = async name => {
     if (!name) return '';
-    const urlRequest = `${url}/${name.toLowerCase()}`;
-    const response = await fetch(urlRequest);
-    if (response.status === 200) {
-      const json = await response.json();
-      this.updatePokemonData(json);
+    const response = await getPokemon(name)
+    if (response) {
+      this.updatePokemonData(response);
     }
   }
 
   render() {
     const { searchByName, id, name, sprites, informations } = this.state;
+    const { capitalizeFirstLetter, keyPressEnter, specificSearchByName } = this;
     return (
       <>
-        <GlobalStyled />
+        <Row>
+          <Header />
+        </Row>
+        <Row center='xs'>
+          <SearchInput value={searchByName}
+            onChange={capitalizeFirstLetter}
+            onKeyPress={keyPressEnter(searchByName)}
+            onSubmit={() => specificSearchByName(searchByName)}
+          />
+        </Row>
         <Grid>
-          <Row>
-            <Header />
-          </Row>
-          <Row center='xs'>
-            <SearchInput value={searchByName} onChange={this.updateSearchByName}
-              onKeyPress={
-                (e) => e.key === 'Enter' && this.specificSearchByName(urlPokeApi, searchByName)
-              } onSubmit={() => this.specificSearchByName(urlPokeApi, searchByName)}
-            />
-          </Row>
           <Row center='xs' middle='xs'>
-            <Col xs={12} md={3}>
-              {
-                searchByName.length < 1 &&
-                <PokemonList handlerInformation={this.loadList} />
-              }
-            </Col>
             {
               !!id && (
                 <>
@@ -132,6 +126,7 @@ class App extends Component {
             }
           </Row>
         </Grid>
+        <GlobalStyled />
       </>
     )
   }

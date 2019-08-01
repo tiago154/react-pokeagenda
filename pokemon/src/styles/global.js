@@ -14,7 +14,7 @@ export const GlobalStyled = createGlobalStyle`
         margin: 0;
         padding: 0;
         outline: 0;
-        box-sizing: 0;
+        box-sizing: border-box;
     }
 
     html, body, #root {
@@ -34,10 +34,15 @@ export const GlobalStyled = createGlobalStyle`
     }
 
     body {
-        margin: 0;
-        padding: 0;
         font: 14px 'Roboto', sans-serif;
-    }   
+        background: #f3f0ee;
+        color: #333;
+        -webkit-font-smoothing: antialiased !important;
+    }
+
+    ul {
+        list-style: none;
+    }
 `;
 
 export const Button = styled.button`
@@ -47,6 +52,10 @@ export const Button = styled.button`
     border: 2px solid #3537b3;
     padding: .2rem .1rem;
     font-weight: bold;
+
+    :hover {
+        background: #3537b3;
+    }
 
     :focus {
         outline: none;

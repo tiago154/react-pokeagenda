@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const Search = styled.div`
+export const Container = styled.div`
+    background: transparent;
+    width: 100%;
+    margin-bottom: 1.4rem;
+
     label {
         margin-bottom: 0.5rem;
     }
@@ -30,6 +34,7 @@ export const Search = styled.div`
     button {
         border-radius: 0 2px 2px 0;
         border: 1px solid #3537b3;
+        border-left: 0;
         width: 4rem;   
     }
 `;
