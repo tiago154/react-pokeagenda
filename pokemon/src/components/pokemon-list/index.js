@@ -11,13 +11,13 @@ const calculateOffSet = (offset, limit, forward) => {
 class PokemonList extends Component {
   state = {
     pokemons: [],
-    offSet: 0
+    offSet: 0,
   };
 
   async getPokemons(url, limit, offset, forward = false) {
     this.setState({ loading: true }); // Carregando informações
     const urlRequest = `${url}?limit=${limit}&offset=${calculateOffSet(offset, limit, forward)}`;
-    console.log('SADSADSAD ', urlRequest);
+
     const response = await fetch(urlRequest);
     const json = await response.json();
 

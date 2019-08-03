@@ -49,8 +49,7 @@ export const Button = styled.button`
     background: #ffcc03;
     color: #3537b3;
     border-radius: 5px;
-    border: 2px solid #3537b3;
-    padding: .2rem .1rem;
+    border: 1px solid #3537b3;
     font-weight: bold;
 
     :hover {
@@ -65,4 +64,11 @@ export const Button = styled.button`
 export const Label = styled.label`
     color: ${props => `${props.color}`};
     font-weight: bold;
+`;
+
+export const Img = styled.img`
+    height: auto; 
+    width: auto; 
+    max-width: 100px; 
+    max-height: 100px;
 `;

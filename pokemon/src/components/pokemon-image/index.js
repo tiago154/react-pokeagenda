@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import TextCenter from '../text-center';
 import SpritePokemon from '../pokemon-sprite';
+import defaultImage from '../../assets/images/pokeball.png';
 
 const urlPokeImage = process.env.REACT_APP_POKEMON_IMAGE;
 
+
 const errorMainImageDefault = e => {
     e.target.onerror = null;
-    e.target.src = process.env.REACT_APP_DEFAULT_IMAGE;
+    e.target.src = `${defaultImage}`;
 }
 
 class PokemonImage extends Component {
@@ -15,7 +17,6 @@ class PokemonImage extends Component {
         return (
             <div className=''>
                 <img
-                    className={this.props.name === 'Unknown' ? 'Main-picture-error' : 'Main-picture'}
                     src={mainPicture}
                     alt={this.props.name}
                     title={this.props.name}
