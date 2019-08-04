@@ -1,10 +1,5 @@
 const baseUrl = process.env.REACT_APP_POKEMON_API;
 
-// const calculateOffSet = (offset, limit, forward) => {
-//     if (offset === 0 && !forward) return offset;
-//     return forward ? offset + limit : offset - limit;
-// };
-
 const request = async urlRequest => {
     const response = await fetch(urlRequest);
     if (response.status === 200) {
@@ -21,6 +16,7 @@ export const getPokemon = async name => {
 
 export const paginatePokemon = async (limit, offset) => {
     const urlRequest = `${baseUrl}?limit=${limit}&offset=${offset}`;
+    console.log(urlRequest);
     return await request(urlRequest);
 };
 

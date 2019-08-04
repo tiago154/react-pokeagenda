@@ -7,34 +7,56 @@ import SearchInput from './components/search';
 import { GlobalStyled } from './styles/global';
 import { getPokemon, paginatePokemon } from './services/pokemon-api';
 import Board from './components/board';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
+
+const LIMIT = Number(process.env.REACT_APP_NUMBER_PER_PAGE) || 30;
 
 class App extends Component {
   state = {
     pokemons: [],
     specificPokemon: {},
-    limit: 0,
+    limit: LIMIT,
     offSet: 0,
     isLoading: false,
     searchByName: ''
   };
 
-  loadList = async (limit = 28, offSet = 0) => {
-    this.setState({ isLoading: true });
-    const list = await paginatePokemon(limit, offSet);
+  updateOffSet = async value => await this.setState({ offSet: value });
 
-    this.validateListPokemon(list);
+  // Utilizar
+  updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
+
+  loadList = async (forward = false) => {
+    this.setState({ isLoading: true });
+
+    const updatedOffSet = this.calculateOffSet(this.state.offSet, this.state.limit, forward);
+    await this.updateOffSet(updatedOffSet);
+
+    const list = await paginatePokemon(this.state.limit, this.state.offSet);
+
+    this.validateListPokemon(list, forward);
 
     this.setState({ isLoading: false });
   };
 
-  validateListPokemon = data => {
+  calculateOffSet = (offSet, limit, forward) => {
+    if (offSet === 0 && !forward) return offSet;
+    return forward ? (offSet + limit) : (offSet - limit);
+  };
+
+  validateListPokemon = (data, forward) => {
     if (data.results && data.results.length) {
       this.setState({
         pokemons: data.results.map(this.fillPokemon)
       });
     };
+
+    if (forward && data.results && data.results.length < this.state.limit) {
+      this.updateOffSet(this.state.offSet - this.state.limit);
+    }
   };
 
   fillPokemon = item => {
@@ -66,7 +88,6 @@ class App extends Component {
 
   // OK
   changeInputEvent = event => {
-
     this.setState({
       searchByName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
     });
@@ -104,21 +125,33 @@ class App extends Component {
   // }
 
   specificSearchByName = async name => {
-    if (!name) return '';
-    this.setState({ specificPokemon: {} });
+    if (!name) return;
     this.setState({ isLoading: true });
+    this.setState({ specificPokemon: {} });
+
     const response = await getPokemon(name);
+
     this.setState({ specificPokemon: response });
     this.setState({ isLoading: false });
+
+    if (!response) {
+      toast('🦓 Pokemon Não Localizado', {
+        position: "top-center",
+        autoClose: 2000,
+        transition: Zoom
+      });
+
+      this.setState({ searchByName: '' });
+    }
   }
 
   componentDidMount() {
-    this.loadList();
+    this.loadList(false);
   }
 
   render() {
-    const { searchByName, pokemons, isLoading, specificPokemon } = this.state;
-    const { changeInputEvent, keyPressEnter, specificSearchByName } = this;
+    const { searchByName, pokemons, isLoading, specificPokemon, limit, offSet } = this.state;
+    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList } = this;
     return (
       <>
         <Row>
@@ -131,11 +164,19 @@ class App extends Component {
             onSubmit={() => specificSearchByName(searchByName)}
           />
         </Row>
-        <Grid>
+        <Grid fluid>
           <Row center='xs'>
-            <Board list={pokemons} isLoading={isLoading} pokemon={specificPokemon} />
+            <Board
+              list={pokemons}
+              isLoading={isLoading}
+              pokemon={specificPokemon}
+              loadList={loadList}
+              limit={limit}
+              offSet={offSet}
+            />
           </Row>
         </Grid>
+        <ToastContainer />
         <GlobalStyled />
       </>
     )

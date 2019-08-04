@@ -34,10 +34,9 @@ export const GlobalStyled = createGlobalStyle`
     }
 
     body {
-        font: 14px 'Roboto', sans-serif;
+        font: 14px 'Raleway', sans-serif;
         background: #f3f0ee;
         color: #333;
-        -webkit-font-smoothing: antialiased !important;
     }
 
     ul {
@@ -53,7 +52,7 @@ export const Button = styled.button`
     font-weight: bold;
 
     :hover {
-        background: #3537b3;
+        background: #8bc34a;
     }
 
     :focus {
@@ -66,9 +65,37 @@ export const Label = styled.label`
     font-weight: bold;
 `;
 
+const sizeImg = size => {
+    if (size === 'small') {
+        return `
+            max-width: 50px; 
+            max-height: 50px;
+        `;
+    }
+
+    if (size === 'medium') {
+        return `
+            max-width: 150px; 
+            max-height: 150px;
+        `;
+    }
+
+    if (size === 'large') {
+        return `
+            max-width: 250px; 
+            max-height: 250px;
+        `;
+    }
+
+    return `
+        max-width: 100px; 
+        max-height: 100px;
+    `;
+}
+
+
 export const Img = styled.img`
     height: auto; 
     width: auto; 
-    max-width: 100px; 
-    max-height: 100px;
+    ${({ size }) => sizeImg(size)}
 `;

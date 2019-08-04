@@ -32,6 +32,10 @@ export const Container = styled.div`
     button::before {
         content: '🔍';
     }
+    
+    button:hover {
+        background: #3537b3;
+    }
 
     button {
         border-radius: 0 2px 2px 0;

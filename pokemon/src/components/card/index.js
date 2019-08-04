@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from './styles';
 import { Img, Label } from '../../styles/global'
-import defaultImage from '../../assets/images/pokeball.png';
+import defaultImage from '../../assets/images/default-pokemon.png';
 
 const urlSmallPokemon = process.env.REACT_APP_POKEMON_IMAGE_SMALL;
 
