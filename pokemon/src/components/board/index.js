@@ -1,47 +1,26 @@
 import React, { Component } from 'react';
 import { Container } from './styles';
 import Card from '../card';
-import { paginatePokemon } from '../../services/pokemon-api';
+import loader from '../../assets/images/loader.gif';
 
 class Board extends Component {
-    state = {
-        pokemons: [],
-        limit: 0,
-        offSet: 0
-    };
-
-    loadList = async (limit = 112, offSet = 0) => {
-        const list = await paginatePokemon(limit, offSet);
-
-        if (list.results.length) {
-            this.setState({
-                pokemons: list.results.map(item => {
-                    const id = item.url.split('pokemon/')[1].replace('/', '');
-                    return {
-                        id,
-                        name: item.name,
-                        url: item.url
-                    }
-                })
-            });
-        }
-    }
-
-    componentDidMount() {
-        this.loadList();
-    }
-
     render() {
-        const { pokemons } = this.state;
+        const { list, isLoading, pokemon } = this.props;
 
+        const fillPokemon = pokemon => (<Card key={pokemon.id} id={pokemon.id} name={pokemon.name} />);
 
-        const fillPokemon = pokemon => (
-            <Card key={pokemon.id} id={pokemon.id} name={pokemon.name} />
-        )
+        const renderList = list => {
+            return !isLoading && list && list.map(fillPokemon);
+        };
+
+        const renderPokemon = pokemon => {
+            return !isLoading && pokemon && pokemon.id && <Card key={pokemon.id} id={pokemon.id} name={pokemon.name} />;
+        };
 
         return (
             <Container>
-                {!!pokemons && pokemons.map(fillPokemon)}
+                {isLoading &&(<img src={loader} alt={'Loading'} />)}
+                {pokemon && pokemon.id ?  renderPokemon(pokemon) : renderList(list)}
             </Container>
         );
     }
