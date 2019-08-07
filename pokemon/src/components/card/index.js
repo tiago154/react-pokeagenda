@@ -12,11 +12,12 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { id, name } = this.props;
+        const { id, name, toggleModal } = this.props;
+
         const smallPicture = `${urlSmallPokemon}${id.toString().padStart(3, '0')}.png`
         return (
-            <Container>
-                <Img src={smallPicture} onError={errorMainImageDefault}/>
+            <Container onClick={() => toggleModal()}>
+                <Img src={smallPicture} onError={errorMainImageDefault} />
                 <Label>{name}</Label>
                 <Label>#{id}</Label>
             </Container>

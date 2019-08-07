@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import TextCenter from '../text-center';
 import SpritePokemon from '../pokemon-sprite';
 import defaultImage from '../../assets/images/pokeball.png';
 
@@ -22,7 +21,6 @@ class PokemonImage extends Component {
                     title={this.props.name}
                     onError={errorMainImageDefault}
                     />
-                <TextCenter textValidation={this.props.sprites.front} textName={this.props.name} />
                 <div className=''>
                     <SpritePokemon url={this.props.sprites.front} title='Front' />
                     <SpritePokemon url={this.props.sprites.frontShiny} title='Front Shiny' />

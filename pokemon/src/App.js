@@ -8,11 +8,12 @@ import { GlobalStyled } from './styles/global';
 import { getPokemon, paginatePokemon } from './services/pokemon-api';
 import Board from './components/board';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
+import ModalInformation from './components/modal-information';
 import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
 
-const LIMIT = Number(process.env.REACT_APP_NUMBER_PER_PAGE) || 30;
+const LIMIT = 50;
 
 class App extends Component {
   state = {
@@ -21,8 +22,11 @@ class App extends Component {
     limit: LIMIT,
     offSet: 0,
     isLoading: false,
-    searchByName: ''
+    searchByName: '',
+    showModal: false,
   };
+
+  toggleModal = () => this.setState({ showModal: !this.state.showModal });
 
   updateOffSet = async value => await this.setState({ offSet: value });
 
@@ -30,33 +34,35 @@ class App extends Component {
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
   loadList = async (forward = false) => {
-    this.setState({ isLoading: true });
+    const lessLimit = (this.state.pokemons.length < this.state.limit);
 
-    const updatedOffSet = this.calculateOffSet(this.state.offSet, this.state.limit, forward);
+    const updatedOffSet = this.calculateOffSet(this.state.offSet, this.state.limit, forward, lessLimit);
+
     await this.updateOffSet(updatedOffSet);
 
-    const list = await paginatePokemon(this.state.limit, this.state.offSet);
+    if (this.state.pokemons.length === 0 || (forward && !lessLimit) || !forward) {
+      this.setState({ isLoading: true }); // Conferir Load
 
-    this.validateListPokemon(list, forward);
+      const list = await paginatePokemon(this.state.limit, this.state.offSet);
+
+      this.validateListPokemon(list);
+    }
 
     this.setState({ isLoading: false });
   };
 
-  calculateOffSet = (offSet, limit, forward) => {
+  calculateOffSet = (offSet, limit, forward, lessLimit) => {
     if (offSet === 0 && !forward) return offSet;
+    if (lessLimit && forward) return offSet;
     return forward ? (offSet + limit) : (offSet - limit);
   };
 
-  validateListPokemon = (data, forward) => {
+  validateListPokemon = data => {
     if (data.results && data.results.length) {
       this.setState({
         pokemons: data.results.map(this.fillPokemon)
       });
     };
-
-    if (forward && data.results && data.results.length < this.state.limit) {
-      this.updateOffSet(this.state.offSet - this.state.limit);
-    }
   };
 
   fillPokemon = item => {
@@ -138,7 +144,8 @@ class App extends Component {
       toast('🦓 Pokemon Não Localizado', {
         position: "top-center",
         autoClose: 2000,
-        transition: Zoom
+        transition: Zoom,
+        pauseOnHover: false
       });
 
       this.setState({ searchByName: '' });
@@ -150,8 +157,8 @@ class App extends Component {
   }
 
   render() {
-    const { searchByName, pokemons, isLoading, specificPokemon, limit, offSet } = this.state;
-    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList } = this;
+    const { searchByName, pokemons, isLoading, specificPokemon, limit, offSet, showModal } = this.state;
+    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList, toggleModal } = this;
     return (
       <>
         <Row>
@@ -165,6 +172,9 @@ class App extends Component {
           />
         </Row>
         <Grid fluid>
+          <Row>
+            <ModalInformation showModal={showModal} />
+          </Row>
           <Row center='xs'>
             <Board
               list={pokemons}
@@ -173,6 +183,7 @@ class App extends Component {
               loadList={loadList}
               limit={limit}
               offSet={offSet}
+              toggleModal={toggleModal}
             />
           </Row>
         </Grid>
