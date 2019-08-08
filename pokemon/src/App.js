@@ -30,7 +30,6 @@ class App extends Component {
 
   updateOffSet = async value => await this.setState({ offSet: value });
 
-  // Utilizar
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
   loadList = async (forward = false) => {
@@ -41,7 +40,7 @@ class App extends Component {
     await this.updateOffSet(updatedOffSet);
 
     if (this.state.pokemons.length === 0 || (forward && !lessLimit) || !forward) {
-      this.setState({ isLoading: true }); // Conferir Load
+      this.setState({ isLoading: true });
 
       const list = await paginatePokemon(this.state.limit, this.state.offSet);
 

@@ -37,6 +37,7 @@ export const GlobalStyled = createGlobalStyle`
         font: 14px 'Raleway', sans-serif;
         background: #f3f0ee;
         color: #333;
+        overflow-x: hidden;
     }
 
     ul {

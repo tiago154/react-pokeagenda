@@ -7,10 +7,6 @@ export const Container = styled.div`
     margin-bottom: 1.4rem;
     justify-content: center;
 
-    label {
-        margin-bottom: 0.5rem;
-    }
-
     input {
         border-radius: 2px 0 0 2px;
         border: 1px solid #3537b3;
