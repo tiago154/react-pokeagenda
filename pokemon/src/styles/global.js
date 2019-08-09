@@ -38,6 +38,7 @@ export const GlobalStyled = createGlobalStyle`
         background: #f3f0ee;
         color: #333;
         overflow-x: hidden;
+        ${({ hiddenOverFlowY }) => hiddenOverFlowY ? `overflow-y: hidden` : ''}
     }
 
     ul {
@@ -69,28 +70,28 @@ export const Label = styled.label`
 const sizeImg = size => {
     if (size === 'small') {
         return `
-            max-width: 50px; 
-            max-height: 50px;
+            width: 50px; 
+            height: 50px;
         `;
     }
 
     if (size === 'medium') {
         return `
-            max-width: 150px; 
-            max-height: 150px;
+           width: 150px; 
+           height: 150px;
         `;
     }
 
     if (size === 'large') {
         return `
-            max-width: 250px; 
-            max-height: 250px;
+           width: 250px; 
+           height: 250px;
         `;
     }
 
     return `
-        max-width: 100px; 
-        max-height: 100px;
+       width: 100px; 
+       height: 100px;
     `;
 }
 

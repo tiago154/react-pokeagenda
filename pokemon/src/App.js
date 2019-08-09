@@ -157,7 +157,7 @@ class App extends Component {
 
   render() {
     const { searchByName, pokemons, isLoading, specificPokemon, limit, offSet, showModal } = this.state;
-    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList, toggleModal } = this;
+    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList, toggleModal, updateSpecificPokemon } = this;
     return (
       <>
         <Row>
@@ -172,7 +172,12 @@ class App extends Component {
         </Row>
         <Grid fluid>
           <Row>
-            <ModalInformation showModal={showModal} />
+            <ModalInformation
+              showModal={showModal}
+              toggleModal={toggleModal}
+              pokemon={specificPokemon}
+              updateSpecificPokemon={updateSpecificPokemon}
+            />
           </Row>
           <Row center='xs'>
             <Board
@@ -183,11 +188,12 @@ class App extends Component {
               limit={limit}
               offSet={offSet}
               toggleModal={toggleModal}
+              updateSpecificPokemon={updateSpecificPokemon}
             />
           </Row>
         </Grid>
         <ToastContainer />
-        <GlobalStyled />
+        <GlobalStyled hiddenOverFlowY={showModal} />
       </>
     )
   }

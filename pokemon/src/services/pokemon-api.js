@@ -16,8 +16,12 @@ export const getPokemon = async name => {
 
 export const paginatePokemon = async (limit, offset) => {
     const urlRequest = `${baseUrl}?limit=${limit}&offset=${offset}`;
-    console.log(urlRequest);
     return await request(urlRequest);
 };
+
+export const getAnyUrl = async url => {
+    if (!url) return '';
+    return await request(url);
+}
 
 
