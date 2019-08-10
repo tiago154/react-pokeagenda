@@ -18,9 +18,12 @@ class Card extends Component {
         const loadSpecificPokemon = async (pokemon) => {
             if (pokemon.url) {
                 const response = await getAnyUrl(pokemon.url);
-                await updatePokemonModal(response);
+                const evolutions = await getAnyUrl(response.species.url)
+                    .then(species => getAnyUrl(species.evolution_chain.url));
+                await updatePokemonModal(response, evolutions);
             } else {
-                await updatePokemonModal(pokemon);
+                const evolutions = await getAnyUrl(pokemon.species.url);
+                await updatePokemonModal(pokemon, evolutions);
             }
 
             toggleModal(true);

@@ -67,6 +67,14 @@ export const Label = styled.label`
     font-weight: bold;
 `;
 
+export const Title = styled.h1`
+    color: ${props => `${props.color}`};
+    font-weight: bold;
+    text-align: ${props => `${props.align}`};
+    font-size: ${props => `${props.size}`};
+`;
+
+
 const sizeImg = size => {
     if (size === 'small') {
         return `
@@ -85,7 +93,7 @@ const sizeImg = size => {
     if (size === 'large') {
         return `
            width: 400px; 
-           height: 400pxpx;
+           height: 400px;
         `;
     }
 

@@ -24,7 +24,6 @@ export const Container = styled.div`
 `;
 
 export const ContainerInformation = styled.div`
-    justify-content: flex-end;
     width: 80%;
     height: 95%;
     margin-left: auto;
@@ -34,8 +33,34 @@ export const ContainerInformation = styled.div`
     border: 10px solid #0b0d5fdb;
     border-radius: 10px;
     opacity: 0.94;
+`;
+
+export const ContainerCloseBar = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
 
     img {
         margin-right: 7px;
+        cursor: pointer;
     }
+`;
+
+export const ContainerTitle = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 10px;
+    background-color: #f3f0ee;
+    border-radius: 5px;
+`;
+
+export const ContainerImagePokemon = styled.div`
+    display: flex;
+    justify-content: center;
+    background-color: #f3f0ee;
+    border-radius: 5px;
 `;

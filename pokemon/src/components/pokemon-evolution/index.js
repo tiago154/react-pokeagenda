@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { Container } from './styles';
 
-export default ({ data }) => {
+export default () => {
     return (
         <Container>
         </Container>
-    )
-}
+    );
+};
