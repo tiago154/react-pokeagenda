@@ -84,8 +84,8 @@ const sizeImg = size => {
 
     if (size === 'large') {
         return `
-           width: 250px; 
-           height: 250px;
+           width: 400px; 
+           height: 400pxpx;
         `;
     }
 

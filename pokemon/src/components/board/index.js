@@ -7,16 +7,28 @@ import { Img, Button } from '../../styles/global';
 
 class Board extends Component {
     render() {
-        const { list, isLoading, pokemon, loadList, toggleModal, updateSpecificPokemon } = this.props;
+        const { list, isLoading, pokemon, loadList, toggleModal, updatePokemonModal, updateLoading } = this.props;
 
         const fillPokemon = pokemon =>
-            (<Card key={pokemon.id} pokemon={pokemon} toggleModal={toggleModal} updateSpecificPokemon={updateSpecificPokemon} />);
+            (<Card
+                key={pokemon.id}
+                pokemon={pokemon}
+                toggleModal={toggleModal}
+                updatePokemonModal={updatePokemonModal}
+                updateLoading={updateLoading}
+            />);
 
         const renderList = list => !isLoading && list && list.map(fillPokemon);
 
         const renderPokemon = pokemon =>
             !isLoading && pokemon && pokemon.id &&
-            <Card key={pokemon.id} pokemon={pokemon} toggleModal={toggleModal} updateSpecificPokemon={updateSpecificPokemon} />;
+            <Card
+                key={pokemon.id}
+                pokemon={pokemon}
+                toggleModal={toggleModal}
+                updatePokemonModal={updatePokemonModal}
+                updateLoading={updateLoading}
+            />;
 
         const changePage = async forward => await loadList(forward);
 

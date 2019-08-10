@@ -13,15 +13,17 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { pokemon, toggleModal, updateSpecificPokemon } = this.props;
+        const { pokemon, toggleModal, updatePokemonModal } = this.props;
 
         const loadSpecificPokemon = async (pokemon) => {
-            if (pokemon.url) { //@TODO Colocar um loading aqui
+            if (pokemon.url) {
                 const response = await getAnyUrl(pokemon.url);
-                await updateSpecificPokemon(response);
-            };
+                await updatePokemonModal(response);
+            } else {
+                await updatePokemonModal(pokemon);
+            }
 
-            toggleModal();
+            toggleModal(true);
         }
 
         const smallPicture = `${urlSmallPokemon}${pokemon.id.toString().padStart(3, '0')}.png`

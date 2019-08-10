@@ -20,6 +20,7 @@ export const paginatePokemon = async (limit, offset) => {
 };
 
 export const getAnyUrl = async url => {
+    console.log(url);
     if (!url) return '';
     return await request(url);
 }

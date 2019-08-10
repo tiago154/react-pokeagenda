@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import Header from './components/header';
 import { Grid, Row } from 'react-flexbox-grid';
 import * as dotenv from 'dotenv';
-import pokemonTypes from './components/pokemon-information/types-pokemon';
 import SearchInput from './components/search';
 import { GlobalStyled } from './styles/global';
 import { getPokemon, paginatePokemon } from './services/pokemon-api';
 import Board from './components/board';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import ModalInformation from './components/modal-information';
+import { fillPokemon } from './helpers/pokemon';
 import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
@@ -19,6 +19,10 @@ class App extends Component {
   state = {
     pokemons: [],
     specificPokemon: {},
+    pokemonModal: {
+      data: {},
+      evolutions: {}
+    },
     limit: LIMIT,
     offSet: 0,
     isLoading: false,
@@ -26,11 +30,20 @@ class App extends Component {
     showModal: false,
   };
 
-  toggleModal = () => this.setState({ showModal: !this.state.showModal });
+  toggleModal = value => this.setState({ showModal: value });
 
   updateOffSet = async value => await this.setState({ offSet: value });
 
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
+
+  updatePokemonModal = async (data, evolutions = {}) => await this.setState({
+    pokemonModal: {
+      data,
+      evolutions
+    }
+  });
+
+  updateLoading = async value => await this.setState({ isLoading: value });
 
   loadList = async (forward = false) => {
     const lessLimit = (this.state.pokemons.length < this.state.limit);
@@ -59,37 +72,10 @@ class App extends Component {
   validateListPokemon = data => {
     if (data.results && data.results.length) {
       this.setState({
-        pokemons: data.results.map(this.fillPokemon)
+        pokemons: data.results.map(fillPokemon)
       });
     };
   };
-
-  fillPokemon = item => {
-    const id = item.url.split('pokemon/')[1].replace('/', '');
-    return {
-      id,
-      name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
-      url: item.url
-    }
-  };
-
-  // OK
-  typesMap = type => {
-    const pokemonType = pokemonTypes[type.type.name];
-    const nameType = pokemonType ? pokemonType.name : '';
-    return {
-      slot: type.slot,
-      name: nameType
-    };
-  }
-
-  // OK
-  statsMap = stat => {
-    return {
-      name: stat.stat.name,
-      value: stat.base_stat
-    }
-  }
 
   // OK
   changeInputEvent = event => {
@@ -156,8 +142,15 @@ class App extends Component {
   }
 
   render() {
-    const { searchByName, pokemons, isLoading, specificPokemon, limit, offSet, showModal } = this.state;
-    const { changeInputEvent, keyPressEnter, specificSearchByName, loadList, toggleModal, updateSpecificPokemon } = this;
+    const {
+      searchByName, pokemons, isLoading,
+      specificPokemon, limit, offSet,
+      showModal, pokemonModal
+    } = this.state;
+    const {
+      changeInputEvent, keyPressEnter, specificSearchByName,
+      loadList, toggleModal, updateLoading, updatePokemonModal
+    } = this;
     return (
       <>
         <Row>
@@ -171,14 +164,6 @@ class App extends Component {
           />
         </Row>
         <Grid fluid>
-          <Row>
-            <ModalInformation
-              showModal={showModal}
-              toggleModal={toggleModal}
-              pokemon={specificPokemon}
-              updateSpecificPokemon={updateSpecificPokemon}
-            />
-          </Row>
           <Row center='xs'>
             <Board
               list={pokemons}
@@ -188,7 +173,16 @@ class App extends Component {
               limit={limit}
               offSet={offSet}
               toggleModal={toggleModal}
-              updateSpecificPokemon={updateSpecificPokemon}
+              updatePokemonModal={updatePokemonModal}
+              updateLoading={updateLoading}
+            />
+          </Row>
+          <Row>
+            <ModalInformation
+              showModal={showModal}
+              toggleModal={toggleModal}
+              pokemon={pokemonModal}
+              updatePokemonModal={updatePokemonModal}
             />
           </Row>
         </Grid>

@@ -73,4 +73,27 @@ const types = {
     }
 }
 
-export default types;
+export const fillPokemon = item => {
+    const id = item.url.split('pokemon/')[1].replace('/', '');
+    return {
+        id,
+        name: item.name.charAt(0).toUpperCase() + item.name.slice(1),
+        url: item.url
+    }
+};
+
+export const typesMap = type => {
+    const pokemonType = types[type.type.name];
+    const nameType = pokemonType ? pokemonType.name : '';
+    return {
+        slot: type.slot,
+        name: nameType
+    };
+}
+
+export const statsMap = stat => {
+    return {
+        name: stat.stat.name,
+        value: stat.base_stat
+    }
+}
