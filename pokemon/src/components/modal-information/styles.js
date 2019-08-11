@@ -38,7 +38,7 @@ export const ContainerInformation = styled.div`
 export const ContainerCloseBar = styled.div`
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 20px;
+    margin-bottom: -50px;
 
     img {
         margin-right: 7px;
@@ -50,17 +50,18 @@ export const ContainerTitle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: black;
+    color: #3537b3;
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 10px;
-    background-color: #f3f0ee;
     border-radius: 5px;
 `;
 
 export const ContainerImagePokemon = styled.div`
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     background-color: #f3f0ee;
     border-radius: 5px;
 `;

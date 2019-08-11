@@ -25,7 +25,7 @@ const types = {
     },
     bug: {
         className: 'Bug-background',
-        name: 'Inseto' 
+        name: 'Inseto'
     },
     ghost: {
         className: 'Ghost-background',
@@ -33,11 +33,11 @@ const types = {
     },
     steel: {
         className: 'Steel-background',
-        name: 'Metálico' 
+        name: 'Metálico'
     },
     fire: {
         className: 'Fire-background',
-        name: 'Fogo' 
+        name: 'Fogo'
     },
     water: {
         className: 'Water-background',
@@ -61,11 +61,11 @@ const types = {
     },
     dragon: {
         className: 'Dragon-background',
-        name: 'Dragão' 
+        name: 'Dragão'
     },
     dark: {
         className: 'Dark-background',
-        name: 'Noturno' 
+        name: 'Noturno'
     },
     fairy: {
         className: 'Fairy-background',
@@ -96,4 +96,12 @@ export const statsMap = stat => {
         name: stat.stat.name,
         value: stat.base_stat
     }
+}
+
+export const orderBy = field => (a, b) => {
+    if (a[field] > b[field])
+        return 1;
+    if (a[field] < b[field])
+        return -1;
+    return 0;
 }

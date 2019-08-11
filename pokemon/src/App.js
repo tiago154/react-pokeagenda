@@ -21,7 +21,9 @@ class App extends Component {
     specificPokemon: {},
     pokemonModal: {
       data: {},
-      evolutions: {}
+      evolutions: {},
+      description: '',
+      abilities: []
     },
     limit: LIMIT,
     offSet: 0,
@@ -36,12 +38,16 @@ class App extends Component {
 
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
-  updatePokemonModal = async (data, evolutions = {}) => await this.setState({
-    pokemonModal: {
-      data,
-      evolutions
-    }
-  });
+  updatePokemonModal = async (data, evolutions = {}, description = '', abilities = {}, category = '') =>
+    await this.setState({
+      pokemonModal: {
+        data,
+        evolutions,
+        description,
+        abilities,
+        category
+      }
+    });
 
   updateLoading = async value => await this.setState({ isLoading: value });
 
