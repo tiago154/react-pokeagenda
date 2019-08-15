@@ -7,20 +7,20 @@ export default ({ pokemon }) => {
     const { data, description, category, abilities } = pokemon;
 
     const mapAbilities = ability =>
-        (<Ability title={ability.name}>{ability.text.short_effect}</Ability>)
+        (<Ability key={ability.name} title={ability.name}>{ability.text.short_effect}</Ability>)
 
     return (
         <Container>
-            <h2>Descrição :</h2>
+            <h2>Description :</h2>
             <Description>{description}</Description>
             <ContainerAbilities>
-                <h2>Habilidades :</h2>
+                <h2>Abilities :</h2>
                 {abilities.length && abilities.map(mapAbilities)}
             </ContainerAbilities>
             <ContainerStats>
-                <Stats value={data.weight} type='kg'>Peso</Stats>
-                <Stats value={data.height} type='m'>Altura</Stats>
-                <Stats value={category}>Categoria</Stats>
+                <Stats value={data.weight} type='kg'>Weight</Stats>
+                <Stats value={data.height} type='m'>Height</Stats>
+                <Stats value={category}>Category</Stats>
             </ContainerStats>
         </Container>
     )

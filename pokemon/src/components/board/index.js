@@ -47,7 +47,7 @@ class Board extends Component {
         return (
             <Container>
                 <CardContainer>
-                    {isLoading && (<Img src={loader} alt={'Loading'} size='medium' />)}
+                    {isLoading && (<Img src={loader} alt={'Loading'} size={200} />)}
                     {pokemon && pokemon.id ? renderPokemon(pokemon) : renderList(list)}
                 </CardContainer>
                 {renderButtonPaginate(pokemon)}

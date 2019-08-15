@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    min-height: 280px;
+    justify-content: row;
+    min-height: 345px;
     background-color: #f3f0ee;
     border-radius: 5px;
     margin-top: 10px;

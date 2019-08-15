@@ -35,24 +35,28 @@ export default ({ showModal, toggleModal, pokemon, updatePokemonModal }) => {
         <Container showModalInformation={showModal}>
             <ContainerInformation>
                 <ContainerCloseBar>
-                    <Img size='small' src={closePicture} onClick={() => closeModal()} />
+                    <Img size={50} src={closePicture} onClick={() => closeModal()} />
                 </ContainerCloseBar>
                 <Grid fluid>
                     <ContainerTitle>
                         <Title>{name} - {number}</Title>
                     </ContainerTitle>
                     <Row>
-                        <Col xs={4}>
+                        <Col xs={12} sm={12} md={4}>
                             <ContainerImagePokemon>
-                                <Img size='large' src={mainPicture} />
+                                <Img size={400} src={mainPicture} />
                                 <PokemonTypes types={types} />
                             </ContainerImagePokemon>
                         </Col>
-                        <Col xs={8} >
+                        <Col xs={12} sm={12} md={8}>
                             <PokemonInformation pokemon={pokemon} />
                         </Col>
                     </Row>
-                    <PokemonEvolution evolutions={pokemon.evolutions} />
+                    <Row>
+                        <Col xs={12}>
+                            <PokemonEvolution evolutions={pokemon.evolutions} />
+                        </Col>
+                    </Row>
                 </Grid>
             </ContainerInformation>
         </Container >

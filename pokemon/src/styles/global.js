@@ -76,36 +76,22 @@ export const Title = styled.h1`
 
 
 const sizeImg = size => {
-    if (size === 'small') {
+    if (size) {
         return `
-            width: 50px; 
-            height: 50px;
-        `;
-    }
-
-    if (size === 'medium') {
-        return `
-           width: 150px; 
-           height: 150px;
-        `;
-    }
-
-    if (size === 'large') {
-        return `
-           width: 400px; 
-           height: 400px;
+            width: 100%;
+            max-width: ${size}px; 
+            height: auto;
         `;
     }
 
     return `
-       width: 100px; 
-       height: 100px;
+        width: 100%;
+        max-width: 100px; 
+        height: auto;
     `;
 }
 
 
 export const Img = styled.img`
-    height: auto; 
-    width: auto; 
     ${({ size }) => sizeImg(size)}
 `;

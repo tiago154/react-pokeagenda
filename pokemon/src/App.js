@@ -39,15 +39,15 @@ class App extends Component {
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
   updatePokemonModal = async (data, evolutions = {}, description = '', abilities = {}, category = '') =>
-    await this.setState({
-      pokemonModal: {
-        data,
-        evolutions,
-        description,
-        abilities,
-        category
-      }
-    });
+      await this.setState({
+        pokemonModal: {
+          data,
+          evolutions,
+          description,
+          abilities,
+          category
+        }
+      });
 
   updateLoading = async value => await this.setState({ isLoading: value });
 
@@ -83,7 +83,6 @@ class App extends Component {
     };
   };
 
-  // OK
   changeInputEvent = event => {
     this.setState({
       searchByName: event.target.value.charAt(0).toUpperCase() + event.target.value.slice(1)
@@ -96,30 +95,9 @@ class App extends Component {
     }
   }
 
-  // OK
   keyPressEnter = pokemonName => event => {
     event.key === 'Enter' && this.specificSearchByName(pokemonName);
   }
-
-
-  // updatePokemonData = json => {
-  //   this.setState({
-  //     name: json.name.charAt(0).toUpperCase() + json.name.slice(1),
-  //     id: json.id,
-  //     // informations: {
-  //     //   weight: (json.weight / 10).toLocaleString('pt-br'),
-  //     //   height: (json.height / 10).toLocaleString('pt-br'),
-  //     //   stats: json.stats.map(this.statsMap),
-  //     //   types: json.types.map(this.typesMap)
-  //     // },
-  //     // sprites: {
-  //     //   front: json.sprites.front_default,
-  //     //   frontShiny: json.sprites.front_shiny,
-  //     //   back: json.sprites.back_default,
-  //     //   backShiny: json.sprites.back_shiny
-  //     // }
-  //   });
-  // }
 
   specificSearchByName = async name => {
     if (!name) return;

@@ -156,7 +156,8 @@ export const TypePokemon = styled.span`
     font-weight: bold;
     border: 2px;
     margin: 5px;
-    width: 100px;
+    min-width: 100px; 
+    height: auto;
     text-align: center;
     ${({background}) => backgroundPokemon(background)}
 `;

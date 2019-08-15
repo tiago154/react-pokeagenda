@@ -4,15 +4,12 @@ export const Container = styled.div`
   display: flex;
   background-color: #f3f0ee;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 436px;
   border-radius: 5px;
   padding: 10px;
-  font-size: x-large;
 
   h2 {
-    font-size: xx-large;
-    margin-bottom: 10px;
+    font-size: 20px;
   }
 `;
 
@@ -25,9 +22,17 @@ export const ContainerStats = styled.div`
 export const ContainerAbilities = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
+  flex-grow: 2;
+
+  h2 {
+    margin-bottom: 10px;
+  }
 `;
 
 export const Description = styled.p`
+  margin-top: 10px;
   margin-bottom: 10px;
+  font-size: 18px;
   text-align: justify;
 `;
