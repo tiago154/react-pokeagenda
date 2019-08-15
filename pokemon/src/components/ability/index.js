@@ -6,7 +6,7 @@ export default ({ children, title }) => {
     return (
         <Container>
             <h3><span role="img" aria-label="start">⭐</span> {formattedTitle}</h3>
-            <span>{children}</span>
+            <p>{children}</p>
         </Container>
     )
 }

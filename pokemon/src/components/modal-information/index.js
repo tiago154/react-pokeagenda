@@ -42,21 +42,17 @@ export default ({ showModal, toggleModal, pokemon, updatePokemonModal }) => {
                         <Title>{name} - {number}</Title>
                     </ContainerTitle>
                     <Row>
-                        <Col xs={12} sm={12} md={4}>
+                        <Col xs={12} sm={12} md={4} lg={5}>
                             <ContainerImagePokemon>
-                                <Img size={400} src={mainPicture} />
+                                <Img src={mainPicture} />
                                 <PokemonTypes types={types} />
                             </ContainerImagePokemon>
                         </Col>
-                        <Col xs={12} sm={12} md={8}>
+                        <Col xs={12} sm={12} md={8} lg={7}>
                             <PokemonInformation pokemon={pokemon} />
                         </Col>
                     </Row>
-                    <Row>
-                        <Col xs={12}>
-                            <PokemonEvolution evolutions={pokemon.evolutions} />
-                        </Col>
-                    </Row>
+                    <PokemonEvolution evolutions={pokemon.evolutions} />
                 </Grid>
             </ContainerInformation>
         </Container >

@@ -6,6 +6,11 @@ export const Container = styled.div`
   margin-bottom: 15px;
   
   h3 {
-    margin-bottom: 15px;
+    margin-bottom: 1px;
+    font-size: 12px;
+  }
+
+  p {
+    font-size: 10px;
   }
 `;

@@ -74,24 +74,7 @@ export const Title = styled.h1`
     font-size: ${props => `${props.size}`};
 `;
 
-
-const sizeImg = size => {
-    if (size) {
-        return `
-            width: 100%;
-            max-width: ${size}px; 
-            height: auto;
-        `;
-    }
-
-    return `
-        width: 100%;
-        max-width: 100px; 
-        height: auto;
-    `;
-}
-
-
 export const Img = styled.img`
-    ${({ size }) => sizeImg(size)}
+    max-width: 100%;
+    height: auto;
 `;

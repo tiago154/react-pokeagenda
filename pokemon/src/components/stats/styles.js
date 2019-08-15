@@ -12,4 +12,14 @@ export const Container = styled.div`
   span {
     font-size: 20px;
   }
+
+  @media screen and (min-width: 768px) and (max-width: 1200px) {
+    h3 {
+      margin-bottom: 2px;
+    } 
+
+    span {
+      font-size: 13px;
+    }
+  }
 `;
