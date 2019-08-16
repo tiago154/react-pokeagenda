@@ -9,6 +9,7 @@ import Board from './components/board';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import ModalInformation from './components/modal-information';
 import { fillPokemon } from './helpers/pokemon';
+import { connect } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
@@ -28,26 +29,23 @@ class App extends Component {
     limit: LIMIT,
     offSet: 0,
     isLoading: false,
-    searchByName: '',
-    showModal: false,
+    searchByName: ''
   };
-
-  toggleModal = value => this.setState({ showModal: value });
 
   updateOffSet = async value => await this.setState({ offSet: value });
 
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
   updatePokemonModal = async (data, evolutions = {}, description = '', abilities = {}, category = '') =>
-      await this.setState({
-        pokemonModal: {
-          data,
-          evolutions,
-          description,
-          abilities,
-          category
-        }
-      });
+    await this.setState({
+      pokemonModal: {
+        data,
+        evolutions,
+        description,
+        abilities,
+        category
+      }
+    });
 
   updateLoading = async value => await this.setState({ isLoading: value });
 
@@ -129,12 +127,13 @@ class App extends Component {
     const {
       searchByName, pokemons, isLoading,
       specificPokemon, limit, offSet,
-      showModal, pokemonModal
+      pokemonModal
     } = this.state;
     const {
       changeInputEvent, keyPressEnter, specificSearchByName,
-      loadList, toggleModal, updateLoading, updatePokemonModal
+      loadList, updateLoading, updatePokemonModal
     } = this;
+
     return (
       <>
         <Row>
@@ -156,25 +155,27 @@ class App extends Component {
               loadList={loadList}
               limit={limit}
               offSet={offSet}
-              toggleModal={toggleModal}
               updatePokemonModal={updatePokemonModal}
               updateLoading={updateLoading}
             />
           </Row>
           <Row>
             <ModalInformation
-              showModal={showModal}
-              toggleModal={toggleModal}
               pokemon={pokemonModal}
               updatePokemonModal={updatePokemonModal}
             />
           </Row>
         </Grid>
         <ToastContainer />
-        <GlobalStyled hiddenOverFlowY={showModal} />
+        <GlobalStyled hiddenOverFlowY={this.props.showModal} />
       </>
     )
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  showModal: state.pokedex.showModal
+});
+
+
+export default connect(mapStateToProps)(App);

@@ -6,13 +6,15 @@ import PokemonInformation from '../pokemon-information';
 import PokemonEvolution from '../pokemon-evolution';
 import PokemonTypes from '../pokemon-types';
 import { typesMap } from '../../helpers/pokemon';
+import { connect } from 'react-redux';
+import * as pokedexActions from '../../store/actions/pokedex';
 
 const urlPokemonImage = process.env.REACT_APP_POKEMON_IMAGE;
 
-export default ({ showModal, toggleModal, pokemon, updatePokemonModal }) => {
+const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal }) => {
     // @TODO Colocar imagem fisicamente no projeto
     const closePicture = 'https://cdn3.iconfinder.com/data/icons/interface/100/close_button_2-512.png';
-
+    console.log('MODAL INFOERMATION: ', showModal);
     let mainPicture = '';
     let name = '';
     let number = '';
@@ -58,3 +60,14 @@ export default ({ showModal, toggleModal, pokemon, updatePokemonModal }) => {
         </Container >
     )
 }
+
+const mapStateToProps = state => ({
+    showModal: state.pokedex.showModal
+});
+
+const mapDispatchToProps = dispatch => ({
+    toggleModal: value => dispatch(pokedexActions.toggleModal(value))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ModalInformation);

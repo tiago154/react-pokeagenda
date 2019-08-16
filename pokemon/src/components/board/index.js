@@ -7,13 +7,12 @@ import { Img, Button } from '../../styles/global';
 
 class Board extends Component {
     render() {
-        const { list, isLoading, pokemon, loadList, toggleModal, updatePokemonModal, updateLoading } = this.props;
+        const { list, isLoading, pokemon, loadList, updatePokemonModal, updateLoading } = this.props;
 
         const fillPokemon = pokemon =>
             (<Card
                 key={pokemon.id}
                 pokemon={pokemon}
-                toggleModal={toggleModal}
                 updatePokemonModal={updatePokemonModal}
                 updateLoading={updateLoading}
             />);
@@ -25,7 +24,6 @@ class Board extends Component {
             <Card
                 key={pokemon.id}
                 pokemon={pokemon}
-                toggleModal={toggleModal}
                 updatePokemonModal={updatePokemonModal}
                 updateLoading={updateLoading}
             />;

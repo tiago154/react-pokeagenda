@@ -4,6 +4,8 @@ import { Img, Label } from '../../styles/global'
 import defaultImage from '../../assets/images/default-pokemon.png';
 import { getAnyUrl } from '../../services/pokemon-api';
 import { orderBy } from '../../helpers/pokemon';
+import { connect } from 'react-redux';
+import * as pokedexActions from '../../store/actions/pokedex';
 
 const urlSmallPokemon = process.env.REACT_APP_POKEMON_IMAGE_SMALL;
 
@@ -14,7 +16,7 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { pokemon, toggleModal, updatePokemonModal, updateLoading } = this.props;
+        const { pokemon, updatePokemonModal, updateLoading, dispatch } = this.props;
 
         const mapAbilities = ability => {
             return {
@@ -45,7 +47,7 @@ class Card extends Component {
             const category = species.genera
                 .find(g => g.language.name === 'en')
                 .genus.replace(' Pokémon', '');
- 
+
             const evolutions = await getAnyUrl(species.evolution_chain.url);
 
             const ability = abilitiesDetail.sort(orderBy('name')).map(mapAbilities);
@@ -58,12 +60,12 @@ class Card extends Component {
 
             const data = await getInitialData(pokemon);
             const [description, evolutions, abilities, category] = await getDetails(data);
-            
+
             await updatePokemonModal(data, evolutions, description, abilities, category);
 
             updateLoading(false);
 
-            toggleModal(true);
+            dispatch(pokedexActions.toggleModal(true));
         }
 
         const smallPicture = `${urlSmallPokemon}${pokemon.id.toString().padStart(3, '0')}.png`
@@ -78,4 +80,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default connect()(Card);
