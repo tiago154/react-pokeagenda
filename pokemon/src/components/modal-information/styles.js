@@ -45,7 +45,7 @@ export const ContainerCloseBar = styled.div`
 
     img {
         max-width: 50px;
-        margin-right: 7px;
+        margin-right: 10px;
         cursor: pointer;
         z-index: 1;
     }
