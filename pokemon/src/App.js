@@ -10,11 +10,13 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 import ModalInformation from './components/modal-information';
 import { fillPokemon } from './helpers/pokemon';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as pokedexActions from './store/actions/pokedex';
 import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
 
-const LIMIT = 50;
+const LIMIT = 500;
 
 class App extends Component {
   state = {
@@ -27,12 +29,8 @@ class App extends Component {
       abilities: []
     },
     limit: LIMIT,
-    offSet: 0,
-    isLoading: false,
     searchByName: ''
   };
-
-  updateOffSet = async value => await this.setState({ offSet: value });
 
   updateSpecificPokemon = async pokemon => await this.setState({ specificPokemon: pokemon });
 
@@ -47,24 +45,22 @@ class App extends Component {
       }
     });
 
-  updateLoading = async value => await this.setState({ isLoading: value });
-
   loadList = async (forward = false) => {
     const lessLimit = (this.state.pokemons.length < this.state.limit);
 
-    const updatedOffSet = this.calculateOffSet(this.state.offSet, this.state.limit, forward, lessLimit);
-
-    await this.updateOffSet(updatedOffSet);
+    const updatedOffSet = this.calculateOffSet(this.props.offSet, this.state.limit, forward, lessLimit);
+ 
+    await this.props.updateOffSet(updatedOffSet);
 
     if (this.state.pokemons.length === 0 || (forward && !lessLimit) || !forward) {
-      this.setState({ isLoading: true });
+      await this.props.updateLoading(true);
 
-      const list = await paginatePokemon(this.state.limit, this.state.offSet);
+      const list = await paginatePokemon(this.state.limit, this.props.offSet);
 
       this.validateListPokemon(list);
     }
 
-    this.setState({ isLoading: false });
+    await this.props.updateLoading(false);
   };
 
   calculateOffSet = (offSet, limit, forward, lessLimit) => {
@@ -76,7 +72,8 @@ class App extends Component {
   validateListPokemon = data => {
     if (data.results && data.results.length) {
       this.setState({
-        pokemons: data.results.map(fillPokemon)
+        pokemons: data.results
+          .filter(i => i.url.split('pokemon/')[1].replace('/', '') < 808).map(fillPokemon)
       });
     };
   };
@@ -99,13 +96,13 @@ class App extends Component {
 
   specificSearchByName = async name => {
     if (!name) return;
-    this.setState({ isLoading: true });
+    await this.props.updateLoading(true);
     this.setState({ specificPokemon: {} });
 
     const response = await getPokemon(name);
 
     this.setState({ specificPokemon: response });
-    this.setState({ isLoading: false });
+    await this.props.updateLoading(false);
 
     if (!response) {
       toast('🦓 Pokemon Não Localizado', {
@@ -125,13 +122,13 @@ class App extends Component {
 
   render() {
     const {
-      searchByName, pokemons, isLoading,
-      specificPokemon, limit, offSet,
-      pokemonModal
+      searchByName, pokemons,
+      specificPokemon, pokemonModal
     } = this.state;
+    const { showModal } = this.props;
     const {
       changeInputEvent, keyPressEnter, specificSearchByName,
-      loadList, updateLoading, updatePokemonModal
+      loadList, updatePokemonModal
     } = this;
 
     return (
@@ -150,13 +147,9 @@ class App extends Component {
           <Row center='xs'>
             <Board
               list={pokemons}
-              isLoading={isLoading}
               pokemon={specificPokemon}
               loadList={loadList}
-              limit={limit}
-              offSet={offSet}
               updatePokemonModal={updatePokemonModal}
-              updateLoading={updateLoading}
             />
           </Row>
           <Row>
@@ -167,15 +160,19 @@ class App extends Component {
           </Row>
         </Grid>
         <ToastContainer />
-        <GlobalStyled hiddenOverFlowY={this.props.showModal} />
+        <GlobalStyled hiddenOverFlowY={showModal} />
       </>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  showModal: state.pokedex.showModal
+  showModal: state.pokedex.showModal,
+  offSet: state.pokedex.offSet,
+  loading: state.pokedex.loading
 });
 
+const mapDispatchToProps = dispatch => bindActionCreators(pokedexActions, dispatch);
 
-export default connect(mapStateToProps)(App);
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

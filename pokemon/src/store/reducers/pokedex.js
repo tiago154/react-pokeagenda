@@ -1,14 +1,18 @@
 const reducers = {
-    TOGGLE_MODAL: (state, action) => ({ ...state, showModal: action.value })
+    TOGGLE_MODAL: action => ({ showModal: action.showModal }),
+    UPDATE_OFFSET: action => ({ offSet: action.offSet }),
+    UPDATE_LOADING: action => ({ loading: action.loading })
 };
 
 const INITIAL_STATE = {
-    showModal: false
+    loading: false,
+    showModal: false,
+    offSet: 0
 };
 
 const pokedex = (state = INITIAL_STATE, action) => {
     const execution = reducers[action.type];
-    return execution ? execution(state, action) : state;
+    return execution ? { ...state, ...execution(action) } : state;
 }
 
 export default pokedex;

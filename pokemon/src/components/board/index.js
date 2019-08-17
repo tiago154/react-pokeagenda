@@ -3,35 +3,34 @@ import { ButtonContainer, CardContainer, Container } from './styles';
 import Card from '../card';
 import loader from '../../assets/images/charizard-loader.gif';
 import { Img, Button } from '../../styles/global';
+import { connect } from 'react-redux';
 
 
 class Board extends Component {
     render() {
-        const { list, isLoading, pokemon, loadList, updatePokemonModal, updateLoading } = this.props;
-
+        const { list, loading, pokemon, loadList, updatePokemonModal } = this.props;
+        console.log('BOARD: ', loading);
         const fillPokemon = pokemon =>
             (<Card
                 key={pokemon.id}
                 pokemon={pokemon}
                 updatePokemonModal={updatePokemonModal}
-                updateLoading={updateLoading}
             />);
 
-        const renderList = list => !isLoading && list && list.map(fillPokemon);
+        const renderList = list => !loading && list && list.map(fillPokemon);
 
         const renderPokemon = pokemon =>
-            !isLoading && pokemon && pokemon.id &&
+            !loading && pokemon && pokemon.id &&
             <Card
                 key={pokemon.id}
                 pokemon={pokemon}
                 updatePokemonModal={updatePokemonModal}
-                updateLoading={updateLoading}
             />;
 
         const changePage = async forward => await loadList(forward);
 
         const renderButtonPaginate = pokemon => {
-            if (isLoading || (pokemon && pokemon.id))
+            if (loading || (pokemon && pokemon.id))
                 return;
 
             return (
@@ -45,7 +44,7 @@ class Board extends Component {
         return (
             <Container>
                 <CardContainer>
-                    {isLoading && (<Img src={loader} alt={'Loading'} size={200} />)}
+                    {loading && (<Img src={loader} alt={'Loading'} size={100} />)}
                     {pokemon && pokemon.id ? renderPokemon(pokemon) : renderList(list)}
                 </CardContainer>
                 {renderButtonPaginate(pokemon)}
@@ -54,4 +53,8 @@ class Board extends Component {
     }
 }
 
-export default Board;
+const mapStateToProps = state => ({
+    loading: state.pokedex.loading
+});
+
+export default connect(mapStateToProps)(Board);

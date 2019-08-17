@@ -9,7 +9,7 @@ export default ({ children, value, type }) => {
 
     return (
         <Container>
-            <h3>{children}</h3>
+            <h3><span role="img" aria-label="stat">🌀</span> {children}</h3>
             {validateValue(type, value)}
         </Container>
     )

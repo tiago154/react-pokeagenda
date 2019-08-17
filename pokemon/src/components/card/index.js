@@ -16,7 +16,7 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { pokemon, updatePokemonModal, updateLoading, dispatch } = this.props;
+        const { pokemon, updatePokemonModal, dispatch } = this.props;
 
         const mapAbilities = ability => {
             return {
@@ -39,10 +39,14 @@ class Card extends Component {
                 Promise.all(abilities.map(a => getAnyUrl(a.ability.url)))
             ]);
 
-
-            const description = species.flavor_text_entries
+            const descriptionOmegaRuby = species.flavor_text_entries
                 .find(t => t.language.name === 'en' && t.version.name === 'omega-ruby')
-                .flavor_text;
+
+            const descriptionGeneral = species.flavor_text_entries
+                .find(t => t.language.name === 'en');
+
+
+            const description = descriptionOmegaRuby ? descriptionOmegaRuby.flavor_text : descriptionGeneral.flavor_text;
 
             const category = species.genera
                 .find(g => g.language.name === 'en')
@@ -56,16 +60,16 @@ class Card extends Component {
         }
 
         const loadSpecificPokemon = async (pokemon) => {
-            updateLoading(true);
+            await dispatch(pokedexActions.updateLoading(true));
 
             const data = await getInitialData(pokemon);
             const [description, evolutions, abilities, category] = await getDetails(data);
 
             await updatePokemonModal(data, evolutions, description, abilities, category);
 
-            updateLoading(false);
+            await dispatch(pokedexActions.updateLoading(false));
 
-            dispatch(pokedexActions.toggleModal(true));
+            await dispatch(pokedexActions.toggleModal(true));
         }
 
         const smallPicture = `${urlSmallPokemon}${pokemon.id.toString().padStart(3, '0')}.png`
