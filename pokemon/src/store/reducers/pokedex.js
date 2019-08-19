@@ -7,7 +7,8 @@ const reducers = {
 const INITIAL_STATE = {
     loading: false,
     showModal: false,
-    offSet: 0
+    offSet: 0,
+    limit: 50
 };
 
 const pokedex = (state = INITIAL_STATE, action) => {

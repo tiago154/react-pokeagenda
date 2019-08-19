@@ -16,8 +16,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
 
-const LIMIT = 50;
-
 class App extends Component {
   state = {
     pokemons: [],
@@ -28,7 +26,6 @@ class App extends Component {
       description: '',
       abilities: []
     },
-    limit: LIMIT,
     searchByName: ''
   };
 
@@ -46,16 +43,16 @@ class App extends Component {
     });
 
   loadList = async (forward = false) => {
-    const lessLimit = (this.state.pokemons.length < this.state.limit);
+    const lessLimit = (this.state.pokemons.length < this.props.limit);
 
-    const updatedOffSet = this.calculateOffSet(this.props.offSet, this.state.limit, forward, lessLimit);
+    const updatedOffSet = this.calculateOffSet(this.props.offSet, this.props.limit, forward, lessLimit);
  
     await this.props.updateOffSet(updatedOffSet);
 
     if (this.state.pokemons.length === 0 || (forward && !lessLimit) || !forward) {
       await this.props.updateLoading(true);
 
-      const list = await paginatePokemon(this.state.limit, this.props.offSet);
+      const list = await paginatePokemon(this.props.limit, this.props.offSet);
 
       this.validateListPokemon(list);
     }
@@ -169,7 +166,8 @@ class App extends Component {
 const mapStateToProps = state => ({
   showModal: state.pokedex.showModal,
   offSet: state.pokedex.offSet,
-  loading: state.pokedex.loading
+  loading: state.pokedex.loading,
+  limit: state.pokedex.limit
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(pokedexActions, dispatch);

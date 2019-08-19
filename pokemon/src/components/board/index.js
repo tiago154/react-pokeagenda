@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class Board extends Component {
     render() {
         const { list, loading, pokemon, loadList, updatePokemonModal } = this.props;
-        console.log('BOARD: ', loading);
+
         const fillPokemon = pokemon =>
             (<Card
                 key={pokemon.id}
