@@ -18,7 +18,7 @@ const errorMainImageDefault = e => {
     e.target.src = `${defaultImage}`;
 }
 
-const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal }) => {
+const ModalInformation = ({ showModal, pokemon, updateModalPokemon, toggleModal }) => {
     // @TODO Colocar imagem fisicamente no projeto
     const closePicture = 'https://cdn3.iconfinder.com/data/icons/interface/100/close_button_2-512.png';
 
@@ -36,7 +36,7 @@ const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal 
     };
 
     const closeModal = async () => {
-        await updatePokemonModal({});
+        await updateModalPokemon({});
         toggleModal(false);
     };
 
@@ -67,7 +67,8 @@ const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal 
 }
 
 const mapStateToProps = state => ({
-    showModal: state.pokedex.showModal
+    showModal: state.pokedex.showModal,
+    pokemon: state.pokedex.pokemonModal
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(pokedexActions, dispatch);

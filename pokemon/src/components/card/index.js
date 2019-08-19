@@ -16,7 +16,7 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { pokemon, updatePokemonModal, dispatch } = this.props;
+        const { pokemon, dispatch } = this.props;
 
         const mapAbilities = ability => {
             return {
@@ -65,7 +65,7 @@ class Card extends Component {
             const data = await getInitialData(pokemon);
             const [description, evolutions, abilities, category] = await getDetails(data);
 
-            await updatePokemonModal(data, evolutions, description, abilities, category);
+            await dispatch(pokedexActions.updateModalPokemon(data, evolutions, description, abilities, category));
 
             await dispatch(pokedexActions.updateLoading(false));
 

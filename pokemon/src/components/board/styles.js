@@ -12,6 +12,11 @@ export const Container = styled.div`
 export const CardContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+
+    img {
+        width: 250px;
+        height: 250px;
+    }
 `;
 
 export const ButtonContainer = styled.div`

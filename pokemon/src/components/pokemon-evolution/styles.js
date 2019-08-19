@@ -8,14 +8,14 @@ export const Container = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
-    height: 40%;
+    height: 38%;
 
     @media screen and (min-width: 1600px) {
         height: 48%;
     }
 
-    /* @media screen and (min-width: 768px) and (max-width: 991px) {
-        min-height: 190px;
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        height: 65%;
     }
 
     @media screen and (min-width: 992px) and (max-width: 1200px) {
