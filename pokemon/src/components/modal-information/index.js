@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col, Row, Grid } from 'react-flexbox-grid';
 import { Img, Title } from '../../styles/global';
-import { Container, ContainerInformation, ContainerCloseBar, ContainerImagePokemon, ContainerTitle } from './styles';
+import { Container, ContainerInformation, ContainerImagePokemon, ContainerTitle } from './styles';
 import PokemonInformation from '../pokemon-information';
 import PokemonEvolution from '../pokemon-evolution';
 import PokemonTypes from '../pokemon-types';
@@ -21,7 +21,7 @@ const errorMainImageDefault = e => {
 const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal }) => {
     // @TODO Colocar imagem fisicamente no projeto
     const closePicture = 'https://cdn3.iconfinder.com/data/icons/interface/100/close_button_2-512.png';
-    console.log('MODAL INFOERMATION: ', showModal);
+
     let mainPicture = '';
     let name = '';
     let number = '';
@@ -29,7 +29,6 @@ const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal 
 
     // @TODO Refatorar
     if (showModal && pokemon.data && pokemon.data.id) {
-        console.log(pokemon.data);
         mainPicture = `${urlPokemonImage}${pokemon.data.id.toString().padStart(3, '0')}.png`;
         name = pokemon.data.species.name.charAt(0).toUpperCase() + pokemon.data.species.name.slice(1);
         number = pokemon.data.id.toString().padStart(3, '0');
@@ -44,12 +43,10 @@ const ModalInformation = ({ showModal, pokemon, updatePokemonModal, toggleModal 
     return (
         <Container showModalInformation={showModal}>
             <ContainerInformation>
-                <ContainerCloseBar>
-                    <Img size={50} src={closePicture} onClick={() => closeModal()} />
-                </ContainerCloseBar>
-                <Grid fluid>
+                <Grid fluid style={{ height: '100%' }}>
                     <ContainerTitle>
                         <Title>{name} - {number}</Title>
+                        <Img size={50} src={closePicture} onClick={() => closeModal()} />
                     </ContainerTitle>
                     <Row>
                         <Col xs={12} sm={12} md={4} lg={5}>

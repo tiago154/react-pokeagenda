@@ -8,9 +8,13 @@ export const Container = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
-    height: 500px;
+    height: 40%;
 
-    @media screen and (min-width: 768px) and (max-width: 991px) {
+    @media screen and (min-width: 1600px) {
+        height: 48%;
+    }
+
+    /* @media screen and (min-width: 768px) and (max-width: 991px) {
         min-height: 190px;
     }
 
@@ -21,5 +25,5 @@ export const Container = styled.div`
     @media screen and (min-width: 1201px) and (max-height: 700px){
         margin-top: 10px;
         height: 240px;
-    }
+    } */
 `;

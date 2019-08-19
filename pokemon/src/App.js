@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 dotenv.config();
 
-const LIMIT = 500;
+const LIMIT = 50;
 
 class App extends Component {
   state = {
