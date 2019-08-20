@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   h2 {
     font-size: 16px;
+    color: #025aff;
   }
 
   @media screen and (max-width: 576px) {
@@ -21,16 +22,17 @@ export const ContainerStats = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  color: #3537ac;
 `;
 
 export const ContainerAbilities = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 2;
+  color: #3537ac;
 
   h2 {
     margin-bottom: 1px;
-    font-size: 12px;
   }
 `;
 
@@ -39,6 +41,7 @@ export const Description = styled.p`
   margin-bottom: 10px;
   font-size: 13px;
   text-align: justify;
+  color: #3537ac;
 
   @media screen and (max-width: 576px) {
       font-size: 12px;

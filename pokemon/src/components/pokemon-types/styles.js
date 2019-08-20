@@ -41,7 +41,7 @@ const backgroundPokemon = name => {
         return `
             background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
             background-color: #f7de3f;
-            color: #212121;
+            color: #562e05;
         `
     }
 

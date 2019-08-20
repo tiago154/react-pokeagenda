@@ -38,45 +38,40 @@ export const ContainerInformation = styled.div`
     overflow: auto;
 `;
 
-export const ContainerCloseBar = styled.div`
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -50px;
-
-    img {
-        max-width: 50px;
-        margin-right: 10px;
-        cursor: pointer;
-        z-index: 1;
-    }
-
-    img:hover {
-        transform: scale(1.4);
-    }
-
-    @media screen and (max-width: 576px) {
-        margin-bottom: -30px;
-
-        img {
-            max-width: 30px;
-            margin-right: 10px;
-            margin-bottom: 3px;
-        }
-    }
-`;
-
 export const ContainerTitle = styled.div`
+    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;           
+    justify-content: center;
     color: #3537b3;
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+
+    img {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        cursor: pointer;
+        z-index: 1;
+        align-self: center;
+        position: absolute;
+        right: -20px;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+    }
 
     @media screen and (max-width: 576px) {
         h1 {
             font-size: 19px;
+        }
+
+        img {
+            margin-top: 2px;
+            width: 35px;
+            height: 35px;
         }
     }
 
@@ -85,6 +80,11 @@ export const ContainerTitle = styled.div`
 
         h1 {
             font-size: 40px;
+        }
+
+        img {
+            width: 50px;
+            height: 50px;
         }
     }
 `;

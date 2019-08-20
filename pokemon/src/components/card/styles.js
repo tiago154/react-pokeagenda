@@ -32,4 +32,13 @@ export const Container = styled.div`
         animation-name: swingCard;
         animation-duration: 0.2s;
     }
+
+    @media screen and (min-width: 992px) and (max-width: 1200px) {
+        margin: 0 0px 10px 15px;
+        width: 100px;
+    }
+
+    @media screen and (min-width: 1201px) and (max-width: 1600px) {
+        margin: 0 -19px 10px 28px;
+    }
 `;

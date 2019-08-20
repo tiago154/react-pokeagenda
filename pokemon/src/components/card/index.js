@@ -4,6 +4,8 @@ import { Img, Label } from '../../styles/global'
 import defaultImage from '../../assets/images/default-pokemon.png';
 import { getAnyUrl } from '../../services/pokemon-api';
 import { orderBy } from '../../helpers/pokemon';
+import { connect } from 'react-redux';
+import * as pokedexActions from '../../store/actions/pokedex';
 
 const urlSmallPokemon = process.env.REACT_APP_POKEMON_IMAGE_SMALL;
 
@@ -14,7 +16,7 @@ const errorMainImageDefault = e => {
 
 class Card extends Component {
     render() {
-        const { pokemon, toggleModal, updatePokemonModal, updateLoading } = this.props;
+        const { pokemon, dispatch } = this.props;
 
         const mapAbilities = ability => {
             return {
@@ -37,15 +39,19 @@ class Card extends Component {
                 Promise.all(abilities.map(a => getAnyUrl(a.ability.url)))
             ]);
 
-
-            const description = species.flavor_text_entries
+            const descriptionOmegaRuby = species.flavor_text_entries
                 .find(t => t.language.name === 'en' && t.version.name === 'omega-ruby')
-                .flavor_text;
+
+            const descriptionGeneral = species.flavor_text_entries
+                .find(t => t.language.name === 'en');
+
+
+            const description = descriptionOmegaRuby ? descriptionOmegaRuby.flavor_text : descriptionGeneral.flavor_text;
 
             const category = species.genera
                 .find(g => g.language.name === 'en')
                 .genus.replace(' Pokémon', '');
- 
+
             const evolutions = await getAnyUrl(species.evolution_chain.url);
 
             const ability = abilitiesDetail.sort(orderBy('name')).map(mapAbilities);
@@ -54,16 +60,16 @@ class Card extends Component {
         }
 
         const loadSpecificPokemon = async (pokemon) => {
-            updateLoading(true);
+            await dispatch(pokedexActions.updateLoading(true));
 
             const data = await getInitialData(pokemon);
             const [description, evolutions, abilities, category] = await getDetails(data);
-            
-            await updatePokemonModal(data, evolutions, description, abilities, category);
 
-            updateLoading(false);
+            await dispatch(pokedexActions.updateModalPokemon(data, evolutions, description, abilities, category));
 
-            toggleModal(true);
+            await dispatch(pokedexActions.updateLoading(false));
+
+            await dispatch(pokedexActions.toggleModal(true));
         }
 
         const smallPicture = `${urlSmallPokemon}${pokemon.id.toString().padStart(3, '0')}.png`
@@ -78,4 +84,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default connect()(Card);

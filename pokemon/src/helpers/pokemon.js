@@ -105,3 +105,5 @@ export const orderBy = field => (a, b) => {
         return -1;
     return 0;
 }
+
+export const withImage = pokemon => pokemon.url.split('pokemon/')[1].replace('/', '') < 808;
