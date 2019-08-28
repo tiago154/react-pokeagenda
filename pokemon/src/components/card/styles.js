@@ -38,7 +38,11 @@ export const Container = styled.div`
         width: 100px;
     }
 
-    @media screen and (min-width: 1201px) and (max-width: 1600px) {
+    @media screen and (min-width: 1201px) and (max-width: 1400px) {
         margin: 0 -19px 10px 28px;
+    }
+
+    @media screen and (min-width: 1401px) and (max-width: 1600px) {
+        margin: 0 8px 10px 28px;
     }
 `;
