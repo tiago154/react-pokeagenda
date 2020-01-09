@@ -1,10 +1,4 @@
-import React from 'react'
-import { PokemonTypeEnum } from '../types/pokemonTypes'
 import styled from 'styled-components';
-
-export const Container = styled.div`
-  display: flex;
-`;
 
 interface IPropsStyled {
     background: string;
@@ -167,15 +161,4 @@ const TypePokemon = styled.span`
     ${({ background }: IPropsStyled) => backgroundPokemon(background)}
 `;
 
-interface IProps {
-    type: PokemonTypeEnum
-}
-
-const PokemonType = ({ type }: IProps) => (
-    <TypePokemon background={type}>
-        {type}
-    </TypePokemon>
-)
-
-
-export default PokemonType
+export default TypePokemon
