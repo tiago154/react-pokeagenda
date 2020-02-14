@@ -1,7 +1,7 @@
 import React from 'react';
-import PokemonType from '../src/components/PokemonType';
+import PokemonType from '.';
 import { withKnobs, select } from "@storybook/addon-knobs";
-import { PokemonTypeEnum } from '../src/types/pokemonTypes';
+import { PokemonTypeEnum } from '../../types/pokemonTypes';
 
 export default {
   title: 'PokemonType',

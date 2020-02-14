@@ -14,9 +14,11 @@ interface AddPokemonAction {
 export type PokemonActionTypes = AddPokemonAction
 
 const initialState: PokemonState = {
-    pokemons: [{
-        name: 'Pikachu'
-    }]
+    pokemons: [
+        { name: 'Pikachu' },
+        { name: 'Squirtle' },
+        { name: 'Bulbasaur' }
+    ]
 }
 
 export default (state = initialState, action: PokemonActionTypes): PokemonState => {
