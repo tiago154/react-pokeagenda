@@ -6,13 +6,5 @@ const mapStateToProps = ({ pokemon: { pokemons } }: State) => ({
     pokemons
 })
 
-const mapDispatch = {
-    onAdd: () => ({
-        type: 'ADD_POKEMON',
-        payload: {
-            name: 'Charmander'
-        }
-    })
-}
 
-export default connect(mapStateToProps, mapDispatch)(PokemonList)
+export default connect(mapStateToProps)(PokemonList)

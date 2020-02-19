@@ -1,34 +1,30 @@
 import { Pokemon } from '../types/pokemon'
 
-export const ADD_POKEMON = 'ADD_POKEMON'
+export const LOAD_POKEMONS = 'LOAD_POKEMONS'
 
 export type PokemonState = {
     pokemons: Pokemon[]
 }
 
-interface AddPokemonAction {
-    type: typeof ADD_POKEMON
-    payload: Pokemon
+export interface LoadPokemonsAction {
+    type: typeof LOAD_POKEMONS
+    payload: Pokemon[]
 }
 
-export type PokemonActionTypes = AddPokemonAction
+export type PokemonActionsTypes = LoadPokemonsAction
 
 const initialState: PokemonState = {
-    pokemons: [
-        { name: 'Pikachu' },
-        { name: 'Squirtle' },
-        { name: 'Bulbasaur' }
-    ]
+    pokemons: []
 }
 
-export default (state = initialState, action: PokemonActionTypes): PokemonState => {
+export default (state = initialState, action: PokemonActionsTypes): PokemonState => {
     switch (action.type) {
-        case 'ADD_POKEMON':
+        case 'LOAD_POKEMONS':
             return {
-                ...state,
-                pokemons: [...state.pokemons, action.payload]
+                pokemons: [...state.pokemons, ...action.payload]
             }
+        default:
+            return state
     }
-    return state
 }
 

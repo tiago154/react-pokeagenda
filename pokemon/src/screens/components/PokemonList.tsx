@@ -4,15 +4,13 @@ import { Pokemon } from '../../types/pokemon'
 
 interface IProps {
     pokemons: Pokemon[];
-    onAdd: () => void;
 }
 
-const PokemonList = ({ pokemons, onAdd } : IProps) => (
+const PokemonList = ({ pokemons }: IProps) => (
     <div>
-    {
-        pokemons.map(pokemon => <div>{pokemon.name}</div>)
-    }
-    <button type="button" onClick={onAdd}>Adicionar</button>
+        {
+            pokemons.map(pokemon => <div key={pokemon.id}>{pokemon.name}</div>)
+        }
     </div>
 )
 
