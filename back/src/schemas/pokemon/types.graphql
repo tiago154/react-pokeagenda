@@ -1,0 +1,12 @@
+type Pokemon {
+  id: Int!
+  name: String!
+  url: String!
+}
+
+type ListPokemon {
+  count: Int
+  next: String
+  previous: String
+  pokemons: [Pokemon]
+}
