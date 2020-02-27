@@ -4,7 +4,7 @@ import ApolloClient, { ApolloQueryResult } from 'apollo-boost'
 import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/graphql'
+    uri: process.env.REACT_APP_BFF_URL
 })
 
 type PokemonApi = {
