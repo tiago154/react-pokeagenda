@@ -1,3 +1,0 @@
-type Query {
-  listPokemon(offset: Int, limit: Int): ListPokemon
-}

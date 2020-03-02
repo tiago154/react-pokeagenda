@@ -10,3 +10,7 @@ type ListPokemon {
   previous: String
   pokemons: [Pokemon]
 }
+
+type Query {
+  listPokemon(offset: Int, limit: Int): ListPokemon
+}
