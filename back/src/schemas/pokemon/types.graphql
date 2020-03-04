@@ -6,8 +6,6 @@ type Pokemon {
 
 type ListPokemon {
   count: Int
-  next: String
-  previous: String
   pokemons: [Pokemon]
 }
 
