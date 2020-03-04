@@ -6,5 +6,11 @@ const mapStateToProps = ({ pokemon: { pokemons } }: State) => ({
     pokemons
 })
 
+// TODO arrumar tipagem
+const mapDispatchToProps = (dispatch: any) => ({
+    onNext: () => console.log('Next'),
+    onPrevious: () => console.log('Previous')
+})
 
-export default connect(mapStateToProps)(PokemonList)
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonList)

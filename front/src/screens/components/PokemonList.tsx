@@ -3,15 +3,21 @@ import React from 'react'
 import { Pokemon } from '../../types/pokemon'
 
 interface IProps {
-    pokemons: Pokemon[];
+    pokemons: Pokemon[]
+    onNext: () => void
+    onPrevious: () => void
 }
 
-const PokemonList = ({ pokemons }: IProps) => (
+const PokemonList = ({ pokemons, onNext, onPrevious }: IProps) => (
     <div>
-        {
-            pokemons.map(pokemon =>
-            <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
-        }
+        <div>
+            {
+                pokemons.map(pokemon =>
+                    <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
+            }
+        </div>
+        <button onClick={onPrevious}>Anterior</button>
+        <button onClick={onNext}>Proximo</button>
     </div>
 )
 

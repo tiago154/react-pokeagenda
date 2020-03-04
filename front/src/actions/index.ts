@@ -15,8 +15,6 @@ type PokemonApi = {
 
 type GraphqlApiPokemon = {
     count: number
-    next: string
-    previous: string
     pokemons: PokemonApi[]
 }
 
