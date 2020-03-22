@@ -1,6 +1,6 @@
-const { query, listPokemon } = require('./pokemon')
+const { query, listPokemon: ListPokemon } = require('./pokemon')
 
 module.exports = {
   Query: query,
-  ListPokemon: listPokemon
+  ListPokemon
 }

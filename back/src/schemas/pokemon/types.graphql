@@ -1,7 +1,8 @@
 type Pokemon {
   id: Int!
   name: String!
-  url: String!
+  image: String!
+  types: [String!]!
 }
 
 type ListPokemon {
