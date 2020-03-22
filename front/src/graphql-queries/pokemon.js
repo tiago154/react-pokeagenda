@@ -4,7 +4,7 @@ export const LIST_POKEMONS_QUERY = (offset = 0, limit = 20) => gql`
     {
         listPokemon (offset: ${offset} limit: ${limit})  {
             count pokemons {
-                id name url
+                id name
             }
         }
     }
