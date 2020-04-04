@@ -1,14 +1,16 @@
 import { connect } from 'react-redux'
 import PokemonList from '../components/PokemonList'
 import { State } from '../../store'
+import { ThunkDispatch } from 'redux-thunk'
+import { AnyAction } from 'redux'
+import { NextPage } from '../../actions'
 
 const mapStateToProps = ({ pokemon: { pokemons } }: State) => ({
     pokemons
 })
 
-// TODO arrumar tipagem
-const mapDispatchToProps = (dispatch: any) => ({
-    onNext: () => console.log('Next'),
+const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, AnyAction>) => ({
+    onNext: () => dispatch(NextPage()),
     onPrevious: () => console.log('Previous')
 })
 

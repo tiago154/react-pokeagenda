@@ -3,26 +3,28 @@ import { Pokemon } from '../types/pokemon'
 export const LOAD_POKEMONS = 'LOAD_POKEMONS'
 
 export type PokemonState = {
-    pokemons: Pokemon[]
+    count: number,
+    pokemons: Pokemon[],
+    offSet: number
 }
 
 export interface LoadPokemonsAction {
     type: typeof LOAD_POKEMONS
-    payload: Pokemon[]
+    payload: PokemonState
 }
 
 export type PokemonActionsTypes = LoadPokemonsAction
 
 const initialState: PokemonState = {
-    pokemons: []
+    count: 0,
+    pokemons: [],
+    offSet: 0
 }
 
 export default (state = initialState, action: PokemonActionsTypes): PokemonState => {
     switch (action.type) {
         case 'LOAD_POKEMONS':
-            return {
-                pokemons: [...state.pokemons, ...action.payload]
-            }
+            return action.payload
         default:
             return state
     }
