@@ -3,6 +3,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import ApolloClient, { ApolloQueryResult } from 'apollo-boost'
 import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
 import store from '../store'
+import { PokemonActionsEnum } from '../reducers/pokemon'
 
 const LIMIT: number = 20
 
@@ -25,6 +26,12 @@ interface IListApiPokemon {
     listPokemon: GraphqlApiPokemon
 }
 
+const sameState = (type: PokemonActionsEnum) =>
+    ({
+        type,
+        payload: { ...store.getState().pokemon }
+    })
+
 export const initialLoad = () =>
     async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
         const result: ApolloQueryResult<IListApiPokemon> = await client.query({
@@ -32,15 +39,14 @@ export const initialLoad = () =>
         })
 
         return dispatch({
-            type: 'LOAD_POKEMONS', payload: {
+            type: PokemonActionsEnum.LOAD_POKEMONS, payload: {
                 pokemons: result.data.listPokemon.pokemons,
-                offSet: 0,
                 count: result.data.listPokemon.count
             }
         })
     }
 
-export const NextPage = () =>
+export const nextPage = () =>
     async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
         const count = store.getState().pokemon.count
         const tempOffSet = store.getState().pokemon.offSet + LIMIT
@@ -53,7 +59,7 @@ export const NextPage = () =>
             })
 
             return dispatch({
-                type: 'LOAD_POKEMONS', payload: {
+                type: PokemonActionsEnum.PAGINATION, payload: {
                     pokemons: result.data.listPokemon.pokemons,
                     offSet,
                     count: result.data.listPokemon.count
@@ -61,9 +67,26 @@ export const NextPage = () =>
             })
         }
 
-        return dispatch({
-            type: 'LOAD_POKEMONS', payload: {
-                ...store.getState().pokemon
-            }
-        })
+        return dispatch(sameState(PokemonActionsEnum.PAGINATION))
+    }
+
+export const previousPage = () =>
+    async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
+        const tempOffSet = store.getState().pokemon.offSet - LIMIT
+        if (tempOffSet >= 0) {
+            const offSet = tempOffSet
+            const result: ApolloQueryResult<IListApiPokemon> = await client.query({
+                query: LIST_POKEMONS_QUERY(offSet)
+            })
+
+            return dispatch({
+                type: PokemonActionsEnum.PAGINATION, payload: {
+                    pokemons: result.data.listPokemon.pokemons,
+                    offSet,
+                    count: result.data.listPokemon.count
+                }
+            })
+        }
+
+        return dispatch(sameState(PokemonActionsEnum.PAGINATION))
     }

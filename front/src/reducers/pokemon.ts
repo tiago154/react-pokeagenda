@@ -1,6 +1,9 @@
 import { Pokemon } from '../types/pokemon'
 
-export const LOAD_POKEMONS = 'LOAD_POKEMONS'
+export enum PokemonActionsEnum {
+    LOAD_POKEMONS,
+    PAGINATION
+}
 
 export type PokemonState = {
     count: number,
@@ -9,7 +12,7 @@ export type PokemonState = {
 }
 
 export interface LoadPokemonsAction {
-    type: typeof LOAD_POKEMONS
+    type: PokemonActionsEnum
     payload: PokemonState
 }
 
@@ -23,7 +26,9 @@ const initialState: PokemonState = {
 
 export default (state = initialState, action: PokemonActionsTypes): PokemonState => {
     switch (action.type) {
-        case 'LOAD_POKEMONS':
+        case PokemonActionsEnum.LOAD_POKEMONS:
+            return { ...state, ...action.payload }
+        case PokemonActionsEnum.PAGINATION:
             return action.payload
         default:
             return state
