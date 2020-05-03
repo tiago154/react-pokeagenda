@@ -8,6 +8,7 @@ interface IProps {
     onPrevious: () => void
 }
 
+// @TODO Criar state para o componente para controlar o carregamento
 const PokemonList = ({ pokemons, onNext, onPrevious }: IProps) => (
     <div>
         <div>

@@ -11,12 +11,12 @@ export type PokemonState = {
     offSet: number
 }
 
-export interface LoadPokemonsAction {
+export interface PokemonsAction {
     type: PokemonActionsEnum
     payload: PokemonState
 }
 
-export type PokemonActionsTypes = LoadPokemonsAction
+export type PokemonActionsTypes = PokemonsAction
 
 const initialState: PokemonState = {
     count: 0,

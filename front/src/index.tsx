@@ -14,6 +14,6 @@ ReactDOM.render
         document.getElementById('root')
     );
 
-store.dispatch<any>(initialLoad())
+store.dispatch<any>(initialLoad)
 
 serviceWorker.unregister();

@@ -1,9 +1,8 @@
-import { AnyAction } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
 import ApolloClient, { ApolloQueryResult } from 'apollo-boost'
 import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
-import store from '../store'
-import { PokemonActionsEnum } from '../reducers/pokemon'
+import store, { State } from '../store'
+import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
 
 const LIMIT: number = 20
 
@@ -14,7 +13,8 @@ const client = new ApolloClient({
 type PokemonApi = {
     id: number
     name: string
-    url: string
+    image: string
+    types: string[]
 }
 
 type GraphqlApiPokemon = {
@@ -26,30 +26,33 @@ interface IListApiPokemon {
     listPokemon: GraphqlApiPokemon
 }
 
-const sameState = (type: PokemonActionsEnum) =>
+const sameState = (type: PokemonActionsEnum, pokemonState: PokemonState) =>
     ({
         type,
-        payload: { ...store.getState().pokemon }
+        payload: { ...pokemonState }
     })
 
-export const initialLoad = () =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
+export const initialLoad =
+    async (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>): Promise<PokemonActionsTypes> => {
+
         const result: ApolloQueryResult<IListApiPokemon> = await client.query({
             query: LIST_POKEMONS_QUERY()
         })
 
         return dispatch({
-            type: PokemonActionsEnum.LOAD_POKEMONS, payload: {
+            type: PokemonActionsEnum.LOAD_POKEMONS,
+            payload: {
                 pokemons: result.data.listPokemon.pokemons,
-                count: result.data.listPokemon.count
+                count: result.data.listPokemon.count,
+                offSet: 0
             }
         })
     }
 
-export const nextPage = () =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
-        const count = store.getState().pokemon.count
-        const tempOffSet = store.getState().pokemon.offSet + LIMIT
+export const nextPage =
+    async (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
+        const count = getState().pokemon.count
+        const tempOffSet = getState().pokemon.offSet + LIMIT
 
         if (tempOffSet < count) {
             const offSet = tempOffSet
@@ -59,19 +62,20 @@ export const nextPage = () =>
             })
 
             return dispatch({
-                type: PokemonActionsEnum.PAGINATION, payload: {
+                type: PokemonActionsEnum.PAGINATION,
+                payload: {
+                    count: result.data.listPokemon.count,
                     pokemons: result.data.listPokemon.pokemons,
-                    offSet,
-                    count: result.data.listPokemon.count
+                    offSet
                 }
             })
         }
 
-        return dispatch(sameState(PokemonActionsEnum.PAGINATION))
+        return dispatch(sameState(PokemonActionsEnum.PAGINATION, getState().pokemon))
     }
 
-export const previousPage = () =>
-    async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<AnyAction> => {
+export const previousPage =
+    async (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
         const tempOffSet = store.getState().pokemon.offSet - LIMIT
         if (tempOffSet >= 0) {
             const offSet = tempOffSet
@@ -88,5 +92,5 @@ export const previousPage = () =>
             })
         }
 
-        return dispatch(sameState(PokemonActionsEnum.PAGINATION))
+        return dispatch(sameState(PokemonActionsEnum.PAGINATION, getState().pokemon))
     }
