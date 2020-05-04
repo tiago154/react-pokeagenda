@@ -3,6 +3,7 @@ import ApolloClient, { ApolloQueryResult } from 'apollo-boost'
 import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
 import store, { State } from '../store'
 import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
+import { Store } from 'redux'
 
 const LIMIT: number = 20
 
@@ -33,13 +34,13 @@ const sameState = (type: PokemonActionsEnum, pokemonState: PokemonState) =>
     })
 
 export const initialLoad =
-    async (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>): Promise<PokemonActionsTypes> => {
+    async (store: Store<State, PokemonActionsTypes>): Promise<void> => {
 
         const result: ApolloQueryResult<IListApiPokemon> = await client.query({
             query: LIST_POKEMONS_QUERY()
         })
 
-        return dispatch({
+        store.dispatch({
             type: PokemonActionsEnum.LOAD_POKEMONS,
             payload: {
                 pokemons: result.data.listPokemon.pokemons,
