@@ -1,0 +1,18 @@
+{
+  "name": "pokeagenda-react",
+  "version": "1.0.0",
+  "scripts": {
+    "back": "npm --prefix back start",
+    "front": "npm --prefix front start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiago154/pokeagenda-react.git"
+  },
+  "author": "Tiago Santos Da Silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiago154/pokeagenda-react/issues"
+  },
+  "homepage": "https://github.com/tiago154/pokeagenda-react#readme"
+}
