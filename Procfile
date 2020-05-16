@@ -1,2 +1,2 @@
-back: npm i --prefix back && npm run back
-front: npm i --prefix front && npm run front
+web: npm i --prefix back && npm run back
+web: npm i --prefix front && npm run front
