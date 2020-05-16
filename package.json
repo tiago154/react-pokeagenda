@@ -1,18 +1,65 @@
 {
-  "name": "pokeagenda-react",
-  "version": "1.0.0",
+  "name": "pokemon",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "apollo-boost": "^0.4.7",
+    "graphql": "^14.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-scripts": "3.3.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.4.1"
+  },
   "scripts": {
-    "back": "npm --prefix back start",
-    "front": "npm --prefix front start"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "jest": "jest",
+    "coverage": "http-server coverage/lcov-report/",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tiago154/pokeagenda-react.git"
+  "eslintConfig": {
+    "extends": "react-app"
   },
-  "author": "Tiago Santos Da Silva",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tiago154/pokeagenda-react/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/tiago154/pokeagenda-react#readme"
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addons": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.1",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.28",
+    "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "@types/react-test-renderer": "^16.9.2",
+    "@types/styled-components": "^4.4.3",
+    "babel-loader": "^8.0.6",
+    "http-server": "^0.12.3",
+    "jest": "^24.9.0",
+    "react-test-renderer": "^16.12.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.7.5"
+  }
 }
