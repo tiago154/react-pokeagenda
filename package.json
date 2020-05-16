@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "back": "npm --prefix back start",
-    "front": "npm --prefix front start"
+    "front": "npm --prefix front start",
+    "preinstall": "npm i --prefix back"
   },
   "repository": {
     "type": "git",
