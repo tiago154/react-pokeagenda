@@ -29,6 +29,7 @@ jobs:
     
     - name: Print
         run: |
+        echo "oi"
         ls
 
     # - name: Deploy
