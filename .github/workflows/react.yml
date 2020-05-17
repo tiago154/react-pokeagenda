@@ -6,6 +6,8 @@ name: Build and deploy storybook
 on:
   push:
     branches: [ feature/new-template ]
+  pull_request:
+    branches: [ feature/new-template ]
 
 jobs:
   build:
@@ -25,11 +27,8 @@ jobs:
     - name: Install and Build
       run: |
         npm install
-        npm run build-storybook    
-    
-    - name: Print
-        run: |
-        echo "oi"
+        npm run build-storybook
+        echo "teste"
         ls
 
     # - name: Deploy
