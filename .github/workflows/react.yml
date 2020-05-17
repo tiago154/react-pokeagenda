@@ -5,9 +5,9 @@ name: Build and deploy storybook
 
 on:
   push:
-    branches: [ feature/new-template ]
+    branches: [ master ]
   pull_request:
-    branches: [ feature/new-template ]
+    branches: [ master ]
 
 jobs:
   build:
