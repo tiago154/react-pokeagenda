@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Pokemon } from '../../types/pokemon'
+import Loading from '../../components/Loading'
 
 interface IProps {
     pokemons: Pokemon[]
@@ -40,7 +41,7 @@ const PokemonList = ({ pokemons, onNext, onPrevious }: IProps) => {
     }
 
 
-    return <div><p>Carregando....</p></div>
+    return <div><Loading width={200} /></div>
 }
 
 export default PokemonList
