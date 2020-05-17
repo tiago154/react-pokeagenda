@@ -6,8 +6,6 @@ name: Build and deploy storybook
 on:
   push:
     branches: [ feature/new-template ]
-  pull_request:
-    branches: [ feature/new-template ]
 
 jobs:
   build:
@@ -16,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x]
+        node-version: [12.x]
 
     steps:
     - name: Checkout
