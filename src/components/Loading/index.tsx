@@ -12,7 +12,7 @@ interface IProps {
     loadingType?: LoadingEnum
 }
 
-const PokemonImage = ({ width, loadingType = LoadingEnum.pikachu }: IProps) =>
+const PokemonImage = ({ width, loadingType = LoadingEnum.pokeball }: IProps) =>
     (<Gif src={gifs[loadingType]} width={width} />)
 
 export default PokemonImage

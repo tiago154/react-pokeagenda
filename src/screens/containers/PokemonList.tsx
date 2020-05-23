@@ -3,10 +3,19 @@ import PokemonList from '../components/PokemonList'
 import { State } from '../../store'
 import { ThunkDispatch } from 'redux-thunk'
 import { nextPage, previousPage } from '../../actions'
-import { PokemonActionsTypes } from '../../reducers/pokemon'
+import { PokemonActionsTypes, PokemonState } from '../../reducers/pokemon'
+import { Pokemon } from '../../types/pokemon'
+import { VIEWING_LIMIT } from '../../constant'
 
-const mapStateToProps = ({ pokemon: { pokemons } }: State) => ({
-    pokemons
+const takeCurrentPageList = ({ pokemons, offSet }: PokemonState): Pokemon[] => {
+    if (offSet >= 0)
+        return pokemons.slice(offSet, offSet + VIEWING_LIMIT)
+    return pokemons
+}
+
+const mapStateToProps = ({ pokemon, loading }: State) => ({
+    pokemons: takeCurrentPageList(pokemon),
+    inProgress: loading.inProgress
 })
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>) => ({

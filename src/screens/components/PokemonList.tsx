@@ -1,47 +1,38 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { Pokemon } from '../../types/pokemon'
-import Loading from '../../components/Loading'
+import Loading, { LoadingEnum } from '../../components/Loading'
 
 interface IProps {
-    pokemons: Pokemon[]
+    pokemons: Pokemon[],
+    inProgress: boolean,
     onNext: () => void
     onPrevious: () => void
 }
 
-const clickButton = (
-    onEvent: () => void,
-    setDataLoaded: React.Dispatch<React.SetStateAction<boolean>>,
-    isDataLoaded: React.SetStateAction<boolean>) => {
-    setDataLoaded(isDataLoaded)
-    onEvent()
-}
+const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
+    // @TODO Temporário
+    if (!pokemons.length && inProgress)
+        return <div><Loading width={200} /></div>
 
-const PokemonList = ({ pokemons, onNext, onPrevious }: IProps) => {
-    const [isDataLoaded, setDataLoaded] = useState(false)
-
-    useEffect(() => {
-        if (pokemons.length)
-            setDataLoaded(true)
-    }, [pokemons])
-
-    if (isDataLoaded) {
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    {
-                        pokemons.map(pokemon =>
-                            <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
-                    }
-                </div>
-                <button onClick={() => clickButton(onPrevious, setDataLoaded, true)}>Anterior</button>
-                <button onClick={() => clickButton(onNext, setDataLoaded, false)}>Proximo</button>
+                {
+                    pokemons.map(pokemon =>
+                        <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
+                }
             </div>
-        )
-    }
-
-
-    return <div><Loading width={200} /></div>
+            {
+                !!pokemons.length &&
+                <div>
+                    <button onClick={onPrevious}>Anterior</button>
+                    <button onClick={onNext}>Proximo</button>
+                </div>
+            }
+            {inProgress && <div><Loading width={200} loadingType={LoadingEnum.pikachu} /></div>}
+        </div>
+    )
 }
 
 export default PokemonList
