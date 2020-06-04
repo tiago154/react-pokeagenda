@@ -1,4 +1,5 @@
 module.exports = {
+    preset: 'ts-jest',
     collectCoverage: true,
     collectCoverageFrom: [
         '<rootDir>/src/**/*.{ts,tsx}',
@@ -10,8 +11,5 @@ module.exports = {
     setupFiles: ['dotenv/config'],
     testEnvironment: 'node',
     testMatch: ['<rootDir>/src/**/*.spec.tsx'],
-    verbose: true,
-    transform: {
-        "^.+\\.tsx?$": "ts-jest"
-    }
+    verbose: true
 }
