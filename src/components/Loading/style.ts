@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface IPropsStyled {
     width: number
@@ -7,6 +7,6 @@ interface IPropsStyled {
 const Gif = styled.img`
     ${({ width }: IPropsStyled) => width && `max-width: ${width}px`}
     height: auto;
-`;
+`
 
 export default Gif

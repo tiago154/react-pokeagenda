@@ -7,7 +7,7 @@ const App: React.FC = () => {
     <div className="App">
       <PokemonList />
     </div>
-  );
+  )
 }
 
 export default App

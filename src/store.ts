@@ -10,12 +10,9 @@ export interface State {
 
 export type StateActionTypes = PokemonActionsTypes | LoadingActionTypes
 
-
 const store = createStore<State, StateActionTypes, {}, {}>(
-    combineReducers({ pokemon, loading }),
-    applyMiddleware(thunk as ThunkMiddleware<State, StateActionTypes>)
+  combineReducers({ pokemon, loading }),
+  applyMiddleware(thunk as ThunkMiddleware<State, StateActionTypes>)
 )
 
 export default store
-
-

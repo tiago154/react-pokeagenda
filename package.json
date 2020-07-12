@@ -21,10 +21,9 @@
     "jest": "jest",
     "coverage": "http-server coverage/lcov-report/",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "build-storybook": "build-storybook",
+    "lint": "eslint src/**",
+    "lint:fix": "eslint src/** --fix"
   },
   "browserslist": {
     "production": [
@@ -55,7 +54,15 @@
     "@types/react-redux": "^7.1.7",
     "@types/react-test-renderer": "^16.9.2",
     "@types/styled-components": "^4.4.3",
+    "@typescript-eslint/eslint-plugin": "^3.6.0",
+    "@typescript-eslint/parser": "^3.6.0",
     "babel-loader": "^8.0.6",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-standard": "^4.0.1",
     "http-server": "^0.12.3",
     "jest": "^24.9.0",
     "react-test-renderer": "^16.12.0",

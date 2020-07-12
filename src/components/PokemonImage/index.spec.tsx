@@ -1,12 +1,15 @@
 import React from 'react'
-import PokemonType from '.'
+import PokemonImage from '.'
 import renderer from 'react-test-renderer'
-import { PokemonTypeEnum } from '../../types/pokemonTypes'
 
 describe('PokemonType', () => {
   it('Renders correctly', () => {
+    const component = <PokemonImage
+      url={'https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png'}
+      width={120}
+    />
     const tree = renderer
-      .create(<PokemonType type={PokemonTypeEnum.fire}/>)
+      .create(component)
       .toJSON()
     expect(tree).toMatchSnapshot()
   })

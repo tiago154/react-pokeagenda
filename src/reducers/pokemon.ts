@@ -21,26 +21,25 @@ export interface PokemonsAction {
 export type PokemonActionsTypes = PokemonsAction
 
 const initialState: PokemonState = {
-    count: 0,
-    pokemons: [],
-    offSet: 0
+  count: 0,
+  pokemons: [],
+  offSet: 0
 }
 
 export default (state = initialState, action: PokemonActionsTypes): PokemonState => {
-    switch (action.type) {
-        case PokemonActionsEnum.LOAD_POKEMONS:
-            return { ...state, ...action.payload }
-        case PokemonActionsEnum.ADD_MORE_POKEMONS:
-            return {
-                ...action.payload,
-                pokemons: [...state.pokemons, ...action.payload.pokemons]
-            }
-        case PokemonActionsEnum.UPDATE:
-            return action.payload
-        case PokemonActionsEnum.SAME_STATE:
-            return action.payload
-        default:
-            return state
-    }
+  switch (action.type) {
+    case PokemonActionsEnum.LOAD_POKEMONS:
+      return { ...state, ...action.payload }
+    case PokemonActionsEnum.ADD_MORE_POKEMONS:
+      return {
+        ...action.payload,
+        pokemons: [...state.pokemons, ...action.payload.pokemons]
+      }
+    case PokemonActionsEnum.UPDATE:
+      return action.payload
+    case PokemonActionsEnum.SAME_STATE:
+      return action.payload
+    default:
+      return state
+  }
 }
-

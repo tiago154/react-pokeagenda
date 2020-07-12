@@ -14,15 +14,14 @@ export interface LoadingAction {
 export type LoadingActionTypes = LoadingAction
 
 const initialState: LoadingState = {
-    inProgress: true
+  inProgress: true
 }
 
 export default (state = initialState, action: LoadingActionTypes): LoadingState => {
-    switch (action.type) {
-        case LoadingActionsEnum.UPDATE_LOADING:
-            return { ...action.payload }
-        default:
-            return state
-    }
+  switch (action.type) {
+    case LoadingActionsEnum.UPDATE_LOADING:
+      return { ...action.payload }
+    default:
+      return state
+  }
 }
-

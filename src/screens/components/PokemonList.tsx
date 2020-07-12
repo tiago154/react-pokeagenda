@@ -11,28 +11,27 @@ interface IProps {
 }
 
 const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
-    // @TODO Temporário
-    if (!pokemons.length && inProgress)
-        return <div><Loading width={200} /></div>
+  // @TODO Temporário
+  if (!pokemons.length && inProgress) { return <div><Loading width={200} /></div> }
 
-    return (
-        <div>
-            <div>
-                {
-                    pokemons.map(pokemon =>
-                        <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
-                }
-            </div>
-            {
-                !!pokemons.length &&
+  return (
+    <div>
+      <div>
+        {
+          pokemons.map(pokemon =>
+            <div key={pokemon.id}>#{pokemon.id} {pokemon.name}</div>)
+        }
+      </div>
+      {
+        !!pokemons.length &&
                 <div>
-                    <button onClick={onPrevious}>Anterior</button>
-                    <button onClick={onNext}>Proximo</button>
+                  <button onClick={onPrevious}>Anterior</button>
+                  <button onClick={onNext}>Proximo</button>
                 </div>
-            }
-            {inProgress && <div><Loading width={200} loadingType={LoadingEnum.pikachu} /></div>}
-        </div>
-    )
+      }
+      {inProgress && <div><Loading width={200} loadingType={LoadingEnum.pikachu} /></div>}
+    </div>
+  )
 }
 
 export default PokemonList

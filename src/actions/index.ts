@@ -8,115 +8,114 @@ import { LoadingActionsEnum } from '../reducers/loading'
 import { VIEWING_LIMIT } from '../constant'
 
 const client = new ApolloClient({
-    uri: process.env.REACT_APP_BFF_URL
+  uri: process.env.REACT_APP_BFF_URL
 })
 
 type PokemonApi = {
-    id: number
-    name: string
-    image: string
-    types: string[]
+  id: number
+  name: string
+  image: string
+  types: string[]
 }
 
 type GraphqlApiPokemon = {
-    count: number
-    pokemons: PokemonApi[]
+  count: number
+  pokemons: PokemonApi[]
 }
 
 interface IListApiPokemon {
-    listPokemon: GraphqlApiPokemon
+  listPokemon: GraphqlApiPokemon
 }
 
 const sameState = (pokemonState: PokemonState) =>
-    ({
-        type: PokemonActionsEnum.SAME_STATE,
-        payload: { ...pokemonState }
-    })
+  ({
+    type: PokemonActionsEnum.SAME_STATE,
+    payload: { ...pokemonState }
+  })
 
 const updateLoading = (inProgress: boolean) => ({
-    type: LoadingActionsEnum.UPDATE_LOADING,
-    payload: { inProgress }
+  type: LoadingActionsEnum.UPDATE_LOADING,
+  payload: { inProgress }
 })
 
 export const initialLoad =
-    async (store: Store<State, StateActionTypes>): Promise<void> => {
+  async (store: Store<State, StateActionTypes>): Promise<void> => {
+    const result: ApolloQueryResult<IListApiPokemon> = await client.query({
+      query: LIST_POKEMONS_QUERY()
+    })
 
-        const result: ApolloQueryResult<IListApiPokemon> = await client.query({
-            query: LIST_POKEMONS_QUERY()
-        })
+    store.dispatch(updateLoading(false))
 
-        store.dispatch(updateLoading(false))
-
-        store.dispatch({
-            type: PokemonActionsEnum.LOAD_POKEMONS,
-            payload: {
-                pokemons: result.data.listPokemon.pokemons,
-                count: result.data.listPokemon.count,
-                offSet: 0
-            }
-        })
-    }
+    store.dispatch({
+      type: PokemonActionsEnum.LOAD_POKEMONS,
+      payload: {
+        pokemons: result.data.listPokemon.pokemons,
+        count: result.data.listPokemon.count,
+        offSet: 0
+      }
+    })
+  }
 
 export const nextPage =
-    async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
-        try {
-            const count = getState().pokemon.count
-            const pokemonsLength = getState().pokemon.pokemons.length
-            const tempOffSet = getState().pokemon.offSet + VIEWING_LIMIT
-            const inProgress = getState().loading.inProgress
+  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
+    try {
+      const count = getState().pokemon.count
+      const pokemonsLength = getState().pokemon.pokemons.length
+      const tempOffSet = getState().pokemon.offSet + VIEWING_LIMIT
+      const inProgress = getState().loading.inProgress
 
-            if (tempOffSet < count && !inProgress) {
+      if (tempOffSet < count && !inProgress) {
+        const offSet = tempOffSet
 
-                const offSet = tempOffSet
-
-                if (pokemonsLength > tempOffSet) {
-                    return dispatch({
-                        type: PokemonActionsEnum.UPDATE,
-                        payload: {
-                            count,
-                            offSet,
-                            pokemons: getState().pokemon.pokemons
-                        }
-                    })
-                }
-
-                dispatch(updateLoading(true))
-
-                const result: ApolloQueryResult<IListApiPokemon> = await client
-                    .query({ query: LIST_POKEMONS_QUERY(offSet) })
-                    .finally(() => dispatch(updateLoading(false)))
-
-                return dispatch({
-                    type: PokemonActionsEnum.ADD_MORE_POKEMONS,
-                    payload: {
-                        count: result.data.listPokemon.count,
-                        pokemons: result.data.listPokemon.pokemons,
-                        offSet
-                    }
-                })
+        if (pokemonsLength > tempOffSet) {
+          return dispatch({
+            type: PokemonActionsEnum.UPDATE,
+            payload: {
+              count,
+              offSet,
+              pokemons: getState().pokemon.pokemons
             }
-
-            return dispatch(sameState(getState().pokemon))
-        } catch (error) {
-            return dispatch(sameState(getState().pokemon))
+          })
         }
+
+        dispatch(updateLoading(true))
+
+        const result: ApolloQueryResult<IListApiPokemon> = await client
+          .query({ query: LIST_POKEMONS_QUERY(offSet) })
+          .finally(() => dispatch(updateLoading(false)))
+
+        return dispatch({
+          type: PokemonActionsEnum.ADD_MORE_POKEMONS,
+          payload: {
+            count: result.data.listPokemon.count,
+            pokemons: result.data.listPokemon.pokemons,
+            offSet
+          }
+        })
+      }
+
+      return dispatch(sameState(getState().pokemon))
+    } catch (error) {
+      return dispatch(sameState(getState().pokemon))
     }
+  }
 
 export const previousPage =
-    async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
-        const count = getState().pokemon.count
-        const tempOffSet = getState().pokemon.offSet - VIEWING_LIMIT
-        if (tempOffSet >= 0) {
-            const offSet = tempOffSet
+  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
+    const count = getState().pokemon.count
+    const tempOffSet = getState().pokemon.offSet - VIEWING_LIMIT
+    if (tempOffSet >= 0) {
+      const offSet = tempOffSet
 
-            return dispatch({
-                type: PokemonActionsEnum.UPDATE, payload: {
-                    pokemons: getState().pokemon.pokemons,
-                    offSet,
-                    count
-                }
-            })
+      return dispatch({
+        type: PokemonActionsEnum.UPDATE,
+        payload: {
+          pokemons: getState().pokemon.pokemons,
+          offSet,
+          count
         }
-
-        return dispatch(sameState(getState().pokemon))
+      })
     }
+
+    return dispatch(sameState(getState().pokemon))
+  }
