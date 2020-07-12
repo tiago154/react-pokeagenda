@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PokemonType Renders correctly 1`] = `
+exports[`PokemonImage Renders correctly 1`] = `
 <img
   className="sc-bdVaJa bPNabn"
   src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
