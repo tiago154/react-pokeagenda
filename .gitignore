@@ -112,6 +112,7 @@ temp/
 .DS_*
 **/*.backup.*
 **/*.back.*
+build
 
 node_modules
 
