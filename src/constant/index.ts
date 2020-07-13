@@ -1,1 +1,1 @@
-export const VIEWING_LIMIT = 20
+export const VIEWING_LIMIT = 15
