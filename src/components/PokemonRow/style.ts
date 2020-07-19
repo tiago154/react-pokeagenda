@@ -7,6 +7,8 @@ export const Div = styled.div`
   padding: 0px;
   width: 360px;
   height: 32px;
+  align-items: center;
+  background: rgba(94, 174, 169, 0.19);
 `
 
 export const Sprite = styled.img`
@@ -21,5 +23,4 @@ export const Text = styled.p`
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
-  align-items: center;
 `

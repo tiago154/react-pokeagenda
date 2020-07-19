@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
-  // @TODO Temporário
+  // @TODO pois o loading ficará na tela principal
   if (!pokemons.length && inProgress) { return <div><Loading width={200} /></div> }
 
   return (
@@ -34,7 +34,9 @@ const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
           <button onClick={onNext}>Proximo</button>
         </div>
       }
-      {inProgress && <div><Loading width={200} loadingType={LoadingEnum.pikachu} /></div>}
+      {inProgress
+        ? <div><Loading width={100} loadingType={LoadingEnum.pikachu} /></div>
+        : <div><Loading width={120} loadingType={LoadingEnum.standing} /></div>}
     </div>
   )
 }
