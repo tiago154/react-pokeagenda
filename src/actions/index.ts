@@ -6,6 +6,7 @@ import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reduce
 import { Store } from 'redux'
 import { LoadingActionsEnum } from '../reducers/loading'
 import { VIEWING_LIMIT } from '../constant'
+import { Pokemon } from '../types/pokemon'
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BFF_URL
@@ -51,7 +52,13 @@ export const initialLoad =
       payload: {
         pokemons: result.data.listPokemon.pokemons,
         count: result.data.listPokemon.count,
-        offSet: 0
+        offSet: 0,
+        selectedPokemon: {
+          id: 0,
+          image: '',
+          name: '',
+          types: ['']
+        }
       }
     })
   }
@@ -73,7 +80,8 @@ export const nextPage =
             payload: {
               count,
               offSet,
-              pokemons: getState().pokemon.pokemons
+              pokemons: getState().pokemon.pokemons,
+              selectedPokemon: getState().pokemon.selectedPokemon
             }
           })
         }
@@ -89,7 +97,8 @@ export const nextPage =
           payload: {
             count: result.data.listPokemon.count,
             pokemons: result.data.listPokemon.pokemons,
-            offSet
+            offSet,
+            selectedPokemon: getState().pokemon.selectedPokemon
           }
         })
       }
@@ -112,10 +121,26 @@ export const previousPage =
         payload: {
           pokemons: getState().pokemon.pokemons,
           offSet,
-          count
+          count,
+          selectedPokemon: getState().pokemon.selectedPokemon
         }
       })
     }
 
     return dispatch(sameState(getState().pokemon))
+  }
+
+export const selectPokemon = (a: any) =>
+  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
+    const count = getState().pokemon.count
+    const offSet = getState().pokemon.offSet
+    return dispatch({
+      type: PokemonActionsEnum.SELECT_POKEMON,
+      payload: {
+        pokemons: getState().pokemon.pokemons,
+        offSet,
+        count,
+        selectedPokemon: a
+      }
+    })
   }

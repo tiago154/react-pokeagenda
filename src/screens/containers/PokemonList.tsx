@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import PokemonList from '../components/PokemonList'
 import { State } from '../../store'
 import { ThunkDispatch } from 'redux-thunk'
-import { nextPage, previousPage } from '../../actions'
+import { nextPage, previousPage, selectPokemon } from '../../actions'
 import { PokemonActionsTypes, PokemonState } from '../../reducers/pokemon'
 import { Pokemon } from '../../types/pokemon'
 import { VIEWING_LIMIT } from '../../constant'
@@ -19,7 +19,8 @@ const mapStateToProps = ({ pokemon, loading }: State) => ({
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>) => ({
   onNext: () => dispatch(nextPage),
-  onPrevious: () => dispatch(previousPage)
+  onPrevious: () => dispatch(previousPage),
+  onSelectPokemon: (pokemon: Pokemon) => dispatch(selectPokemon(pokemon))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList)

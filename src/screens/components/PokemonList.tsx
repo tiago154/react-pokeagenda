@@ -5,13 +5,14 @@ import Loading, { LoadingEnum } from '../../components/Loading'
 import PokemonRow from '../../components/PokemonRow'
 
 interface IProps {
-  pokemons: Pokemon[],
-  inProgress: boolean,
+  pokemons: Pokemon[]
+  inProgress: boolean
   onNext: () => void
   onPrevious: () => void
+  onSelectPokemon: (pokemon: Pokemon) => void
 }
 
-const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
+const PokemonList = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon }: IProps) => {
   // @TODO pois o loading ficará na tela principal
   if (!pokemons.length && inProgress) { return <div><Loading width={200} /></div> }
 
@@ -24,6 +25,7 @@ const PokemonList = ({ pokemons, inProgress, onNext, onPrevious }: IProps) => {
             id={id}
             name={name}
             spriteUrl={image}
+            onSelectPokemon={onSelectPokemon}
           />)
         }
       </div>
