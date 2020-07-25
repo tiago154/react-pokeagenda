@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Div, Sprite, Text } from './style'
 import { Pokemon } from '../../types/pokemon'
+import pokeball from '../../assets/pokeball-rolling.gif'
 
 interface IProps {
   id: number
@@ -9,11 +10,18 @@ interface IProps {
   onSelectPokemon: (pokemon: Pokemon) => void
 }
 
-const PokemonRow: React.FC<IProps> = ({ id, name, spriteUrl, onSelectPokemon }) => (
-  <Div onClick={() => onSelectPokemon({ id, name, image: spriteUrl, types: [''] })}>
-    <Text>{id} {name}</Text>
-    <Sprite src={spriteUrl} />
-  </Div>
-)
+const PokemonRow: React.FC<IProps> = ({ id, name, spriteUrl, onSelectPokemon }) => {
+  const [imageIsLoaded, setLoadedImage] = useState(false)
+
+  return (
+    <Div onClick={() => onSelectPokemon({ id, name, image: spriteUrl, types: [''] })}>
+      <Text>{id} {name}</Text>
+      <Sprite
+        src={imageIsLoaded ? spriteUrl : pokeball}
+        onLoad={() => setLoadedImage(true)}
+      />
+    </Div>
+  )
+}
 
 export default PokemonRow
