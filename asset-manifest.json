@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.js": "/main.d0c688d234cbbba79347.bundle.js",
-    "main.js.map": "/main.d0c688d234cbbba79347.bundle.js.map",
-    "runtime~main.js": "/runtime~main.d0c688d234cbbba79347.bundle.js",
-    "runtime~main.js.map": "/runtime~main.d0c688d234cbbba79347.bundle.js.map",
-    "vendors~main.js": "/vendors~main.d0c688d234cbbba79347.bundle.js",
-    "vendors~main.js.map": "/vendors~main.d0c688d234cbbba79347.bundle.js.map",
+    "main.js": "/main.d6fe9612001a6fd68613.bundle.js",
+    "main.js.map": "/main.d6fe9612001a6fd68613.bundle.js.map",
+    "runtime~main.js": "/runtime~main.d6fe9612001a6fd68613.bundle.js",
+    "runtime~main.js.map": "/runtime~main.d6fe9612001a6fd68613.bundle.js.map",
+    "vendors~main.js": "/vendors~main.d6fe9612001a6fd68613.bundle.js",
+    "vendors~main.js.map": "/vendors~main.d6fe9612001a6fd68613.bundle.js.map",
     "iframe.html": "/iframe.html",
-    "precache-manifest.dd87b46263f635914aaf49e77efc0436.js": "/precache-manifest.dd87b46263f635914aaf49e77efc0436.js",
+    "precache-manifest.813cde4c8bd7f37a2bc388ebae3f60c8.js": "/precache-manifest.813cde4c8bd7f37a2bc388ebae3f60c8.js",
     "service-worker.js": "/service-worker.js",
     "static/media/pikachu-running.gif": "/static/media/pikachu-running.6e190eb7.gif",
     "static/media/pikachu-standing.gif": "/static/media/pikachu-standing.ce139754.gif",
     "static/media/pokeball-catching.gif": "/static/media/pokeball-catching.f97f5c65.gif",
-    "vendors~main.d0c688d234cbbba79347.bundle.js.LICENSE": "/vendors~main.d0c688d234cbbba79347.bundle.js.LICENSE"
+    "static/media/pokeball-rolling.gif": "/static/media/pokeball-rolling.66fb6272.gif",
+    "vendors~main.d6fe9612001a6fd68613.bundle.js.LICENSE": "/vendors~main.d6fe9612001a6fd68613.bundle.js.LICENSE"
   },
   "entrypoints": [
-    "runtime~main.d0c688d234cbbba79347.bundle.js",
-    "vendors~main.d0c688d234cbbba79347.bundle.js",
-    "main.d0c688d234cbbba79347.bundle.js"
+    "runtime~main.d6fe9612001a6fd68613.bundle.js",
+    "vendors~main.d6fe9612001a6fd68613.bundle.js",
+    "main.d6fe9612001a6fd68613.bundle.js"
   ]
 }
