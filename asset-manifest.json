@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.js": "/main.77990f6a07cb6c5d6f34.bundle.js",
-    "main.js.map": "/main.77990f6a07cb6c5d6f34.bundle.js.map",
-    "runtime~main.js": "/runtime~main.77990f6a07cb6c5d6f34.bundle.js",
-    "runtime~main.js.map": "/runtime~main.77990f6a07cb6c5d6f34.bundle.js.map",
-    "vendors~main.js": "/vendors~main.77990f6a07cb6c5d6f34.bundle.js",
-    "vendors~main.js.map": "/vendors~main.77990f6a07cb6c5d6f34.bundle.js.map",
+    "main.js": "/main.d0c688d234cbbba79347.bundle.js",
+    "main.js.map": "/main.d0c688d234cbbba79347.bundle.js.map",
+    "runtime~main.js": "/runtime~main.d0c688d234cbbba79347.bundle.js",
+    "runtime~main.js.map": "/runtime~main.d0c688d234cbbba79347.bundle.js.map",
+    "vendors~main.js": "/vendors~main.d0c688d234cbbba79347.bundle.js",
+    "vendors~main.js.map": "/vendors~main.d0c688d234cbbba79347.bundle.js.map",
     "iframe.html": "/iframe.html",
-    "precache-manifest.3d3e6bf7cea6757c12f71dd06439b13c.js": "/precache-manifest.3d3e6bf7cea6757c12f71dd06439b13c.js",
+    "precache-manifest.dd87b46263f635914aaf49e77efc0436.js": "/precache-manifest.dd87b46263f635914aaf49e77efc0436.js",
     "service-worker.js": "/service-worker.js",
     "static/media/pikachu-running.gif": "/static/media/pikachu-running.6e190eb7.gif",
     "static/media/pikachu-standing.gif": "/static/media/pikachu-standing.ce139754.gif",
     "static/media/pokeball-catching.gif": "/static/media/pokeball-catching.f97f5c65.gif",
-    "vendors~main.77990f6a07cb6c5d6f34.bundle.js.LICENSE": "/vendors~main.77990f6a07cb6c5d6f34.bundle.js.LICENSE"
+    "vendors~main.d0c688d234cbbba79347.bundle.js.LICENSE": "/vendors~main.d0c688d234cbbba79347.bundle.js.LICENSE"
   },
   "entrypoints": [
-    "runtime~main.77990f6a07cb6c5d6f34.bundle.js",
-    "vendors~main.77990f6a07cb6c5d6f34.bundle.js",
-    "main.77990f6a07cb6c5d6f34.bundle.js"
+    "runtime~main.d0c688d234cbbba79347.bundle.js",
+    "vendors~main.d0c688d234cbbba79347.bundle.js",
+    "main.d0c688d234cbbba79347.bundle.js"
   ]
 }
