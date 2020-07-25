@@ -5,6 +5,7 @@ import { State, StateActionTypes } from '../store'
 import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
 import { Store } from 'redux'
 import { LoadingActionsEnum } from '../reducers/loading'
+import { SelectedPokemonActionTypes, SelectedPokemonActionsEnum } from '../reducers/selectedPokemon'
 import { VIEWING_LIMIT } from '../constant'
 import { Pokemon } from '../types/pokemon'
 
@@ -52,13 +53,7 @@ export const initialLoad =
       payload: {
         pokemons: result.data.listPokemon.pokemons,
         count: result.data.listPokemon.count,
-        offSet: 0,
-        selectedPokemon: {
-          id: 0,
-          image: '',
-          name: '',
-          types: ['']
-        }
+        offSet: 0
       }
     })
   }
@@ -80,8 +75,7 @@ export const nextPage =
             payload: {
               count,
               offSet,
-              pokemons: getState().pokemon.pokemons,
-              selectedPokemon: getState().pokemon.selectedPokemon
+              pokemons: getState().pokemon.pokemons
             }
           })
         }
@@ -97,8 +91,7 @@ export const nextPage =
           payload: {
             count: result.data.listPokemon.count,
             pokemons: result.data.listPokemon.pokemons,
-            offSet,
-            selectedPokemon: getState().pokemon.selectedPokemon
+            offSet
           }
         })
       }
@@ -115,14 +108,12 @@ export const previousPage =
     const tempOffSet = getState().pokemon.offSet - VIEWING_LIMIT
     if (tempOffSet >= 0) {
       const offSet = tempOffSet
-
       return dispatch({
         type: PokemonActionsEnum.UPDATE,
         payload: {
           pokemons: getState().pokemon.pokemons,
           offSet,
-          count,
-          selectedPokemon: getState().pokemon.selectedPokemon
+          count
         }
       })
     }
@@ -130,17 +121,12 @@ export const previousPage =
     return dispatch(sameState(getState().pokemon))
   }
 
-export const selectPokemon = (a: any) =>
-  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<PokemonActionsTypes> => {
-    const count = getState().pokemon.count
-    const offSet = getState().pokemon.offSet
+export const selectPokemon = (pokemon: Pokemon) =>
+  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<SelectedPokemonActionTypes> => {
     return dispatch({
-      type: PokemonActionsEnum.SELECT_POKEMON,
+      type: SelectedPokemonActionsEnum.SELECT_POKEMON,
       payload: {
-        pokemons: getState().pokemon.pokemons,
-        offSet,
-        count,
-        selectedPokemon: a
+        ...pokemon
       }
     })
   }
