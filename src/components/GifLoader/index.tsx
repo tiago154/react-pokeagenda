@@ -7,7 +7,6 @@ export enum GifEnum {
   'pokeball' = 'pokeball',
   'standing' = 'standing'
 }
-
 interface IProps {
   width: number,
   loadingType?: GifEnum

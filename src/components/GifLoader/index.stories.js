@@ -1,5 +1,5 @@
 import React from 'react'
-import Loading, { LoadingEnum } from '.'
+import GifLoader, { GifEnum } from '.'
 import { withKnobs, select, number } from '@storybook/addon-knobs'
 
 export default {
@@ -7,7 +7,7 @@ export default {
   decorators: [withKnobs]
 }
 
-export const Imagens = () => <Loading
-  loadingType={select('loadingType', LoadingEnum, LoadingEnum.pikachu)}
+export const Imagens = () => <GifLoader
+  loadingType={select('loadingType', GifEnum, GifEnum.pikachu)}
   width={number('width', 250)}
 />
