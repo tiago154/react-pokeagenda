@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokemonType Renders correctly 1`] = `
+<div
+  className="sc-bdVaJa cQvBAJ"
+>
+  <p
+    className="sc-bwzfXH akDxl"
+  >
+    Loading...
+  </p>
+</div>
+`;

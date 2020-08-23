@@ -1,14 +1,13 @@
 import React from 'react'
 
-import PokemonList from './screens/containers/PokemonList'
+import MainPage from './screens/main-page/containers/MainSplash'
 import GlobalStyles from './GlobalStyles'
 
 const App: React.FC = () => {
   return (
     <>
-      <PokemonList />
-
       <GlobalStyles />
+      <MainPage />
     </>
   )
 }

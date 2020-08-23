@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import background from './assets/background.png'
 
 export default createGlobalStyle`
   * {
@@ -10,8 +9,6 @@ export default createGlobalStyle`
 
   html, body {
     height: 100%;
-    background-image: url(${background});
-    background-size: contain;
   }
 
   :root {
@@ -22,13 +19,6 @@ export default createGlobalStyle`
     --quinary: #393d42;
     --senary: #828386;
 
-    --white: #fff;
-    --gray: #8a8c90;
-    --chat-input: rgb(64,68,75);
-    --symbol: #74777a;
-    --notification: #f84a4b;
-    --mention-detail: #f9a839;
-    --mention-message: #413f3f;
-    --link: #5d80d6;
+    --splash-background: #E5E5E5;
   }
 `

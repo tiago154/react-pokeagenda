@@ -1,8 +1,9 @@
 import React from 'react'
 
-import { Pokemon } from '../../types/pokemon'
-import Loading, { LoadingEnum } from '../../components/Loading'
-import PokemonRow from '../../components/PokemonRow'
+import { Pokemon } from '../../../types/pokemon'
+import GifLoader, { GifEnum } from '../../../components/GifLoader'
+import PokemonRow from '../../../components/PokemonRow'
+import { Container } from './style'
 
 interface IProps {
   pokemons: Pokemon[]
@@ -12,12 +13,9 @@ interface IProps {
   onSelectPokemon: (pokemon: Pokemon) => void
 }
 
-const PokemonList = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon }: IProps) => {
-  // @TODO pois o loading ficará na tela principal
-  if (!pokemons.length && inProgress) { return <div><Loading width={200} /></div> }
-
+const PokemonsListing: React.FC<IProps> = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon }) => {
   return (
-    <div>
+    <Container>
       <div>
         {
           pokemons.map(({ id, name, image }) => <PokemonRow
@@ -37,10 +35,10 @@ const PokemonList = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon
         </div>
       }
       {inProgress
-        ? <div><Loading width={100} loadingType={LoadingEnum.pikachu} /></div>
-        : <div><Loading width={120} loadingType={LoadingEnum.standing} /></div>}
-    </div>
+        ? <div><GifLoader width={100} loadingType={GifEnum.pikachu} /></div>
+        : <div><GifLoader width={120} loadingType={GifEnum.standing} /></div>}
+    </Container>
   )
 }
 
-export default PokemonList
+export default PokemonsListing
