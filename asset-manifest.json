@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.js": "/main.d6fe9612001a6fd68613.bundle.js",
-    "main.js.map": "/main.d6fe9612001a6fd68613.bundle.js.map",
-    "runtime~main.js": "/runtime~main.d6fe9612001a6fd68613.bundle.js",
-    "runtime~main.js.map": "/runtime~main.d6fe9612001a6fd68613.bundle.js.map",
-    "vendors~main.js": "/vendors~main.d6fe9612001a6fd68613.bundle.js",
-    "vendors~main.js.map": "/vendors~main.d6fe9612001a6fd68613.bundle.js.map",
+    "main.js": "/main.a5f43f9608d49f227e74.bundle.js",
+    "main.js.map": "/main.a5f43f9608d49f227e74.bundle.js.map",
+    "runtime~main.js": "/runtime~main.a5f43f9608d49f227e74.bundle.js",
+    "runtime~main.js.map": "/runtime~main.a5f43f9608d49f227e74.bundle.js.map",
+    "vendors~main.js": "/vendors~main.a5f43f9608d49f227e74.bundle.js",
+    "vendors~main.js.map": "/vendors~main.a5f43f9608d49f227e74.bundle.js.map",
     "iframe.html": "/iframe.html",
-    "precache-manifest.813cde4c8bd7f37a2bc388ebae3f60c8.js": "/precache-manifest.813cde4c8bd7f37a2bc388ebae3f60c8.js",
+    "precache-manifest.b8f674115bd430c8dd87c183f9e2cc6d.js": "/precache-manifest.b8f674115bd430c8dd87c183f9e2cc6d.js",
     "service-worker.js": "/service-worker.js",
+    "static/media/background.png": "/static/media/background.eb6293d9.png",
     "static/media/pikachu-running.gif": "/static/media/pikachu-running.6e190eb7.gif",
     "static/media/pikachu-standing.gif": "/static/media/pikachu-standing.ce139754.gif",
     "static/media/pokeball-catching.gif": "/static/media/pokeball-catching.f97f5c65.gif",
     "static/media/pokeball-rolling.gif": "/static/media/pokeball-rolling.66fb6272.gif",
-    "vendors~main.d6fe9612001a6fd68613.bundle.js.LICENSE": "/vendors~main.d6fe9612001a6fd68613.bundle.js.LICENSE"
+    "vendors~main.a5f43f9608d49f227e74.bundle.js.LICENSE": "/vendors~main.a5f43f9608d49f227e74.bundle.js.LICENSE"
   },
   "entrypoints": [
-    "runtime~main.d6fe9612001a6fd68613.bundle.js",
-    "vendors~main.d6fe9612001a6fd68613.bundle.js",
-    "main.d6fe9612001a6fd68613.bundle.js"
+    "runtime~main.a5f43f9608d49f227e74.bundle.js",
+    "vendors~main.a5f43f9608d49f227e74.bundle.js",
+    "main.a5f43f9608d49f227e74.bundle.js"
   ]
 }
