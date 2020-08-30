@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PokemonType Renders correctly 1`] = `
+<div
+  className="sc-bdVaJa fHQZNv"
+  onClick={[Function]}
+>
+  <p
+    className="sc-htpNat cgTjoO"
+  >
+    123
+     
+    pokemonFake
+  </p>
+  <img
+    className="sc-bwzfXH dmdPBJ"
+    onLoad={[Function]}
+    src="default"
+  />
+</div>
+`;

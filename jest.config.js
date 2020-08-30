@@ -12,5 +12,8 @@ module.exports = {
   setupFiles: ['dotenv/config'],
   testEnvironment: 'node',
   testMatch: ['<rootDir>/src/**/*.spec.tsx'],
-  verbose: true
+  verbose: true,
+  moduleNameMapper: {
+    '.+\\.(png|jpg|gif)$': 'identity-obj-proxy'
+  }
 }
