@@ -1,9 +1,10 @@
 import React from 'react'
 
 import { Pokemon } from '../../../types/pokemon'
-import GifLoader, { GifEnum } from '../../../components/GifLoader'
-import PokemonRow from '../../../components/PokemonRow'
+import Listing from './Listing'
+import Pagination from './Pagination'
 import { Container } from './style'
+import ProgressGif from './ProgressGif'
 
 interface IProps {
   pokemons: Pokemon[]
@@ -13,32 +14,13 @@ interface IProps {
   onSelectPokemon: (pokemon: Pokemon) => void
 }
 
-const PokemonsListing: React.FC<IProps> = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon }) => {
-  return (
+const PokemonsListing: React.FC<IProps> = ({ pokemons, inProgress, onNext, onPrevious, onSelectPokemon }) =>
+  (
     <Container>
-      <div>
-        {
-          pokemons.map(({ id, name, image }) => <PokemonRow
-            key={id}
-            id={id}
-            name={name}
-            spriteUrl={image}
-            onSelectPokemon={onSelectPokemon}
-          />)
-        }
-      </div>
-      {
-        !!pokemons.length &&
-        <div>
-          <button onClick={onPrevious}>Anterior</button>
-          <button onClick={onNext}>Proximo</button>
-        </div>
-      }
-      {inProgress
-        ? <div><GifLoader width={100} loadingType={GifEnum.pikachu} /></div>
-        : <div><GifLoader width={120} loadingType={GifEnum.standing} /></div>}
+      <Listing pokemons={pokemons} onSelectPokemon={onSelectPokemon} />
+      <Pagination pokemons={pokemons} onNext={onNext} onPrevious={onPrevious} />
+      <ProgressGif inProgress={inProgress} />
     </Container>
   )
-}
 
 export default PokemonsListing
