@@ -12,12 +12,11 @@ interface IProps {
   loadingType?: GifEnum
 }
 
-const GifLoader = ({ width, loadingType = GifEnum.pokeball }: IProps) => {
-  return (
+const GifLoader = ({ width, loadingType = GifEnum.pokeball }: IProps) =>
+  (
     <Container>
       <Gif src={gifs[loadingType]} width={width} />
     </Container>
   )
-}
 
 export default GifLoader

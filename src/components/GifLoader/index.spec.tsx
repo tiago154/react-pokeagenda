@@ -1,6 +1,5 @@
 import React from 'react'
 import GifLoader, { GifEnum } from '.'
-import * as gifs from './gifs'
 import renderer from 'react-test-renderer'
 
 describe('PokemonType', () => {
