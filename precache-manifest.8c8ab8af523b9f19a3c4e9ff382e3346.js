@@ -1,13 +1,17 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6e0ccd8079b37ac97cb2feb966c29bf7",
+    "revision": "1e23dd4ab94cfe55b38a650e4c4f8037",
     "url": "iframe.html"
   },
   {
-    "url": "main.d6fe9612001a6fd68613.bundle.js"
+    "url": "main.23c4fedba5b68fde6572.bundle.js"
   },
   {
-    "url": "runtime~main.d6fe9612001a6fd68613.bundle.js"
+    "url": "runtime~main.23c4fedba5b68fde6572.bundle.js"
+  },
+  {
+    "revision": "eb6293d944a576e416493924f129595e",
+    "url": "static/media/background.eb6293d9.png"
   },
   {
     "revision": "6e190eb7b580983ce09c7ccf0c91519d",
@@ -26,9 +30,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "static/media/pokeball-rolling.66fb6272.gif"
   },
   {
-    "url": "vendors~main.d6fe9612001a6fd68613.bundle.js"
+    "url": "vendors~main.23c4fedba5b68fde6572.bundle.js"
   },
   {
-    "url": "vendors~main.d6fe9612001a6fd68613.bundle.js.LICENSE"
+    "url": "vendors~main.23c4fedba5b68fde6572.bundle.js.LICENSE"
   }
 ]);
