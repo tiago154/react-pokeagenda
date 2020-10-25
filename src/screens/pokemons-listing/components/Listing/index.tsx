@@ -1,6 +1,7 @@
 import React from 'react'
 import PokemonRow from '../../../../components/PokemonRow'
 import { Pokemon } from '../../../../types/pokemon'
+import { Container } from './style'
 
 interface IProps {
   pokemons: Pokemon[]
@@ -8,7 +9,7 @@ interface IProps {
 }
 
 const Listing: React.FC<IProps> = ({ pokemons, onSelectPokemon }) => (
-  <div>
+  <Container>
     {
       pokemons.map(({ id, name, image }) => <PokemonRow
         key={id}
@@ -18,7 +19,7 @@ const Listing: React.FC<IProps> = ({ pokemons, onSelectPokemon }) => (
         onSelectPokemon={onSelectPokemon}
       />)
     }
-  </div>
+  </Container>
 )
 
 export default Listing

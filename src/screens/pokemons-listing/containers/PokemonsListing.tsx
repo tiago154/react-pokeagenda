@@ -12,9 +12,10 @@ const takeCurrentPageList = ({ pokemons, offSet }: PokemonState): Pokemon[] => {
   return pokemons
 }
 
-const mapStateToProps = ({ pokemon, loading: { inProgress } }: State) => ({
+const mapStateToProps = ({ pokemon, loading: { inProgress }, selectedPokemon }: State) => ({
   pokemons: takeCurrentPageList(pokemon),
-  inProgress
+  inProgress,
+  selectedPokemon
 })
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<State, {}, PokemonActionsTypes>) => ({

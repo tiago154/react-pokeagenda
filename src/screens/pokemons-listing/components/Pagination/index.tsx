@@ -1,17 +1,16 @@
 import React from 'react'
-import { Pokemon } from '../../../../types/pokemon'
+import { Container, Button } from './style'
 
 interface IProps {
-  pokemons: Pokemon[]
   onNext: () => void
   onPrevious: () => void
 }
 
-const Pagination: React.FC<IProps> = ({ pokemons, onPrevious, onNext }) => (
-  <div>
-    <button onClick={onPrevious}>Anterior</button>
-    <button onClick={onNext}>Proximo</button>
-  </div>
+const Pagination: React.FC<IProps> = ({ onPrevious, onNext }) => (
+  <Container>
+    <Button onClick={onPrevious}>Anterior</Button>
+    <Button onClick={onNext}>Proximo</Button>
+  </Container>
 )
 
 export default Pagination
