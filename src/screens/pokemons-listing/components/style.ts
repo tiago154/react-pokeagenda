@@ -21,6 +21,5 @@ export const Column = styled.div`
   flex-direction: column;
   height: 80vh;
   width: 70vh;
-  border: red solid 2px;
   background: rgba(236, 236, 236, 0.71);
 `

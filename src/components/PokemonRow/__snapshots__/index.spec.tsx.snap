@@ -2,11 +2,11 @@
 
 exports[`PokemonType Renders correctly 1`] = `
 <div
-  className="sc-bdVaJa bEyhJq"
+  className="sc-bdVaJa cNuUBK"
   onClick={[Function]}
 >
   <p
-    className="sc-htpNat kCRYYJ"
+    className="sc-htpNat dhvPnF"
   >
     123
      

@@ -7,6 +7,7 @@ export const Div = styled.div`
   width: 95%;
   margin-left: 10px;
   align-items: center;
+  height: 50px;
   background: rgba(94, 174, 169, 0.19);
 `
 
@@ -19,7 +20,7 @@ export const Text = styled.p`
   font-family: 'Press Start 2P', cursive;
   display: flex;
   color: #000;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: normal;
   font-style: normal;
 `
