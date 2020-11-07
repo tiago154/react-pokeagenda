@@ -11,11 +11,9 @@ interface IProps {
 const Listing: React.FC<IProps> = ({ pokemons, onSelectPokemon }) => (
   <Container>
     {
-      pokemons.map(({ id, name, image }) => <PokemonRow
-        key={id}
-        id={id}
-        name={name}
-        spriteUrl={image}
+      pokemons.map(pokemon => <PokemonRow
+        key={pokemon.id}
+        pokemon={pokemon}
         onSelectPokemon={onSelectPokemon}
       />)
     }

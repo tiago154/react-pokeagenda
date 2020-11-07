@@ -16,8 +16,7 @@ export type SelectedPokemonActionTypes = SelectedPokemonAction
 const initialState: SelectedPokemonState = {
   id: 0,
   image: '',
-  name: '',
-  types: ['']
+  name: ''
 }
 
 export default (state = initialState, action: SelectedPokemonActionTypes): SelectedPokemonState => {

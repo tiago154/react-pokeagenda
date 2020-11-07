@@ -4,20 +4,18 @@ import { Pokemon } from '../../types/pokemon'
 import { pokeballRolling } from '../../assets'
 
 interface IProps {
-  id: number
-  name: string
-  spriteUrl: string
+  pokemon: Pokemon,
   onSelectPokemon: (pokemon: Pokemon) => void
 }
 
-const PokemonRow: React.FC<IProps> = ({ id, name, spriteUrl, onSelectPokemon }) => {
+const PokemonRow: React.FC<IProps> = ({ pokemon, onSelectPokemon }) => {
   const [imageIsLoaded, setLoadedImage] = useState(false)
-
+  const { id, name, image } = pokemon
   return (
-    <Div onClick={() => onSelectPokemon({ id, name, image: spriteUrl, types: [''] })}>
+    <Div onClick={() => onSelectPokemon(pokemon)}>
       <Text>{id} {name}</Text>
       <Sprite
-        src={imageIsLoaded ? spriteUrl : pokeballRolling}
+        src={imageIsLoaded ? image : pokeballRolling}
         onLoad={() => setLoadedImage(true)}
       />
     </Div>

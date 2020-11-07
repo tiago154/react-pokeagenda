@@ -1,12 +1,12 @@
-import { ThunkDispatch } from 'redux-thunk'
 import ApolloClient, { ApolloQueryResult } from 'apollo-boost'
-import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
-import { State, StateActionTypes } from '../store'
-import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
 import { Store } from 'redux'
-import { LoadingActionsEnum } from '../reducers/loading'
-import { SelectedPokemonActionTypes, SelectedPokemonActionsEnum } from '../reducers/selectedPokemon'
+import { ThunkDispatch } from 'redux-thunk'
 import { VIEWING_LIMIT } from '../constant'
+import { LIST_POKEMONS_QUERY } from '../graphql-queries/pokemon'
+import { LoadingActionsEnum } from '../reducers/loading'
+import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
+import { SelectedPokemonActionsEnum, SelectedPokemonActionTypes } from '../reducers/selectedPokemon'
+import { State, StateActionTypes } from '../store'
 import { Pokemon } from '../types/pokemon'
 
 const client = new ApolloClient({
@@ -43,7 +43,7 @@ const updateLoading = (inProgress: boolean) => ({
 export const initialLoad =
   async (store: Store<State, StateActionTypes>): Promise<void> => {
     const result: ApolloQueryResult<IListApiPokemon> = await client.query({
-      query: LIST_POKEMONS_QUERY()
+      query: LIST_POKEMONS_QUERY
     })
 
     store.dispatch(updateLoading(false))
@@ -83,7 +83,10 @@ export const nextPage =
         dispatch(updateLoading(true))
 
         const result: ApolloQueryResult<IListApiPokemon> = await client
-          .query({ query: LIST_POKEMONS_QUERY(offSet) })
+          .query({
+            query: LIST_POKEMONS_QUERY,
+            variables: { offset: offSet }
+          })
           .finally(() => dispatch(updateLoading(false)))
 
         return dispatch({
@@ -122,7 +125,7 @@ export const previousPage =
   }
 
 export const selectPokemon = (pokemon: Pokemon) =>
-  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>, getState: () => State): Promise<SelectedPokemonActionTypes> => {
+  async (dispatch: ThunkDispatch<State, {}, StateActionTypes>): Promise<SelectedPokemonActionTypes> => {
     return dispatch({
       type: SelectedPokemonActionsEnum.SELECT_POKEMON,
       payload: {

@@ -5,7 +5,7 @@ export const Container = styled.div`
   display: flex;
   overflow: auto;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 10px;
   margin-top: 10px;
 `

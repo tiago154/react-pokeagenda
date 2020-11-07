@@ -22,8 +22,8 @@
     "test:coverage": "npm test && http-server -o -a localhost coverage/lcov-report/",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "lint": "eslint src/**",
-    "lint:fix": "eslint src/** --fix"
+    "lint": "eslint src/ --ext .tsx,ts",
+    "lint:fix": "eslint src/ --ext .tsx,ts --fix"
   },
   "browserslist": {
     "production": [
