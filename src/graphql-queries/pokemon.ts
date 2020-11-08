@@ -5,7 +5,9 @@ export const LIST_POKEMONS_QUERY = gql`
   query ($offset: Int = 0, $limit: Int = ${VIEWING_LIMIT}) {
     listPokemon(offset: $offset, limit: $limit) {
       count pokemons{
-        id name image types
+        id name image types weaknesses{
+          name quadrupleDamage
+        }
       }
     }
 }

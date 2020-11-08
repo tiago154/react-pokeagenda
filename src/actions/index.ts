@@ -8,6 +8,7 @@ import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reduce
 import { SelectedPokemonActionsEnum, SelectedPokemonActionTypes } from '../reducers/selectedPokemon'
 import { State, StateActionTypes } from '../store'
 import { Pokemon } from '../types/pokemon'
+import { Weakness } from '../types/weakness'
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_BFF_URL
@@ -18,6 +19,7 @@ type PokemonApi = {
   name: string
   image: string
   types: string[]
+  weaknesses: Weakness[]
 }
 
 type GraphqlApiPokemon = {
