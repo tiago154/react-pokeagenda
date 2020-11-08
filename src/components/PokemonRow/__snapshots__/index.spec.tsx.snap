@@ -10,7 +10,7 @@ exports[`PokemonType Renders correctly 1`] = `
   >
     123
      
-    pokemonFake
+    fakeName
   </p>
   <img
     className="sc-bwzfXH dmdPBJ"

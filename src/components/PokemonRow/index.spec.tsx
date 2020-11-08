@@ -1,15 +1,20 @@
 import React from 'react'
-import PokemonRow from '.'
 import renderer from 'react-test-renderer'
+import PokemonRow from '.'
+import { Pokemon } from '../../types/pokemon'
 
 describe('PokemonType', () => {
   it('Renders correctly', () => {
+    const fakePokemon: Pokemon = {
+      id: 123,
+      image: 'fakeImage',
+      name: 'fakeName'
+    }
+
     const tree = renderer
       .create(
         <PokemonRow
-          id={123}
-          name={'pokemonFake'}
-          spriteUrl={'spriteUrlFake'}
+          pokemon={fakePokemon}
           onSelectPokemon={() => { }}
         />)
       .toJSON()
