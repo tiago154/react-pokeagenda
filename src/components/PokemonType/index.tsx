@@ -6,12 +6,10 @@ interface IProps {
   type: PokemonTypeEnum
 }
 
-const PokemonType = ({ type }: IProps) => {
-  return (
-    <TypePokemon background={type}>
-      {type}
-    </TypePokemon>
-  )
-}
+const PokemonType = ({ type }: IProps) => (
+  <TypePokemon background={type}>
+    {type}
+  </TypePokemon>
+)
 
 export default PokemonType

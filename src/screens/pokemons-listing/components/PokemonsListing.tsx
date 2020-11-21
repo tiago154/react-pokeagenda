@@ -3,7 +3,7 @@ import React from 'react'
 import { Pokemon } from '../../../types/pokemon'
 import Listing from './Listing'
 import Pagination from './Pagination'
-import { Container, Row, Column } from './style'
+import { Container, Row, ColumnListing } from './style'
 import ProgressGif from './ProgressGif'
 import PokemonInformation from './PokemonInformation'
 
@@ -28,10 +28,10 @@ const PokemonsListing: React.FC<IProps> = (
   (
     <Container>
       <Row>
-        <Column>
+        <ColumnListing>
           <Listing pokemons={pokemons} onSelectPokemon={onSelectPokemon} />
           <Pagination onNext={onNext} onPrevious={onPrevious} />
-        </Column>
+        </ColumnListing>
         <PokemonInformation pokemon={selectedPokemon}></PokemonInformation>
       </Row>
       <Row>

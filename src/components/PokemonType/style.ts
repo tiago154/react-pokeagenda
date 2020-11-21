@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 interface IPropsStyled {
-    background: string;
+  background: string;
 }
 
 const backgroundPokemon = (name: string) => {
@@ -33,7 +33,7 @@ const backgroundPokemon = (name: string) => {
     return `
             background: linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
             background-color: #b97fc9;
-            color: #fff; 
+            color: #fff;
         `
   }
 
@@ -151,13 +151,15 @@ const backgroundPokemon = (name: string) => {
 }
 
 const TypePokemon = styled.span`
+    display: flex;
     border-radius: 6px;
     padding: 5px;
     font-weight: bold;
     border: 2px;
-    width: auto; 
+    width: auto;
     height: auto;
     text-align: center;
+    justify-content: center;
     ${({ background }: IPropsStyled) => backgroundPokemon(background)}
 `
 

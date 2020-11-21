@@ -5,7 +5,6 @@ export const Div = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 95%;
-  margin-left: 10px;
   align-items: center;
   height: 50px;
   background: rgba(94, 174, 169, 0.19);
