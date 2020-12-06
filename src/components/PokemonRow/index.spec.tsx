@@ -8,7 +8,16 @@ describe('PokemonType', () => {
     const fakePokemon: Pokemon = {
       id: 123,
       image: 'fakeImage',
-      name: 'fakeName'
+      name: 'fakeName',
+      abilities: [
+        { name: 'fakeAbility', description: 'fakeDescriptionAbility' }
+      ],
+      height: 1,
+      weight: 1,
+      species: {
+        category: 'fakeCategory',
+        genreRate: 'fakeGenreRate'
+      }
     }
 
     const tree = renderer

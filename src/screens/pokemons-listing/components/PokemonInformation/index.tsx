@@ -59,9 +59,10 @@ const PokemonInformation: React.FC<IProps> = ({ pokemon }) => {
             <TitleType>Weaknesses</TitleType>
             <WeaknessPokemonList>
               {
-                pokemon.weaknesses?.map(({ name }) =>
+                pokemon.weaknesses?.map(({ name, quadrupleDamage }) =>
                   <PokemonType
                     type={PokemonTypeEnum[name as keyof typeof PokemonTypeEnum]}
+                    isQuadrupleDamage={quadrupleDamage}
                     key={`${pokemon.id}${name}-weakness`}
                   />)
               }

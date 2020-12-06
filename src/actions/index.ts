@@ -7,7 +7,9 @@ import { LoadingActionsEnum } from '../reducers/loading'
 import { PokemonActionsEnum, PokemonActionsTypes, PokemonState } from '../reducers/pokemon'
 import { SelectedPokemonActionsEnum, SelectedPokemonActionTypes } from '../reducers/selectedPokemon'
 import { State, StateActionTypes } from '../store'
+import { Ability } from '../types/ability'
 import { Pokemon } from '../types/pokemon'
+import { Species } from '../types/species'
 import { Weakness } from '../types/weakness'
 
 const client = new ApolloClient({
@@ -20,6 +22,10 @@ type PokemonApi = {
   image: string
   types: string[]
   weaknesses: Weakness[]
+  height: number
+  weight: number
+  species: Species
+  abilities: Ability[]
 }
 
 type GraphqlApiPokemon = {

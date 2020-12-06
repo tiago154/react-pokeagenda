@@ -150,6 +150,65 @@ const backgroundPokemon = (name: string) => {
   }
 }
 
+export const QuadrupleDamageMessage = styled.div`
+  opacity: 0;
+  visibility: hidden;
+  max-width: 340px;
+  top: -100px;
+  right: 72px;
+  width: max-content;
+  box-shadow: 1px 1px 1px 1px #313131;
+  background-color: #616161;
+  border-radius: 5px;
+  color: #fff;
+  padding: 1.5em;
+  position: relative;
+  text-align: center;
+  z-index: 100;
+  transition: opacity .4s linear, visibility .4s linear;
+  &:after {
+    bottom: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #616161;
+    content: '';
+    height: 0;
+    left: 50%;
+    margin-left: -10px;
+    position: absolute;
+    width: 0;
+    z-index: 2;
+  }
+`
+
+export const QuadrupleDamage = styled.i`
+  border-radius: 8px;
+  background-color: #616161;
+  top: 0;
+  right: 2px;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+  margin-left: 8px;
+  cursor: help;
+  &:before {
+    content: "*";
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 100;
+    left: 4px;
+    top: 2px;
+  }
+  :hover {
+    div {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+`
+
 const TypePokemon = styled.span`
     display: flex;
     border-radius: 6px;

@@ -1,6 +1,6 @@
 import React from 'react'
 import PokemonType from '.'
-import { withKnobs, select } from '@storybook/addon-knobs'
+import { withKnobs, select, boolean } from '@storybook/addon-knobs'
 import { PokemonTypeEnum } from '../../types/pokemonTypes'
 
 export default {
@@ -8,4 +8,20 @@ export default {
   decorators: [withKnobs]
 }
 
-export const Tipos = () => <PokemonType type={select('type : PokemonTypeEnum', PokemonTypeEnum, PokemonTypeEnum.bug)}></PokemonType>
+const style = {
+  display: 'flex',
+  height: '300px',
+  'flex-direction': 'row',
+  'align-items': 'center'
+}
+
+export const Tipos = () =>
+  <div style={style}>
+    <PokemonType
+      type={select(
+        'type : PokemonTypeEnum',
+        PokemonTypeEnum, PokemonTypeEnum.bug
+      )}
+      isQuadrupleDamage={boolean('Is Quadruple Damage', false)}
+    />
+  </div>
