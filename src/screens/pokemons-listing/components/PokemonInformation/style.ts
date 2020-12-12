@@ -31,6 +31,37 @@ export const Row = styled.div`
   flex-direction: row;
 `
 
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const TopInformation = styled<any>(Row)`
+  height: 64%
+`
+
+export const Attribute = styled<any>(Row)`
+  box-sizing: border-box;
+  width: 70%;
+  margin-left: 6vh;
+  padding-bottom: 8vh;
+  div:nth-child(2) {
+    margin-left: 40%;
+    flex: 1;
+  }
+`
+
+export const Attributes = styled<any>(Column)`
+  height: 100%;
+`
+
+/* export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 32px;
+` */
+
 export const TitlePokemon = styled.h1`
   font-family: 'Press Start 2P', cursive;
   font-size: 22px;

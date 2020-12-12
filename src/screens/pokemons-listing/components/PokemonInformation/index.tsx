@@ -3,6 +3,10 @@ import PokemonImage from '../../../../components/PokemonImage'
 import PokemonType from '../../../../components/PokemonType'
 import { Pokemon } from '../../../../types/pokemon'
 import { PokemonTypeEnum } from '../../../../types/pokemonTypes'
+import { Height } from '../../../../components/Height'
+import { Weight } from '../../../../components/Weight'
+import { Category } from '../../../../components/Category'
+import { Abilities } from '../../../../components/Abilities'
 import {
   Container,
   InitialContainer,
@@ -14,7 +18,9 @@ import {
   WeaknessPokemonDiv,
   TypePokemonList,
   WeaknessPokemonList,
-  Row,
+  Attribute,
+  Attributes,
+  TopInformation,
   ImageStyle
 } from './style'
 
@@ -38,7 +44,7 @@ const PokemonInformation: React.FC<IProps> = ({ pokemon }) => {
           {pokemon.id.toString().padStart(3, '0')} {pokemon.name}
         </TitlePokemon>
       </TitleDiv>
-      <Row>
+      <TopInformation>
         <ImageStyle>
           <PokemonImage url={pokemon.image} width={150} />
         </ImageStyle>
@@ -69,7 +75,17 @@ const PokemonInformation: React.FC<IProps> = ({ pokemon }) => {
             </WeaknessPokemonList>
           </WeaknessPokemonDiv>
         </TypesDiv>
-      </Row>
+      </TopInformation>
+      <Attributes>
+        <Attribute>
+          <Height>{pokemon.height}</Height>
+          <Category>{pokemon.species.category}</Category>
+        </Attribute>
+        <Attribute>
+          <Weight>{pokemon.weight}</Weight>
+          <Abilities abilities={pokemon.abilities}/>
+        </Attribute>
+      </Attributes>
     </Container>
   )
 }
