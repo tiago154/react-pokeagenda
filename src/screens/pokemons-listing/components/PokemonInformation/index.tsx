@@ -7,6 +7,7 @@ import { Height } from '../../../../components/Height'
 import { Weight } from '../../../../components/Weight'
 import { Category } from '../../../../components/Category'
 import { Abilities } from '../../../../components/Abilities'
+import { Gender } from '../../../../components/Gender'
 import {
   Container,
   InitialContainer,
@@ -84,6 +85,9 @@ const PokemonInformation: React.FC<IProps> = ({ pokemon }) => {
         <Attribute>
           <Weight>{pokemon.weight}</Weight>
           <Abilities abilities={pokemon.abilities}/>
+        </Attribute>
+        <Attribute>
+          <Gender genderRate={pokemon.species.genreRate}/>
         </Attribute>
       </Attributes>
     </Container>

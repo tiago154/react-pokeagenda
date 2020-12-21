@@ -12,6 +12,7 @@ export const Container = styled<any>(BaseContainer)`
   background: rgba(236, 236, 236, 0.71);
   border: 3px solid #1F2FC1;
   box-sizing: border-box;
+  border-radius: 8px;
 `
 
 export const InitialContainer = styled<any>(BaseContainer)`
@@ -43,6 +44,7 @@ export const TopInformation = styled<any>(Row)`
 export const Attribute = styled<any>(Row)`
   box-sizing: border-box;
   width: 70%;
+  height: 16vh;
   margin-left: 6vh;
   padding-bottom: 8vh;
   div:nth-child(2) {

@@ -1,14 +1,45 @@
 import React from 'react'
-import { Container, Text } from './style'
+import { Container, Title, Icons } from './style'
+import { femaleIcon, maleIcon, unknownIcon } from '../../assets'
+import Icon from '../PokemonImage'
+import { GenderTypesEnum } from '../../types/genderTypes'
 
 interface IProps {
-  title: string
-  value: string
+  genderRate: GenderTypesEnum
 }
 
-export const Attribute: React.FC<IProps> = ({ title, value }) => (
+const showRightIcons = (genderRate: GenderTypesEnum) => {
+  if (genderRate === GenderTypesEnum.BOTH) {
+    return (
+      <>
+        <Icon url={maleIcon} width={24} title={'Male'}/>
+        <Icon url={femaleIcon} width={26} title={'Female'}/>
+      </>
+    )
+  }
+
+  if (genderRate === GenderTypesEnum.ONLY_FEMALE) {
+    return (
+      <Icon url={femaleIcon} width={26} title={'Female'}/>
+    )
+  }
+
+  if (genderRate === GenderTypesEnum.ONLY_MALE) {
+    return (
+      <Icon url={maleIcon} width={24} title={'Male'}/>
+    )
+  }
+
+  return (
+    <Icon url={unknownIcon} width={24} title={'Unknown'}/>
+  )
+}
+
+export const Gender: React.FC<IProps> = ({ genderRate }) => (
   <Container>
-    <Text>{title}</Text>
-    <Text>{value}</Text>
+    <Title>Gender</Title>
+    <Icons>
+      {showRightIcons(genderRate)}
+    </Icons>
   </Container>
 )

@@ -1,6 +1,7 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
 import PokemonRow from '.'
+import { GenderTypesEnum } from '../../types/genderTypes'
 import { Pokemon } from '../../types/pokemon'
 
 describe('PokemonType', () => {
@@ -16,7 +17,7 @@ describe('PokemonType', () => {
       weight: 1,
       species: {
         category: 'fakeCategory',
-        genreRate: 'fakeGenreRate'
+        genreRate: GenderTypesEnum.BOTH
       }
     }
 

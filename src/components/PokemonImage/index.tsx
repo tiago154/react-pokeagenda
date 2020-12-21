@@ -3,11 +3,12 @@ import ImagePokemon from './style'
 
 interface IProps {
   url: string,
-  width: number
+  width: number,
+  title?: string
 }
 
-const PokemonImage = ({ url, width }: IProps) => (
-  <ImagePokemon src={url} width={width} />
+const PokemonImage = ({ url, width, title }: IProps) => (
+  <ImagePokemon src={url} width={width} alt={title} title={title}/>
 )
 
 export default PokemonImage

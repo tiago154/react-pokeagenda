@@ -14,6 +14,6 @@ module.exports = {
   testMatch: ['<rootDir>/src/**/*.spec.tsx'],
   verbose: true,
   moduleNameMapper: {
-    '.+\\.(png|jpg|gif)$': 'identity-obj-proxy'
+    '.+\\.(png|jpg|gif|svg)$': 'identity-obj-proxy'
   }
 }

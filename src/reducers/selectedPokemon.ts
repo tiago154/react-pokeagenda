@@ -1,3 +1,4 @@
+import { GenderTypesEnum } from '../types/genderTypes'
 import { Pokemon } from '../types/pokemon'
 
 export enum SelectedPokemonActionsEnum {
@@ -20,7 +21,7 @@ const initialState: SelectedPokemonState = {
   height: 0,
   weight: 0,
   abilities: [],
-  species: { category: '', genreRate: '' }
+  species: { category: '', genreRate: GenderTypesEnum.UNKNOWN }
 }
 
 export default (state = initialState, action: SelectedPokemonActionTypes): SelectedPokemonState => {

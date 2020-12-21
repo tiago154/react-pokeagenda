@@ -1,2 +1,5 @@
 export { default as background } from './background.png'
 export { default as pokeballRolling } from './pokeball-rolling.gif'
+export { default as femaleIcon } from './female-icon.svg'
+export { default as maleIcon } from './male-icon.svg'
+export { default as unknownIcon } from './unknown-icon.svg'

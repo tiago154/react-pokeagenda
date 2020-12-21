@@ -25,4 +25,5 @@ export const ColumnListing = styled.div`
   border: 3px solid #1F2FC1;
   box-sizing: border-box;
   margin-left: 16px;
+  border-radius: 8px;
 `

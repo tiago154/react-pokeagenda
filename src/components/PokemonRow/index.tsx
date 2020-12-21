@@ -13,7 +13,7 @@ const PokemonRow: React.FC<IProps> = ({ pokemon, onSelectPokemon }) => {
   const { id, name, image } = pokemon
   return (
     <Div onClick={() => onSelectPokemon(pokemon)}>
-      <Text>{id} {name}</Text>
+      <Text>{id.toString().padStart(3, '0')} {name}</Text>
       <Sprite
         src={imageIsLoaded ? image : pokeballRolling}
         onLoad={() => setLoadedImage(true)}
